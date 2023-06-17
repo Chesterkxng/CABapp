@@ -135,6 +135,30 @@ try {
             (new SignUp())->signUpPage();
         }
         // END OF SIGN IN ROUTEUR 
+        elseif ($_GET['action'] === 'updateProfilePage') {
+
+            $login_id = $_GET['login_id'];
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new Personal())->updateCurrentProfilPage($login_id);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+            // update the connected profile based on informations filled 
+        } elseif ($_GET['action'] === 'updateProfileInfos') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $login_id = $_GET['login_id'];
+                $input = $_POST;
+                if (isset($_SESSION['ISAUTH'])) {
+                    $isAuth = $_SESSION['ISAUTH'];
+                    if ($isAuth == 1) {
+                        (new Personal())->updateProfile($login_id, $input);
+                    }
+                }
+            }
+        }
 
         // SIGN OUT ROUTER 
         if ($_GET['action'] === 'signOut') {
