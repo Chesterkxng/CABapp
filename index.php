@@ -35,6 +35,9 @@ require_once('src/controllers/todoControllers/todo.php');
 // MO Import 
 require_once('src/controllers/MOControllers/missionOrders.php'); 
 
+// ext FORM IMPORT 
+require_once('src/controllers/extFormControllers/extForm.php'); 
+
 
 use Application\Controllers\LoginControllers\SignUp\SignUp;
 use Application\Controllers\LoginControllers\Profile\Profile;
@@ -54,17 +57,18 @@ use Application\Controllers\VisaControllers\Visa\Visa;
 use Application\Controllers\CalendarControllers\Calendar\Calendar; 
 use Application\Controllers\TodoControllers\Todo\Todo; 
 use Application\Controllers\MOControllers\MissionOrders\MissionOrders; 
+use Application\Controllers\extFormControllers\extForm\extForm;
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
-
-
+        $found = 0; 
         // LOGIN ROUTER
 
         // SIGN UP ROUTER
 
         // when the form for creating a new account is filled and the submit button is clicked 
         if ($_GET['action'] === 'signUp') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new SignUp())->signUp($input);
@@ -73,6 +77,7 @@ try {
             // after the popup the user is redirected to the profile informations completion's page  
             // Or when a registered account doesn't have the profile's informations filled    
         } elseif ($_GET['action'] === 'signUpProfilePage') {
+            $found = 1;
             $personalRepository = new PersonalRepository();
             $personalRepository->connection = new DatabaseConnection();
 
@@ -88,6 +93,7 @@ try {
 
             // once the profile informations Form is filled and the 'complete your profile' button is clicked 
         } elseif ($_GET['action'] === 'profileCompletion') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new Profile())->profileCompletion($input);
@@ -95,6 +101,7 @@ try {
 
             // when the 'signIn button is clicked from the sign Up page 
         } elseif ($_GET['action'] === 'signInPage') {
+            $found = 1;
             (new SignIn())->signInPage();
         }
 
@@ -104,6 +111,7 @@ try {
 
         //sign In controller
         if ($_GET['action'] === 'signIn') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new SignIn())->connect($input);
@@ -111,32 +119,35 @@ try {
 
             // when the forgotten password link is cliked
         } elseif ($_GET['action'] === 'forgottenPasswordPage') {
-
+            $found = 1;
             (new forgottenPassword())->forgottenPasswordPage();
 
             // when the informations are filled in the form and the password reset's button is pressed 
         } elseif ($_GET['action'] === 'redirectQA') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new forgottenPassword())->redirectQA($input);
             }
             // if the informations filled are correct the popup will directly redirect to the security QA verification
         } elseif ($_GET['action'] === 'securityQAPage') {
+            $found = 1;
             (new SecurityQA())->SecurityQAPage();
 
             // when the security answer is set
         } elseif ($_GET['action'] === 'verifyQA') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new SecurityQA())->VerifiyQA($input);
             }
         } elseif ($_GET['action'] === 'signUpPage') {
-
+            $found = 1;
             (new SignUp())->signUpPage();
         }
         // END OF SIGN IN ROUTEUR 
-        elseif ($_GET['action'] === 'updateProfilePage') {
-
+        elseif ($_GET['action'] === 'updateProfilePage') {  
+            $found = 1;
             $login_id = $_GET['login_id'];
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
@@ -148,6 +159,7 @@ try {
             }
             // update the connected profile based on informations filled 
         } elseif ($_GET['action'] === 'updateProfileInfos') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $login_id = $_GET['login_id'];
                 $input = $_POST;
@@ -162,6 +174,7 @@ try {
 
         // SIGN OUT ROUTER 
         if ($_GET['action'] === 'signOut') {
+            $found = 1;
             (new SignOut())->signOut();
         }
 
@@ -170,6 +183,7 @@ try {
         
         //load the dasboardPage
         if ($_GET['action'] === 'DashboardPage') {
+            $found = 1;
             $personal_id = $_SESSION['PERSONAL_ID'];
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
@@ -186,6 +200,7 @@ try {
         // PASSPORT ROUTER 
             // Passport List 
         if ($_GET['action'] === 'passportsList') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
@@ -197,6 +212,7 @@ try {
         }
             //Passport Adding Form 
         if ($_GET['action'] === 'passportAddingForm') {
+                $found = 1;
                 if (isset($_SESSION['ISAUTH'])) {
                     $isAuth = $_SESSION['ISAUTH'];
                     if ($isAuth == 1) {
@@ -207,6 +223,7 @@ try {
                 }
             // add passport 
          } elseif ($_GET['action'] === 'addPassport') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 if (isset($_SESSION['ISAUTH'])) {
@@ -220,6 +237,7 @@ try {
             }
             // Passport updating Form
         }  elseif ($_GET['action'] === 'updatePassportForm') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $passport_id = $_GET['passport_id']; 
                 $isAuth = $_SESSION['ISAUTH'];
@@ -231,6 +249,7 @@ try {
             }
         // update passport  
      } elseif ($_GET['action'] === 'updatePassport') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = $_POST;
             $passport_id = $_GET['passport_id']; 
@@ -245,6 +264,7 @@ try {
         }
         // Passport deletion popup 
     } elseif ($_GET['action'] === 'deletePassportPopup') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $passport_id = $_GET['passport_id'];
             if (isset($_SESSION['ISAUTH'])) {
@@ -258,6 +278,7 @@ try {
         }
         //  delete Passport    
     } elseif ($_GET['action'] === 'deletePassport') {
+        $found = 1;
         $passport_id = $_GET['passport_id'];
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
@@ -268,11 +289,12 @@ try {
             (new SignIn())->signInPage();
         }
 
-    }
+    } 
 
     // VISA ROUTER 
             // VISA List 
             if ($_GET['action'] === 'visasList') {
+                $found = 1;
                 if (isset($_SESSION['ISAUTH'])) {
                     $isAuth = $_SESSION['ISAUTH'];
                     if ($isAuth == 1) {
@@ -284,6 +306,7 @@ try {
             }
                 //visa Adding Form 
             if ($_GET['action'] === 'visaAddingForm') {
+                $found = 1;
                     if (isset($_SESSION['ISAUTH'])) {
                         $isAuth = $_SESSION['ISAUTH'];
                         if ($isAuth == 1) {
@@ -294,6 +317,7 @@ try {
                     }
                 // add visa 
              } elseif ($_GET['action'] === 'addVisa') {
+                $found = 1;
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $input = $_POST;
                     if (isset($_SESSION['ISAUTH'])) {
@@ -307,6 +331,7 @@ try {
                 }
                 // Visa updating Form
             }  elseif ($_GET['action'] === 'updateVisaForm') {
+                $found = 1;
                 if (isset($_SESSION['ISAUTH'])) {
                     $visa_id = $_GET['visa_id']; 
                     $isAuth = $_SESSION['ISAUTH'];
@@ -318,6 +343,7 @@ try {
                 }
             // update visa 
          } elseif ($_GET['action'] === 'updateVisa') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 $visa_id = $_GET['visa_id']; 
@@ -332,6 +358,7 @@ try {
             }
             // visa deletion popup 
         } elseif ($_GET['action'] === 'deleteVisaPopup') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $visa_id = $_GET['visa_id'];
                 if (isset($_SESSION['ISAUTH'])) {
@@ -345,6 +372,7 @@ try {
             }
             //  delete visa    
         } elseif ($_GET['action'] === 'deleteVisa') {
+            $found = 1;
             $visa_id = $_GET['visa_id'];
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
@@ -360,6 +388,7 @@ try {
         // CALENDAR 
 
         if ($_GET['action'] === 'calendar') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
@@ -369,6 +398,7 @@ try {
                 (new SignIn())->signInPage();
             }
         } elseif ($_GET['action'] === 'eventsList') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
@@ -378,6 +408,7 @@ try {
                 (new SignIn())->signInPage();
             }  
         }  elseif ($_GET['action'] === 'updateEventForm') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $event_id = $_GET['event_id']; 
                 $isAuth = $_SESSION['ISAUTH'];
@@ -389,6 +420,7 @@ try {
             }
         
      } elseif ($_GET['action'] === 'updateEvent') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = $_POST;
             $event_id = $_GET['event_id']; 
@@ -402,6 +434,7 @@ try {
             }
         }
     } elseif ($_GET['action'] === 'deleteEventPopup') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $event_id = $_GET['event_id'];
             if (isset($_SESSION['ISAUTH'])) {
@@ -414,6 +447,7 @@ try {
             }
         }  
     } elseif ($_GET['action'] === 'deleteEvent') {
+        $found = 1;
         $event_id = $_GET['event_id'];
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
@@ -429,6 +463,7 @@ try {
 
         // TODO LIST 
         if ($_GET['action'] === 'todosList') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
@@ -438,6 +473,7 @@ try {
                 (new SignIn())->signInPage();
             }
         }   elseif ($_GET['action'] === 'todoAddingForm') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
@@ -447,6 +483,7 @@ try {
                 (new SignIn())->signInPage();
             }
         } elseif ($_GET['action'] === 'addTodo') {
+            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 if (isset($_SESSION['ISAUTH'])) {
@@ -459,6 +496,7 @@ try {
                 }
             }
         }   elseif ($_GET['action'] === 'updateTodoForm') {
+            $found = 1;
             if (isset($_SESSION['ISAUTH'])) {
                 $todo_id = $_GET['todo_id']; 
                 $isAuth = $_SESSION['ISAUTH'];
@@ -470,6 +508,7 @@ try {
             }
         
      } elseif ($_GET['action'] === 'updateTodo') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = $_POST;
             $todo_id = $_GET['todo_id']; 
@@ -483,6 +522,7 @@ try {
             }
         }
     } elseif ($_GET['action'] === 'todoDeletePopup') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $todo_id = $_GET['todo_id'];
             if (isset($_SESSION['ISAUTH'])) {
@@ -495,6 +535,7 @@ try {
             }
         }  
     } elseif ($_GET['action'] === 'deleteTodo') {
+        $found = 1;
         $todo_id = $_GET['todo_id'];
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
@@ -505,6 +546,7 @@ try {
             (new SignIn())->signInPage();
         }  
     } elseif ($_GET['action'] === 'markAsdonePopup') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $todo_id = $_GET['todo_id'];
             if (isset($_SESSION['ISAUTH'])) {
@@ -517,6 +559,7 @@ try {
             }
         }  
     } elseif ($_GET['action'] === 'markAsDone') {
+        $found = 1;
         $todo_id = $_GET['todo_id'];
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
@@ -527,6 +570,7 @@ try {
             (new SignIn())->signInPage();
         }  
     } elseif ($_GET['action'] === 'markAsTraitedPopup') {
+        $found = 1;
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $todo_id = $_GET['todo_id'];
             if (isset($_SESSION['ISAUTH'])) {
@@ -539,6 +583,7 @@ try {
             }
         }  
     } elseif ($_GET['action'] === 'markAsTraited') {
+        $found = 1;
         $todo_id = $_GET['todo_id'];
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
@@ -549,6 +594,7 @@ try {
             (new SignIn())->signInPage();
         }  
     } elseif ($_GET['action'] === 'todoHistoric') {
+        $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
             if ($isAuth == 1) {
@@ -560,6 +606,7 @@ try {
     }
     // MO GENERATOR 
     if ($_GET['action'] === 'extMOgenerator') {
+        $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
             if ($isAuth == 1) {
@@ -569,6 +616,7 @@ try {
             (new SignIn())->signInPage();
         }
     } elseif ($_GET['action'] === 'intMOgenerator') {
+        $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
             if ($isAuth == 1) {
@@ -578,6 +626,7 @@ try {
             (new SignIn())->signInPage();
         }
     } elseif ($_GET['action'] === 'DOMgenerator') {
+        $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
             $isAuth = $_SESSION['ISAUTH'];
             if ($isAuth == 1) {
@@ -586,7 +635,40 @@ try {
         } else {
             (new SignIn())->signInPage();
         }
+    } 
+
+    // ext FORM ROuter 
+    if ($_GET['action'] === 'extPage') {
+        $found = 1;
+        (new extForm())->loadExtPage(); 
+        
+    } elseif ($_GET['action'] === 'extPassportadding') {
+        $found = 1;
+        (new extForm())->PassportAddingForm(); 
+        
+    } elseif ($_GET['action'] === 'ExtAddPassport') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST; 
+            (new extForm())->addPassport($input); 
+        }
+        
+    } elseif ($_GET['action'] === 'extVisaAdding') {
+        $found = 1;
+        (new extForm())->visaAddingForm(); 
+        
+    } elseif ($_GET['action'] === 'ExtAddVisa') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST; 
+            (new extForm())->addVisa($input); 
+        }
+        
+    } 
+    if ($found == 0){
+        require('templates/pagesComponents/error-404.php');
     }
+       
 
 
 
