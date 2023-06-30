@@ -67,12 +67,12 @@ use Application\Lib\Database\DatabaseConnection;
 
                                     $datediff = date_diff($expirationDate, $currentDate);
                                     switch ($datediff->days) {
-                                        case ($datediff->days < 61 && $datediff->days > 1): ?>
+                                        case ($datediff->days < 92 && $datediff->days > 1): ?>
                                             <td>
                                                 <label class="badge badge-warning badge-pill"><?= htmlspecialchars($passport->expirationDate) ?></label>
                                             </td>
                                         <?php break;
-                                        case ($datediff->days > 61): ?>
+                                        case ($datediff->days > 92): ?>
                                             <td>
                                                 <label class="badge badge-success badge-pill"><?= htmlspecialchars($passport->expirationDate) ?></label>
                                             </td>

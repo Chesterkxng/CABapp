@@ -20,22 +20,41 @@
                     break; 
             
                 case "UN (01) MILITAIRE": 
-                    var companion = document.getElementById("name1").value + " MLE : "+ document.getElementById("mat1").value; 
-                    localStorage.setItem('companion', companion.toUpperCase());
+                    var name1 = document.getElementById("name1").value;
+                    var mat1 = document.getElementById("mat1").value;
+                    if (name1 != ""  && mat1 != ""){
+                        var companion =  name1 + " MLE : "+ mat1; 
+                        localStorage.setItem('companion', companion.toUpperCase());
+                    }
                      break;
                 case "DEUX (02) MILITAIRES": 
-                    var companion1 = document.getElementById("name1").value + " MLE : "+ document.getElementById("mat1").value;
-                    var companion2 = document.getElementById("name2").value + " MLE : "+ document.getElementById("mat2").value;
-                    localStorage.setItem('companion1', companion1.toUpperCase());
-                    localStorage.setItem('companion2', companion2.toUpperCase());
+                    var name1 = document.getElementById("name1").value;
+                    var mat1 = document.getElementById("mat1").value;
+                    var name2 = document.getElementById("name2").value;
+                    var mat2 = document.getElementById("mat2").value;
+                    if (name1 != ""  && mat1 != "" && name2 != "" && mat2 !=""){
+                        var companion1 = name1 + " MLE : "+ mat1;
+                        var companion2 = name2 + " MLE : "+ mat2;
+                        localStorage.setItem('companion1', companion1.toUpperCase());
+                        localStorage.setItem('companion2', companion2.toUpperCase());
+                    }
                     break;
                 case "TROIS (03) MILITAIRES": 
-                    var companion1 = document.getElementById("name1").value + " MLE : "+ document.getElementById("mat1").value;
-                    var companion2 = document.getElementById("name2").value + " MLE : "+ document.getElementById("mat2").value;
-                    var companion3 = document.getElementById("name3").value + " MLE : "+ document.getElementById("mat3").value;
-                    localStorage.setItem('companion1', companion1.toUpperCase());
-                    localStorage.setItem('companion2', companion2.toUpperCase());
-                    localStorage.setItem('companion3', companion3.toUpperCase());
+                    var name1 = document.getElementById("name1").value;
+                    var mat1 = document.getElementById("mat1").value;
+                    var name2 = document.getElementById("name2").value;
+                    var mat2 = document.getElementById("mat2").value;
+                    var name3 = document.getElementById("name3").value;
+                    var mat3 = document.getElementById("mat3").value;
+                    if (name1 != ""  && mat1 != "" && name2 != "" && mat2 !="" 
+                    && name3 !="" && mat3){
+                        var companion1 = name1 + " MLE : "+ mat1;
+                        var companion2 = name2 + " MLE : "+ mat2;
+                        var companion3 = name3 + " MLE : "+ mat3;
+                        localStorage.setItem('companion1', companion1.toUpperCase());
+                        localStorage.setItem('companion2', companion2.toUpperCase());
+                        localStorage.setItem('companion3', companion3.toUpperCase());
+                    }
                     break;
 
             }
@@ -51,26 +70,82 @@
 
         console.log(localStorage); 
 
+        if (grade !="" && name !="" && PN != "" && city !="" 
+        && object !="" && means !="" && departuredate != "" && returndate !=""){
+
 
         switch(companions){
                 case "SEUL":
+                    if (companion){
                     window.open('templates/OM/assets/OMint/OMint_alone.html'); 
+                    document.getElementById('btn_save').innerHTML = 
+                    '<label class="control-label col-sm-3" for=""></label>'+
+                        '<div class="col-sm-5">'+
+                            '<button onclick="document.getElementById(\'Moform\').submit()"  class="btn btn-info btn-lg btn-block"><strong>SAVE</strong></button>'+
+                        '</div>';
+                    } 
                     break; 
             
                 case "UN (01) MILITAIRE": 
+                    if (companion){
                     window.open('templates/OM/assets/OMint/OMint_one.html');
+                    document.getElementById('btn_save').innerHTML = 
+                    '<label class="control-label col-sm-3" for=""></label>'+
+                        '<div class="col-sm-5">'+
+                            '<button onclick="document.getElementById(\'Moform\').submit()"  class="btn btn-info btn-lg btn-block"><strong>SAVE</strong></button>'+
+                        '</div>';
+                    } else {
+                        swal({
+                        title: "Missions Orders Message!",
+                        text: "Fill all the tabs!",
+                        icon: "error",
+                        } );
+                    }         
                      break;
                 case "DEUX (02) MILITAIRES": 
+                    if (companion1 && companion2){
                     window.open('templates/OM/assets/OMint/OMint_two.html');
+                    document.getElementById('btn_save').innerHTML = 
+                    '<label class="control-label col-sm-3" for=""></label>'+
+                        '<div class="col-sm-5">'+
+                            '<button onclick="document.getElementById(\'Moform\').submit()"  class="btn btn-info btn-lg btn-block"><strong>SAVE</strong></button>'+
+                        '</div>';
+                    } else {
+                        swal({
+                        title: "Missions Orders Message!",
+                        text: "Fill all the tabs!",
+                        icon: "error",
+                        } );
+                    }
                     break;
                 case "TROIS (03) MILITAIRES": 
+                    if (companion1 && companion2 && companion3){
                     window.open('templates/OM/assets/OMint/OMint_three.html');
+                    document.getElementById('btn_save').innerHTML = 
+                    '<label class="control-label col-sm-3" for=""></label>'+
+                        '<div class="col-sm-5">'+
+                            '<button onclick="document.getElementById(\'Moform\').submit()"  class="btn btn-info btn-lg btn-block"><strong>SAVE</strong></button>'+
+                        '</div>';
+                    } else {
+                        swal({
+                        title: "Missions Orders Message!",
+                        text: "Fill all the tabs!",
+                        icon: "error",
+                        } );
+                    }
                     break;
 
             }
         
 
+    } else {
+        swal({
+        title: "Missions Orders Message!",
+        text: "Fill all the tabs!",
+        icon: "error",
+        } );
     }
+}
 
   
 </script>

@@ -18,9 +18,17 @@ class Dashboard
         $passportsNumber = $dashboardRepository->passportsNumber();
         $expiredPassportsNumber = $dashboardRepository->expiredPassportsNumber();
         $availablePassportsNumber = $dashboardRepository->AvailablePassportsNumber();
+        $UpcomingExpirationNumber = $dashboardRepository->UpcomingExpirationNumber(); 
         $visasNumber = $dashboardRepository->visasNumber();
         $expiredVisasNumber = $dashboardRepository->expiredVisasNumber();
         $availableVisasNumber = $dashboardRepository->AvailableVisasNumber();
+        $UpcomingExpirationVisaNumber = $dashboardRepository->UpcomingExpiratioVisaNumber(); 
+        $monthlyIntOM = $dashboardRepository->MonthlyIntOM();
+        $monthlyExtOM = $dashboardRepository->MonthlyExtOM(); 
+        $monthlyDOM = $dashboardRepository->MonthlyDOM();  
+        $totalIntOM = $dashboardRepository->totalIntOM();
+        $totalExtOM = $dashboardRepository->totalExtOM(); 
+        $totalDOM = $dashboardRepository->totalDOM();  
         require('templates/dashboard/dashboard.php'); 
         
         

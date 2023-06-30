@@ -18,10 +18,10 @@
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
         <h5 class="mb-3"><strong>External Mission Orders Generator </strong></h5>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">MISSION INFOS</h6>
-                    
+                    <form  id="Moform" action = "index.php?action=saveDOM" method="POST" onsubmit="event.preventDefault()">
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="grade">GRADE</label>
                             <div class="col-sm-5">
@@ -97,11 +97,16 @@
                                 <button  onclick="generateDOM()" class="btn btn-info btn-lg btn-block"><strong>GENERATE</strong></button>
                             </div>
                         </div>
+                        <div id= "btn_save" class="form-group row">
+                            
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <?php require('templates/OM/scripts/DOM.js.php') ?>
+    <?php require('templates/OM/scripts/DOM.js.php'); 
+    require('templates/pagesComponents/popup/MO.php')?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
     
 </body>

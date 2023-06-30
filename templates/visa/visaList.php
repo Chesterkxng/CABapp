@@ -70,12 +70,12 @@ use Application\Model\Passport\PassportRepository;
 
                                     $datediff = date_diff($expirationDate, $currentDate);
                                     switch ($datediff->days) {
-                                        case ($datediff->days < 31 && $datediff->days > 1): ?>
+                                        case ($datediff->days < 61 && $datediff->days > 1): ?>
                                             <td>
                                                 <label class="badge badge-warning badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
                                             </td>
                                         <?php break;
-                                        case ($datediff->days > 31): ?>
+                                        case ($datediff->days > 61): ?>
                                             <td>
                                                 <label class="badge badge-success badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
                                             </td>

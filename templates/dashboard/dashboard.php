@@ -93,8 +93,21 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
                     <div class="bg-white border shadow">
                         <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationNumber?></strong></h3>
+                                <p><small class="text-muted bc-description">Upcoming Passport's expirations</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
                             <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
-                                <i class="fas fa-book"></i>
+                                <i class="fas fa-hourglass-end"></i>
                             </div>
                             <div class="media-body pl-2">
                                 <h3 class="mt-0 mb-0"><strong><?= $expiredPassportsNumber?></strong></h3>
@@ -137,12 +150,113 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
                     <div class="bg-white border shadow">
                         <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationVisaNumber?></strong></h3>
+                                <p><small class="text-muted bc-description">Upcoming Visa's expirations</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
                             <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
-                                <i class="fas fa-id-card"></i>
+                                <i class="fas fa-hourglass-end"></i>
                             </div>
                             <div class="media-body pl-2">
                                 <h3 class="mt-0 mb-0"><strong><?= $expiredVisasNumber?></strong></h3>
                                 <p><small class="text-muted bc-description">Expired Visas</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h6 class="mb-3" style="color:darkblue"><strong>MISSION ORDERS</strong></h6>
+            <h6 class="mb-3" style="color:darkblue"><strong>THIS MONTH</strong></h6>
+            <div class="row pl-0">
+                
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $monthlyIntOM ?></strong></h3>
+                                <p><small class="text-muted bc-description">INTERIOR MO</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $monthlyExtOM?></strong></h3>
+                                <p><small class="text-muted bc-description">EXTERIOR MO</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $monthlyDOM?></strong></h3>
+                                <p><small class="text-muted bc-description">REQUEST MO</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h6 class="mb-3" style="color:darkblue"><strong>TOTAL</strong></h6>
+            <div class="row pl-0">
+                
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $totalIntOM ?></strong></h3>
+                                <p><small class="text-muted bc-description">INTERIOR MO</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
+                                <i class="fas fa-plane"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $totalExtOM?></strong></h3>
+                                <p><small class="text-muted bc-description">EXTERIOR MO</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                    <div class="bg-white border shadow">
+                        <div class="media p-4">
+                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <div class="media-body pl-2">
+                                <h3 class="mt-0 mb-0"><strong><?= $totalDOM?></strong></h3>
+                                <p><small class="text-muted bc-description">REQUEST MO</small></p>
                             </div>
                         </div>
                     </div>

@@ -615,6 +615,19 @@ try {
         } else {
             (new SignIn())->signInPage();
         }
+    }elseif ($_GET['action'] === 'saveExtMO') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new MissionOrders())->saveExtMO($input);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }  
     } elseif ($_GET['action'] === 'intMOgenerator') {
         $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
@@ -625,6 +638,19 @@ try {
         } else {
             (new SignIn())->signInPage();
         }
+    }elseif ($_GET['action'] === 'saveIntMO') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new MissionOrders())->saveIntOM($input);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }  
     } elseif ($_GET['action'] === 'DOMgenerator') {
         $found = 1;
         if (isset($_SESSION['ISAUTH'])) {
@@ -635,7 +661,30 @@ try {
         } else {
             (new SignIn())->signInPage();
         }
-    } 
+    } elseif ($_GET['action'] === 'saveDOM') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new MissionOrders())->saveDOM($input);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }  
+    }  elseif ($_GET['action'] ==='MOArchives'){
+        $found = 1; 
+        if (isset($_SESSION['ISAUTH'])) {
+            $isAuth = $_SESSION['ISAUTH'];
+            if ($isAuth == 1) {
+                (new MissionOrders())->MOArchives();
+            }
+        } else {
+            (new SignIn())->signInPage();
+        }
+    }
 
     // ext FORM ROuter 
     if ($_GET['action'] === 'extPage') {
@@ -664,7 +713,7 @@ try {
             (new extForm())->addVisa($input); 
         }
         
-    } 
+    }
     if ($found == 0){
         require('templates/pagesComponents/error-404.php');
     }

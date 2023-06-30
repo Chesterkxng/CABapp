@@ -81,7 +81,7 @@ class DashboardRepository
         $currentDate = $currentDate->format('Y-m-d'); 
         $statement = $this->connection->getConnection()->prepare(
             "SELECT COUNT(PASSPORT_ID) AS expiredPassportsNumber FROM `passport` 
-            where `EXPIRATION_DATE` < ? "
+            where `EXPIRATION_DATE` <= ? "
         );  
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
@@ -110,6 +110,29 @@ class DashboardRepository
         }
         return $availablePassportsNumber; 
     }
+    public function UpcomingExpirationNumber(): int
+    {
+        $currentDate = new DateTime(date('Y-m-d'));
+        $currentDate = $currentDate->format('Y-m-d'); 
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT * FROM `passport` 
+            where `EXPIRATION_DATE` > ? "
+        );  
+        $year = date("Y"); 
+        $month = date('m'); 
+        $statement->execute([$currentDate]); 
+        $UpcomingExpirationNumber = 0;
+        while ($row = $statement->fetch()){
+            if ((int)substr($row['EXPIRATION_DATE'],0,4) == (int)$year){
+                if ((int)substr($row['EXPIRATION_DATE'],5,7 ) - (int)$month <= 3){
+                    $UpcomingExpirationNumber += 1; 
+                }
+        } else {
+                $UpcomingExpirationNumber += 0; 
+            }
+        }
+        return $UpcomingExpirationNumber; 
+    }
 
     public function visasNumber(): int
     {
@@ -132,7 +155,7 @@ class DashboardRepository
         $currentDate = $currentDate->format('Y-m-d'); 
         $statement = $this->connection->getConnection()->prepare(
             "SELECT COUNT(VISA_ID) AS expiredVisasNumber FROM `visa` 
-            where `EXPIRATION_DATE` < ? "
+            where `EXPIRATION_DATE` <= ? "
         );  
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
@@ -160,6 +183,134 @@ class DashboardRepository
             $availableVisasNumber = 0; 
         }
         return $availableVisasNumber; 
+    } 
+    public function UpcomingExpiratioVisaNumber(): int
+    {
+        $currentDate = new DateTime(date('Y-m-d'));
+        $currentDate = $currentDate->format('Y-m-d'); 
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT * FROM `visa` 
+            where `EXPIRATION_DATE` > ? "
+        );  
+        $year = date("Y"); 
+        $month = date('m'); 
+        $statement->execute([$currentDate]); 
+        $UpcomingExpirationVisaNumber = 0;
+        while ($row = $statement->fetch()){
+            if ((int)substr($row['EXPIRATION_DATE'],0,4) == (int)$year){
+                if ((int)substr($row['EXPIRATION_DATE'],5,7 ) - (int)$month <= 2){
+                    $UpcomingExpirationVisaNumber += 1; 
+                }
+        } else {
+                $UpcomingExpirationVisaNumber += 0; 
+            }
+        }
+        return $UpcomingExpirationVisaNumber; 
+    }
+
+    public function MonthlyIntOM(): int
+    {
+        $date = date('Y-m'); 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS monthlyIntOM FROM `om` 
+            WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'INTERIEUR' "
+        ); 
+        $row = $statement->fetch(); 
+        $monthlyIntOM = $row['monthlyIntOM'];
+
+        if (!empty($row['monthlyIntOM'])){
+            $monthlyIntOM = $row['monthlyIntOM'];
+        } else {
+            $monthlyIntOM = 0; 
+        }
+        return $monthlyIntOM; 
+    } 
+
+    public function MonthlyExtOM(): int
+    {
+        $date = date('Y-m'); 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS monthlyExtOM FROM `om` 
+            WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'EXTERIEUR' "
+        ); 
+        $row = $statement->fetch(); 
+        $monthlyExtOM = $row['monthlyExtOM'];
+
+        if (!empty($row['monthlyExtOM'])){
+            $monthlyExtOM = $row['monthlyExtOM'];
+        } else {
+            $monthlyExtOM = 0; 
+        }
+        return $monthlyExtOM; 
+    } 
+
+    public function MonthlyDOM(): int
+    {
+        $date = date('Y-m'); 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS monthlyDOM FROM `om` 
+            WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'DEMANDE D\'OM' "
+        ); 
+        $row = $statement->fetch(); 
+        $monthlyDOM = $row['monthlyDOM'];
+
+        if (!empty($row['monthlyDOM'])){
+            $monthlyDOM = $row['monthlyDOM'];
+        } else {
+            $monthlyDOM = 0; 
+        }
+        return $monthlyDOM; 
+    }
+
+    public function totalIntOM(): int
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS totalIntOM FROM `om` 
+            WHERE `TYPE` = 'INTERIEUR' "
+        ); 
+        $row = $statement->fetch(); 
+        $totalIntOM = $row['totalIntOM'];
+
+        if (!empty($row['totalIntOM'])){
+            $totalIntOM = $row['totalIntOM'];
+        } else {
+            $totalIntOM = 0; 
+        }
+        return $totalIntOM; 
+    } 
+
+    public function totalExtOM(): int
+    { 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS totalExtOM FROM `om` 
+            WHERE `TYPE` = 'EXTERIEUR' "
+        ); 
+        $row = $statement->fetch(); 
+        $totalExtOM = $row['totalExtOM'];
+
+        if (!empty($row['totalExtOM'])){
+            $totalExtOM = $row['totalExtOM'];
+        } else {
+            $totalExtOM = 0; 
+        }
+        return $totalExtOM; 
+    } 
+
+    public function totalDOM(): int
+    { 
+        $statement = $this->connection->getConnection()->query(
+            "SELECT  COUNT(OM_ID) AS totalDOM FROM `om` 
+            WHERE `TYPE` = 'DEMANDE D\'OM' "
+        ); 
+        $row = $statement->fetch(); 
+        $totalDOM = $row['totalDOM'];
+
+        if (!empty($row['totalDOM'])){
+            $totalDOM = $row['totalDOM'];
+        } else {
+            $totalDOM = 0; 
+        }
+        return $totalDOM; 
     }
 
 

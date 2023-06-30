@@ -21,7 +21,7 @@
             <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">MISSION INFOS</h6>
-                    
+                    <form  id="Moform" action = "index.php?action=saveIntMO" method="POST" onsubmit="event.preventDefault()">
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="grade">GRADE</label>
                             <div class="col-sm-5">
@@ -121,6 +121,10 @@
                                 <button  onclick="generateOM()" class="btn btn-info btn-lg btn-block"><strong>GENERATE</strong></button>
                             </div>
                         </div>
+                        <div id="btn_save" class="form-group row">
+                            
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -194,7 +198,8 @@
         }
 
     </script>
-    <?php require('templates/OM/scripts/intMO.js.php') ?>
+    <?php require('templates/OM/scripts/intMO.js.php'); 
+    require('templates/pagesComponents/popup/MO.php')?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
     
 </body>

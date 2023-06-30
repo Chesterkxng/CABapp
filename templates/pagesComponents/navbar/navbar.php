@@ -115,10 +115,11 @@
                                  <span class="none">MISSION ORDERS<i class="fa fa-angle-down pull-right align-bottom"></i></span>
                              </a>
                              <ul class="children" id="mission_orders">
-                                <li class="child"><a href="index.php?action=intMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> INTERNAL</a></li>
-                                <li class="child"><a href="index.php?action=extMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EXTERNAL</a></li>
+                                <li class="child"><a href="index.php?action=intMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> INTERIOR</a></li>
+                                <li class="child"><a href="index.php?action=extMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EXTERIOR</a></li>
                                 <li class="child"><a href="index.php?action=DOMgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> REQUEST</a></li>
-                             </ul>   
+                                <li class="child"><a href="index.php?action=MOArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li> 
+                            </ul>   
                          </li>
                         
                      </ul>

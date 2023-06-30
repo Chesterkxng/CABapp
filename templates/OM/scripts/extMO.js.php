@@ -19,9 +19,25 @@
         localStorage.setItem('departuredate', departuredate.toUpperCase()); 
         localStorage.setItem('returndate', returndate.toUpperCase()); 
 
-        console.log(localStorage); 
+        if (grade !="" && name !="" && PN != "" && country != "" &&city !="" 
+        && object !=""  && departuredate != "" && returndate !=""){
 
-        window.open('templates/OM/assets/OMext/OMext.html');
+            window.open('templates/OM/assets/OMext/OMext.html');
+            document.getElementById('btn_save').innerHTML = 
+            '<label class="control-label col-sm-3" for=""></label>'+
+                '<div class="col-sm-5">'+
+                    '<button onclick="document.getElementById(\'Moform\').submit()"  class="btn btn-info btn-lg btn-block"><strong>SAVE</strong></button>'+
+                 '</div>';
+
+        } else {
+            swal({
+            title: "Missions Orders Message!",
+            text: "Fill all the tabs!",
+            icon: "error",
+            } );
+        }
+
+        
 
     }
 
