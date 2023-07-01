@@ -16,68 +16,61 @@
     <?php
     ?>
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
-        <h5 class="mb-3"><strong>TODO updating </strong></h5>
+        <h5 class="mb-3"><strong>Courier adding </strong></h5>
         <div class="row">
             <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
-                    <h6 class="mb-4">TODO INFOS</h6>
-                    <form action="index.php?action=updateTodo&todo_id=<?= $todo->todo_id ?>" method="post">
+                    <h6 class="mb-4">COURRIER INFOS</h6>
+                    <form action="index.php?action=addCourier" method="post" enctype="multipart/form-data">
 
                         <div class="form-group row">
-                            <label class="control-label col-sm-3" for="passnumber">TITLE</label>
+                            <label class="control-label col-sm-3" for="recipient">RECIPIENT(S)</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;"  class="form-control" id="title" name="title" value="<?= $todo->title ?>" required />
+                                <textarea type="text" rows = "2"  placeholder="write the recipients in abbreviated form" style="text-transform: uppercase;" class="form-control" id="recipient" name="recipient" required></textarea>
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="object">OBJECT</label>
+                            <div class="col-sm-5">
+                                <textarea type="text" autocomplete="off" rows ="2" style="text-transform: uppercase;" class="form-control" id="object" name="object" required></textarea>
+                            </div>
+                        </div>
 
-
-                    
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="details">DETAILS</label>
                             <div class="col-sm-5">
-                                <textarea type="text" autocomplete="off" rows = "4"  class="form-control" id="details" name="details"  required><?= $todo->details ?></textarea>
-                            </div>
-                        </div>
-                    
-                        <div class="form-group row">
-                            <label class="control-label col-sm-3" for="surname">DEADLINE</label>
-                            <div class="col-sm-5">
-                                <input type="datetime-local" autocomplete="off"  class="form-control" id="deadline" name="deadline" value="<?= $todo->deadline ?>" required/>
+                                <textarea type="text" rows ="3" autocomplete="off" style="text-transform: uppercase;" class="form-control" id="details" name="details"></textarea>
                             </div>
                         </div>
 
-
                         <div class="form-group row">
-                            <label class="control-label col-sm-3" for="recipient">TO</label>
+                            <label class="control-label col-sm-3" for="firstName">UPLOAD FILE</label>
                             <div class="col-sm-5">
-                                <select class="custom-select text-center" name="recipient" id="recipient" required>
-                                    <option class="option" value=""></option>
-                                    <option class="option" value="<?= $_SESSION['PERSONAL_ID']?>"> ME</option>
-                            <?php foreach($personnel as $recipient){?>
-                                    <option class="option" value="<?= $recipient->personal_id?>"><?= $recipient->grade." ".$recipient->surname." ".$recipient->first_name ?></option>
-                            <?php } ?>
-                                </select>
+                                <input type="file"  class="form-control" id="uploadedfile" name="uploadfile" required />
+                            </div>
+                        </div>
+
+             
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="date">EDITION DATE</label>
+                            <div class="col-sm-5">
+                                <input type="date" class="form-control" id="date" name="date" required />
                             </div>
                         </div>
                         
-                        
-                    
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPDATE </strong></button>
+                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPLOAD</strong></button>
                             </div>
                         </div>
-
-
-
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <?php require('templates/pagesComponents/popup/todo.php') ?>
+    <?php require('templates/pagesComponents/popup/courier.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
 </html>

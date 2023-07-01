@@ -38,6 +38,9 @@ require_once('src/controllers/MOControllers/missionOrders.php');
 // ext FORM IMPORT 
 require_once('src/controllers/extFormControllers/extForm.php'); 
 
+// Courier IMPORT
+require_once('src/controllers/courierControllers/courier.php'); 
+
 
 use Application\Controllers\LoginControllers\SignUp\SignUp;
 use Application\Controllers\LoginControllers\Profile\Profile;
@@ -58,6 +61,7 @@ use Application\Controllers\CalendarControllers\Calendar\Calendar;
 use Application\Controllers\TodoControllers\Todo\Todo; 
 use Application\Controllers\MOControllers\MissionOrders\MissionOrders; 
 use Application\Controllers\extFormControllers\extForm\extForm;
+use Application\Controllers\CourierControllers\Courier\Courier;
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -714,6 +718,58 @@ try {
         }
         
     }
+
+    // courier Router
+    if ($_GET['action'] ==='courierAddingForm'){
+        $found = 1; 
+        if (isset($_SESSION['ISAUTH'])) {
+            $isAuth = $_SESSION['ISAUTH'];
+            if ($isAuth == 1) {
+                (new Courier())->courierAddingForm();
+            }
+        } else {
+            (new SignIn())->signInPage();
+        }
+    } elseif ($_GET['action'] === 'addCourier') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = $_POST;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new Courier())->addCourier($input);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }  
+    } elseif ($_GET['action'] === 'couriersArchives') {
+        $found = 1;
+        if (isset($_SESSION['ISAUTH'])) {
+            $isAuth = $_SESSION['ISAUTH'];
+            if ($isAuth == 1) {
+                (new Courier())->courierArchives();
+            }
+        } else {
+            (new SignIn())->signInPage();
+        }
+    }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if ($found == 0){
         require('templates/pagesComponents/error-404.php');
     }

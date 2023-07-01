@@ -18,7 +18,7 @@
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
         <h5 class="mb-3"><strong>Passport update </strong></h5>
         <div class="row">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">PASSPORT INFOS</h6>
                     <form action="index.php?action=updatePassport&passport_id=<?= $passport->passport_id ?>" method="post">

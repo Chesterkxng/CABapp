@@ -121,6 +121,16 @@
                                 <li class="child"><a href="index.php?action=MOArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li> 
                             </ul>   
                          </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('couriers'); return false" class=""><i class="fa fa-envelope mr-3"> </i>
+                                 <span class="none">COURIERS<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="couriers">
+                                <li class="child"><a href="index.php?action=courierAddingForm" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ADD COURIER</a></li>
+                                <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
+                            </ul>   
+                         </li>
                         
                      </ul>
                  </div>
