@@ -17,7 +17,7 @@ require_once('src/controllers/personalControllers/personal.php');
 // DATABASE IMPORT 
 require_once('src/lib/database.php'); 
 
-// DASHBORD IMPORT 
+// DASHBOARD IMPORT 
 require_once('src/controllers/dashboardControllers/dashboard.php'); 
 
 // PASSPORT IMPORT 
@@ -62,6 +62,7 @@ use Application\Controllers\TodoControllers\Todo\Todo;
 use Application\Controllers\MOControllers\MissionOrders\MissionOrders; 
 use Application\Controllers\extFormControllers\extForm\extForm;
 use Application\Controllers\CourierControllers\Courier\Courier;
+
 
 try {
     if (isset($_GET['action']) && $_GET['action'] !== '') {
@@ -188,15 +189,18 @@ try {
         //load the dasboardPage
         if ($_GET['action'] === 'DashboardPage') {
             $found = 1;
-            $personal_id = $_SESSION['PERSONAL_ID'];
+            if (isset($_SESSION['PERSONAL_ID'])){
+                $personal_id = $_SESSION['PERSONAL_ID'];
+                }
             if (isset($_SESSION['ISAUTH'])) {
                 $isAuth = $_SESSION['ISAUTH'];
                 if ($isAuth == 1) {
                     (new Dashboard())->DashboardPage($personal_id);
                 }
-            } else {
+            }  else {
                 (new SignIn())->signInPage();
             }
+
         }
 
         // END OF DASHBOARD ROUTEUR 
@@ -688,7 +692,35 @@ try {
         } else {
             (new SignIn())->signInPage();
         }
-    }
+    } elseif ($_GET['action'] === 'uploadForm') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $om_id = $_GET['om_id'];
+            $type = $_GET['type'];
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new MissionOrders())->uploadMOPage($om_id);
+                }
+        } else {
+            (new SignIn())->signInPage();
+            }
+        } 
+    } elseif ($_GET['action'] === 'uploadMO') {
+        $found = 1;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $om_id = $_GET['om_id'];
+            $type = $_GET['type'];
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new MissionOrders())->uploadMO($type,$om_id);
+                }
+        } else {
+            (new SignIn())->signInPage();
+        }
+    } 
+}
 
     // ext FORM ROuter 
     if ($_GET['action'] === 'extPage') {

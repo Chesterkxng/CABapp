@@ -51,13 +51,15 @@ use Application\Lib\Database\DatabaseConnection;
                                     <td><?= htmlspecialchars($courier->details) ?></td>
                                     <td><?= htmlspecialchars($courier->recipient) ?></td>
                                     <td><?= htmlspecialchars($courier->edition_date) ?></td>
-                                    <td><button class="btn btn-danger btn-sm btn-block">
+                                    <td><a href="#" onclick="window.open('<?= htmlspecialchars($courier->url) ?>', '_blank'); return false;">
+                                        <button class="btn btn-danger btn-sm btn-block">
                                             VIEW FILE  
                                             <i class="fa fa-file-pdf"></i>
                                         </button>
+                                        </a>
                                     </td>          
 
-                                </tr>
+                                </tr>   
                             <?php
                                 $i = $i + 1;
                             }
@@ -68,9 +70,6 @@ use Application\Lib\Database\DatabaseConnection;
                 <!--/Striped table-->
             </div>
         </div>
-        
-
-
 
             <?php //require('templates/pagesComponents/popup/visa.php'); ?>
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>

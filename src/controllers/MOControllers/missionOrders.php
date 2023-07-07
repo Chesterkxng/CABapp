@@ -189,6 +189,55 @@ class MissionOrders
         $DOMs = $OMRepository->getDOMs(); 
         require('templates/OM/MOarchives.php'); 
         
+    } 
+    public function uploadMOPage(int $om_id){
+        $OMRepository = new OMRepository();
+        $OMRepository->connection = new DatabaseConnection();
+        $OM = $OMRepository->getOM($om_id);
+        require('templates/OM/uploadMO.php'); 
+
+    } 
+
+    public function uploadMO(int $type, int $om_id){
+        $OMRepository = new OMRepository();
+        $OMRepository->connection = new DatabaseConnection();
+        $OM = $OMRepository->getOM($om_id);
+        require('templates/OM/uploadMO.php'); 
+
+        switch($type){
+            case 1: 
+                $filename = $_FILES['uploadfile']['name']; 
+                $location = 'docs/MO/INT/'.$filename; 
+                if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)){
+                    $url = $location; 
+                }
+                break; 
+            case 2: 
+                $filename = $_FILES['uploadfile']['name']; 
+                $location = 'docs/MO/EXT/'.$filename; 
+                if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)){
+                    $url = $location; 
+                }
+                break; 
+            case 3: 
+                $filename = $_FILES['uploadfile']['name']; 
+                $location = 'docs/MO/DOM/'.$filename; 
+                if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)){
+                        $url = $location; 
+                }
+                break; 
+        }
+        $success= $OMRepository->uploadMO($url, $om_id); 
+        if ($success == 0) {
+            echo '<script type="text/javascript">
+                    addingErrorAlert()
+                </script>';
+        } else {
+            echo '<script type="text/javascript">
+                    UploadingSuccessAlert()
+                </script>';
+        }
+
     }
 
 }

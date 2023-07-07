@@ -53,6 +53,24 @@
 </script>
 
 <script type="text/javascript">
+  function UploadingSuccessAlert()
+  {
+    swal({
+      title: "Missions Orders Message!",
+      text: "Mission Order uploaded successfully!",
+      icon: "success",
+    } ).then(okay => {
+   if (okay) {
+    window.location.href = "index.php?action=MOArchives";
+   } else {
+    window.location.href = "index.php?action=MOArchives";
+   }
+  }
+    )
+  }
+</script>
+
+<script type="text/javascript">
   function addingErrorAlert()
   {
     swal({

@@ -38,6 +38,7 @@ use Application\Lib\Database\DatabaseConnection;
                                 <th>DEPARTURE DATE</th>
                                 <th>RETURN DATE</th>
                                 <th>EDITION DATE</th>
+                                <th>DOCUMENTS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,7 +57,35 @@ use Application\Lib\Database\DatabaseConnection;
                                     <td><?= htmlspecialchars($OM->means) ?></td>
                                     <td><?= htmlspecialchars($OM->departure_date) ?></td>
                                     <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>          
+                                    <td><?= htmlspecialchars($OM->edition_date) ?></td> 
+                                <?php 
+                                if ($OM->url !=""){
+                                 ?>
+                                    <td>
+                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                            <button class="btn btn-danger btn-sm btn-block">
+                                                VIEW FILE  
+                                                <i class="fa fa-file-pdf"></i>
+                                            </button>
+                                        </a>   
+                                    </td> 
+                                <?php 
+                                    } else {
+                                ?> 
+                                    <td>
+                                    <form action="index.php?action=uploadForm&type=1&om_id=<?= $OM->om_id ?>" method="post">
+                                        <button class="btn btn-info btn-sm btn-block">
+                                                JOIN FILE  
+                                                <i class="fa fa-link"></i>
+                                        </button>
+
+                                    </form>
+                                    </td>
+
+                                <?php
+                                    }
+                                ?>
+
 
                                 </tr>
                             <?php
@@ -83,10 +112,10 @@ use Application\Lib\Database\DatabaseConnection;
                                 <th>CITY</th>
                                 <th>COMPANIONS</th>
                                 <th>OBJECT</th>
-                                <th>MEANS</th>
                                 <th>DEPARTURE DATE</th>
                                 <th>RETURN DATE</th>
                                 <th>EDITION DATE</th>
+                                <th>DOCUMENTS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,10 +132,36 @@ use Application\Lib\Database\DatabaseConnection;
                                     <td><?= htmlspecialchars($OM->city) ?></td>
                                     <td><?= str_replace("\N", "<br/>",$OM->companions) ?></td>
                                     <td><?= htmlspecialchars($OM->object) ?></td>
-                                    <td><?= htmlspecialchars($OM->means) ?></td>
                                     <td><?= htmlspecialchars($OM->departure_date) ?></td>
                                     <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>          
+                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>       
+                                    <?php 
+                                if ($OM->url !=""){
+                                 ?>
+                                    <td>
+                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                            <button class="btn btn-danger btn-sm btn-block">
+                                                VIEW FILE  
+                                                <i class="fa fa-file-pdf"></i>
+                                            </button>
+                                        </a>   
+                                    </td> 
+                                <?php 
+                                    } else {
+                                ?> 
+                                    <td>
+                                    <form action="index.php?action=uploadForm&type=2&om_id=<?= $OM->om_id ?>" method="post">
+                                        <button class="btn btn-info btn-sm btn-block">
+                                                JOIN FILE  
+                                                <i class="fa fa-link"></i>
+                                        </button>
+
+                                    </form>
+                                    </td>
+
+                                <?php
+                                    }
+                                ?>   
 
                                 </tr>
                             <?php
@@ -124,7 +179,7 @@ use Application\Lib\Database\DatabaseConnection;
             <div class="col-sm-12">
 
                 <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm">
-                    <table class="table table-striped" id="DOM-table">
+                    <table class="table table-striped" id="DOMs-table">
                         <thead>
                             <tr>
                                 <th>N°</th>
@@ -133,10 +188,10 @@ use Application\Lib\Database\DatabaseConnection;
                                 <th>CITY</th>
                                 <th>COMPANIONS</th>
                                 <th>OBJECT</th>
-                                <th>MEANS</th>
                                 <th>DEPARTURE DATE</th>
                                 <th>RETURN DATE</th>
                                 <th>EDITION DATE</th>
+                                <th>DOCUMENTS</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -153,10 +208,36 @@ use Application\Lib\Database\DatabaseConnection;
                                     <td><?= htmlspecialchars($OM->city) ?></td>
                                     <td><?= str_replace("\N", "<br/>",$OM->companions) ?></td>
                                     <td><?= htmlspecialchars($OM->object) ?></td>
-                                    <td><?= htmlspecialchars($OM->means) ?></td>
                                     <td><?= htmlspecialchars($OM->departure_date) ?></td>
                                     <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>          
+                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>       
+                                <?php 
+                                if ($OM->url !=""){
+                                 ?>
+                                    <td>
+                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                            <button class="btn btn-danger btn-sm btn-block">
+                                                VIEW FILE  
+                                                <i class="fa fa-file-pdf"></i>
+                                            </button>
+                                        </a>   
+                                    </td> 
+                                <?php 
+                                    } else {
+                                ?> 
+                                    <td>
+                                    <form action="index.php?action=uploadForm&type=3&om_id=<?= $OM->om_id ?>" method="post">
+                                        <button class="btn btn-info btn-sm btn-block">
+                                                JOIN FILE  
+                                                <i class="fa fa-link"></i>
+                                        </button>
+
+                                    </form>
+                                    </td>
+
+                                <?php
+                                    }
+                                ?>    
 
                                 </tr>
                             <?php
@@ -168,9 +249,6 @@ use Application\Lib\Database\DatabaseConnection;
                 </div>
                 <!--/Striped table-->
             </div>
-
-
-            <?php require('templates/pagesComponents/popup/visa.php'); ?>
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
             <script type="text/javascript">
                 $(document).ready(function() {
@@ -184,7 +262,7 @@ use Application\Lib\Database\DatabaseConnection;
             </script>
             <script type="text/javascript">
                 $(document).ready(function() {
-                    $('#DOM-table').DataTable();
+                    $('#DOMs-table').DataTable();
                 });
             </script>
 

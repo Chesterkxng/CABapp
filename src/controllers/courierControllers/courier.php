@@ -36,7 +36,6 @@ class Courier
             } 
 
             $filename = $_FILES['uploadfile']['name']; 
-            print_r($filename); 
             $location = 'docs/courier/'.$filename; 
             if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)){
                 $url = $location; 
