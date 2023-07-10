@@ -45,7 +45,8 @@ $events_js = json_encode($events);
     </div>
 
     <?php  
-     require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
+     require('templates/pagesComponents/navbar/navbarFooter.php');
+     require('templates/pagesComponents/navbar/calendarFooter.php'); ?>
     
 
 </body>

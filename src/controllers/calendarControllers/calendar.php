@@ -86,6 +86,7 @@ class Calendar
         $eventRepository->connection = new DatabaseConnection();
         $personal_id = $_SESSION['PERSONAL_ID']; 
         $events = $eventRepository->getEventsByPersonal($personal_id);  
+        $sharedEvents = $eventRepository->getSharedEvents(); 
         require('templates/calendar/eventList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
@@ -98,6 +99,7 @@ class Calendar
         $eventRepository->connection = new DatabaseConnection();
         $personal_id = $_SESSION['PERSONAL_ID']; 
         $events = $eventRepository->getEventsByPersonal($personal_id);  
+        $sharedEvents = $eventRepository->getSharedEvents(); 
         require('templates/calendar/eventList.php');
         $bool = $eventRepository->deleteEvent($event_id); 
         if ($bool == 1) {

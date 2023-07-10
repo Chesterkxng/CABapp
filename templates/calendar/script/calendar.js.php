@@ -62,7 +62,28 @@
     
 </script>
 
-<?php
+<script type="text/javascript">
+    function saveSharedCalendar(){
+        var values = {};
+        for (let i = 1; i <= localStorage.length; i++) {
+            let storedValue = localStorage.getItem(i);
+            values[i] = JSON.parse(storedValue);
+        } 
 
-?>
+        localStorage.clear(); 
+        $.ajax({
+            type: "POST",
+            url:  "sharedCalendarSaver.php",
+            data: values,
+            success: function(data){
+                var d = JSON.parse(data);
+                if(d.msg == "Success")
+                    alert("EVENT(S) ADDED SUCCESSFULLY");
+                else
+                    alert("FAILED");
+                 
+            }}) 
+    }
+    
+</script>
 
