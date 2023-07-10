@@ -5,6 +5,7 @@
         $personalRepository = new PersonalRepository();
         $personalRepository->connection = new DatabaseConnection();
         $login_id = $_SESSION['LOGIN_ID'];
+        $profile_type = $_SESSION['profile_type']; 
         $profile = $personalRepository->getProfile($login_id);
     }
     ?>
@@ -68,6 +69,92 @@
                      <span class="text-primary small"><strong><?= $profile->function ?></strong></span>
                  </div>
                  <!--Image Avatar-->
+                 <?php  switch($profile_type){
+                    case 0 : 
+                  ?>
+                 <!--Sidebar Navigation Menu-->
+                 <div class="sidebar-menu-container">
+                     <ul class="sidebar-menu mt-4 mb-4">
+                         <li class="parent">
+                             <a href="index.php?action=DashboardPage" class=""><i class="fa fa-dashboard mr-3"></i>
+                                 <span class="none">DASHBOARD </span>
+                             </a>
+                         </li>
+                         <li class="parent">
+                             <a href="index.php?action=passportsList" class=""><i class="fa fa-book mr-3"> </i>
+                                 <span class="none">PASSPORTS</span>
+                             </a>
+                         </li>
+                         <li class="parent">
+                             <a href="index.php?action=visasList" class=""><i class="fa fa-id-card mr-3"> </i>
+                                 <span class="none">VISAS</span>
+                             </a>
+                         </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('calender'); return false" class=""><i class="fa fa-calendar mr-3"> </i>
+                                 <span class="none">CALENDAR<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="calender">
+                                <li class="child"><a href="index.php?action=eventsList" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EVENTS LIST</a></li>
+                                <li class="child"><a href="index.php?action=calendar" class="ml-4"><i class="fa fa-angle-right mr-2"></i> PERSONAL CALENDAR</a></li>
+                                <li class="child"><a href="index.php?action=sharedCalendar" class="ml-4"><i class="fa fa-angle-right mr-2"></i> SHARED CALENDAR</a></li>
+                             </ul>   
+                         </li>  
+
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('todo'); return false" class=""><i class="fa fa-list-ul mr-3"> </i>
+                                 <span class="none">TO DO<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="todo">
+                                <li class="child"><a href="index.php?action=todoAddingForm" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ADD TODO</a></li>
+                                <li class="child"><a href="index.php?action=todosList" class="ml-4"><i class="fa fa-angle-right mr-2"></i> TODO LIST</a></li>
+                                <li class="child"><a href="index.php?action=todoHistoric" class="ml-4"><i class="fa fa-angle-right mr-2"></i> TODO HISTORIC</a></li>
+
+                             </ul>   
+                         </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('mission_orders'); return false" class=""><i class="fa fa-file-word mr-3"> </i>
+                                 <span class="none">MISSION ORDERS<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="mission_orders">
+                                <li class="child"><a href="index.php?action=intMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> INTERIOR</a></li>
+                                <li class="child"><a href="index.php?action=extMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EXTERIOR</a></li>
+                                <li class="child"><a href="index.php?action=DOMgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> REQUEST</a></li>
+                                <li class="child"><a href="index.php?action=MOArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li> 
+                            </ul>   
+                         </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('couriers'); return false" class=""><i class="fa fa-envelope mr-3"> </i>
+                                 <span class="none">COURIERS<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="couriers">
+                                <li class="child"><a href="index.php?action=courierAddingForm" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ADD COURIER</a></li>
+                                <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
+                            </ul>   
+                         </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('accessControls'); return false" class=""><i class="fa fa-key mr-3"> </i>
+                                 <span class="none">ACCESS CONTROL<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="accessControls">
+                                <li class="child"><a href="index.php?action=userAddingForm" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ADD NEW USER</a></li>
+                                <li class="child"><a href="index.php?action=usersList" class="ml-4"><i class="fa fa-angle-right mr-2"></i> USERS LIST</a></li>
+                            </ul>   
+                         </li>
+                        
+                     </ul>
+                 </div>
+                 <!--Sidebar Naigation Menu-->
+                 <?php 
+                 break; 
+            case 1 :
+                ?>
+
                  <!--Sidebar Navigation Menu-->
                  <div class="sidebar-menu-container">
                      <ul class="sidebar-menu mt-4 mb-4">
@@ -131,10 +218,56 @@
                                 <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
                             </ul>   
                          </li>
-                        
-                     </ul>
+
+                         </ul>
                  </div>
-                 <!--Sidebar Naigation Menu-->
+
+                <?php 
+            break; 
+        case 2 : 
+            ?> 
+
+            <!--Sidebar Navigation Menu-->
+            <div class="sidebar-menu-container">
+                     <ul class="sidebar-menu mt-4 mb-4">
+                         <li class="parent">
+                             <a href="index.php?action=DashboardPage" class=""><i class="fa fa-dashboard mr-3"></i>
+                                 <span class="none">DASHBOARD </span>
+                             </a>
+                         </li> 
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('mission_orders'); return false" class=""><i class="fa fa-file-word mr-3"> </i>
+                                 <span class="none">MISSION ORDERS<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="mission_orders">
+                                <li class="child"><a href="index.php?action=intMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> INTERIOR</a></li>
+                                <li class="child"><a href="index.php?action=extMOgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EXTERIOR</a></li>
+                                <li class="child"><a href="index.php?action=DOMgenerator" class="ml-4"><i class="fa fa-angle-right mr-2"></i> REQUEST</a></li>
+                                <li class="child"><a href="index.php?action=MOArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li> 
+                            </ul>   
+                         </li>
+
+                         <li class="parent">
+                             <a href="#" onclick="toggle_menu('todo'); return false" class=""><i class="fa fa-list-ul mr-3"> </i>
+                                 <span class="none">TO DO<i class="fa fa-angle-down pull-right align-bottom"></i></span>
+                             </a>
+                             <ul class="children" id="todo">
+                                <li class="child"><a href="index.php?action=todoAddingForm" class="ml-4"><i class="fa fa-angle-right mr-2"></i> ADD TODO</a></li>
+                                <li class="child"><a href="index.php?action=todosList" class="ml-4"><i class="fa fa-angle-right mr-2"></i> TODO LIST</a></li>
+                                <li class="child"><a href="index.php?action=todoHistoric" class="ml-4"><i class="fa fa-angle-right mr-2"></i> TODO HISTORIC</a></li>
+
+                             </ul>   
+                         </li>
+
+                        </ul>
+                 </div>
+
+
+            <?php 
+            break; 
+            }?>
+
              </div>
          </div>
          <!--Sidebar left-->

@@ -16,11 +16,19 @@ class Calendar
         require('templates/calendar/calendar.php'); 
     }
 
+    public function sharedCalendar(){
+        $eventRepository = new EventRepository(); 
+        $eventRepository->connection = new DatabaseConnection();
+        $events = $eventRepository->getSharedEvents();  
+        require('templates/calendar/sharedCalendar.php'); 
+    }
+
     public function eventsList(){
         $eventRepository = new EventRepository(); 
         $eventRepository->connection = new DatabaseConnection();
         $personal_id = $_SESSION['PERSONAL_ID']; 
         $events = $eventRepository->getEventsByPersonal($personal_id);  
+        $sharedEvents = $eventRepository->getSharedEvents(); 
         require('templates/calendar/eventList.php');
     }
 

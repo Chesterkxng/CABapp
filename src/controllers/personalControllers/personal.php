@@ -3,7 +3,10 @@ namespace Application\Controllers\PersonalControllers\Personal;
 session_start();
 require_once('src/lib/database.php');
 require_once('src/model/personal.php');
+require_once('src/model/login.php');
+
 use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Login\LoginRepository;
 use Application\Model\Personal\PersonalRepository;
 class Personal
 {
@@ -11,11 +14,19 @@ class Personal
     {
         $personalRepository = new PersonalRepository();
         $personalRepository->connection = new DatabaseConnection;
+        $loginRepository = new LoginRepository();
+        $loginRepository->connection = new DatabaseConnection();
         $personal = $personalRepository->getProfile($login_id);
+        $user = $loginRepository->getUserLoginInfos($login_id);
         require('templates/personal/updateForm.php');
     }
     public function updateProfile(int $login_id, array $input)
-    {
+    {   $personalRepository = new PersonalRepository();
+        $personalRepository->connection = new DatabaseConnection;
+        $loginRepository = new LoginRepository();
+        $loginRepository->connection = new DatabaseConnection();
+        $personal = $personalRepository->getProfile($login_id);
+        $user = $loginRepository->getUserLoginInfos($login_id);
         require('templates/personal/updateForm.php');
         if ($input !== null) {
             $grade = null;
@@ -47,9 +58,40 @@ class Personal
             }
         }
     }
-    // load the adding form 
-    public function addingPersonalPage()
+    public function UpdateSecurityInfos(array $input, int $login_id)
     {
-        require('templates/personal/addingForm.php');
+        $personalRepository = new PersonalRepository();
+        $personalRepository->connection = new DatabaseConnection;
+        $loginRepository = new LoginRepository();
+        $loginRepository->connection = new DatabaseConnection();
+        $personal = $personalRepository->getProfile($login_id);
+        $user = $loginRepository->getUserLoginInfos($login_id);
+        require('templates/personal/updateForm.php');
+        if ($input !== null) {
+            $username = null;
+            $security_question = null;
+            $security_answer = null;
+
+            if (
+                !empty($input['username']) && !empty($input["securityquestion"])
+                && !empty($input["securityanswer"])
+            ) {
+                $username = htmlspecialchars($input['username']);
+                $security_question = htmlspecialchars($input["securityquestion"]);
+                $security_answer = htmlspecialchars($input["securityanswer"]);
+            } else {
+                throw new \Exception('Les données du formulaire sont invalides.');
+            }
+            $succes = $loginRepository->modifySecurityQA($login_id,$username, $security_question, $security_answer);
+            if ($succes == 0) {
+                echo '<script type="text/javascript">
+                                unknownErrorAlert()
+                            </script>';
+            } else {
+                echo '<script type="text/javascript">
+                        updateProfileSuccessAlert()
+                            </script>';
+            }
+        }
     }
 }

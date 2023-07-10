@@ -4,14 +4,14 @@
   function createSuccessAlert()
   {
     swal({
-      title: "Signup Message!",
+      title: "Access control",
       text: "User account created successfully!",
       icon: "success",
     } ).then(okay => {
    if (okay) {
-    window.location.href = "index.php?action=signUpProfilePage";
+    window.location.href = "index.php?action=userAddingForm";
    } else {
-    window.location.href = "index.php?action=signUpProfilePage";
+    window.location.href = "index.php?action=userAddingForm";
    }
   }
     )
@@ -67,12 +67,41 @@
       icon: "success",
     } ).then(okay => {
    if (okay) {
-    window.location.href = "index.php?action=DashboardPage";
+    window.location.href = "index.php?action=signInPage";
    } else {
-    window.location.href = "index.php?action=DashboardPage";
+    window.location.href = "index.php?action=signInPage";
    }
   }
     )
+  }
+</script>
+
+<script type="text/javascript">
+  function updateSuccessAlert()
+  {
+    swal({
+      title: "Profile  Message!",
+      text: "User profile updated successfully!",
+      icon: "success",
+    } ).then(okay => {
+   if (okay) {
+    window.location.href = "index.php?action=usersList";
+   } else {
+    window.location.href = "index.php?action=usersList";
+   }
+  }
+    )
+  }
+</script>
+
+<script type="text/javascript">
+  function updateErrorAlert()
+  {
+    swal({
+      title: "Profile Message!",
+      text: "Unknown Error!",
+      icon: "error",
+    } )
   }
 </script>
 
@@ -113,23 +142,6 @@
   }
 </script>
 
-<script type="text/javascript">
-  function redirectProfileAlert()
-  {
-    swal({
-      title: "Login Message!",
-      text: "username and password match!",
-      icon: "success",
-    } ).then(okay => {
-   if (okay) {
-    window.location.href = "index.php?action=signUpProfilePage";
-   } else {
-    window.location.href = "index.php?action=signUpProfilePage";
-   }
-  }
-    )
-  }
-</script>
 
 <script type="text/javascript">
   function incorrectPasswordAlert()
@@ -170,6 +182,24 @@
     window.location.href = "index.php?action=signInPage";
    } else {
     window.location.href = "index.php?action=signInPage";
+   }
+  }
+    )
+  }
+</script>
+
+<script type="text/javascript">
+  function redirectProfileAlert()
+  {
+    swal({
+      title: "Login Message!",
+      text: "username and password match!",
+      icon: "success",
+    } ).then(okay => {
+   if (okay) {
+    window.location.href = "index.php?action=signUpProfilePage";
+   } else {
+    window.location.href = "index.php?action=signUpProfilePage";
    }
   }
     )

@@ -32,7 +32,7 @@ class forgottenPassword
         if ($isUsernameExist == 1) {
             if ($password == $password2) {
                 $_SESSION['USERNAME'] = $username;
-                $_SESSION['NEW_PASSWORD'] = $password;
+                $_SESSION['NEW_PASSWORD'] = hash('sha256', $password);
                 echo '<script type="text/javascript">
                                 redirectQAAlert()
                             </script>';

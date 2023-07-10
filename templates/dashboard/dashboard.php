@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+session_start(); 
+$profile_type = $_SESSION['profile_type']; 
+ ?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -60,7 +63,7 @@
                     </div>
                 </div>
             </div>
-
+            <?php if($profile_type != 2){?>
             <h6 class="mb-3" style="color:darkblue"><strong>PASSPORT</strong></h6>
             <div class="row pl-0">
                 
@@ -174,6 +177,7 @@
                     </div>
                 </div>
             </div>
+            <?php } ?>
 
             <h6 class="mb-3" style="color:darkblue"><strong>MISSION ORDERS</strong></h6>
             <h6 class="mb-3" style="color:darkblue"><strong>THIS MONTH</strong></h6>

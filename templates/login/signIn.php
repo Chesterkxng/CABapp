@@ -29,14 +29,6 @@
 						<?php
 						?>
 						<!-- fin du formulaire pour la connexion-->
-						<h3 class="mb-4 text-center">New account ?</h3>
-						<!-- formulaire pour l'inscription-->
-						<form action="index.php?action=signUpPage" method='post' class="signin-form">
-							<div class="form-group">
-								<button type="submit" class="form-control btn btn-primary submit px-3">Sign Up</button>
-							</div>
-						</form>
-						<!-- fin formulaire pour l'inscription-->
 					</div>
 				</div>
 			</div>

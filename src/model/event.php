@@ -10,6 +10,7 @@ class Event
     public string $start; 
     public string $end; 
     public int $personal_id; 
+    public int $sharing_status; 
 }
 class EventRepository
 {
@@ -38,7 +39,8 @@ class EventRepository
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM `event` 
-            WHERE PERSONAL_ID = ?"
+            WHERE PERSONAL_ID = ? AND 
+            SHARING_STATUS = 0"
         ); 
         $statement->execute([$personal_id]); 
         $events = []; 
@@ -54,6 +56,27 @@ class EventRepository
         return $events;
 
     }
+
+    public function getSharedEvents(): array
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT * FROM `event` 
+            WHERE SHARING_STATUS = 1"
+        ); 
+        $events = []; 
+        while ($row = $statement->fetch()){
+            $event = new Event(); 
+            $event->event_id = $row['EVENT_ID'];
+            $event->title = $row['TITLE'];
+            $event->start = $row['START'];
+            $event->end = $row['END'];
+            $event->personal_id = $row['PERSONAL_ID'];
+            $events[]= $event; 
+        }
+        return $events;
+
+    }
+
 
     public function getEvent(int $event_id): Event
     {
@@ -88,13 +111,13 @@ class EventRepository
     }
 
 
-    public function addEvent(string $title, string $start, string $end, $personal_id): bool
+    public function addEvent(string $title, string $start, string $end, int $personal_id, int $sharing_status ): bool
     {
         $statement = $this->connection->getConnection()->prepare(
-            "INSERT INTO `event`(`TITLE`, `START`, `END`,`PERSONAL_ID`) 
-            VALUES (?, ?, ?, ?)"
+            "INSERT INTO `event`(`TITLE`, `START`, `END`,`PERSONAL_ID`,`SHARING_STATUS`) 
+            VALUES (?, ?, ?, ?, ?)"
         );  
-        $statement->execute([$title, $start, $end, $personal_id]);
+        $statement->execute([$title, $start, $end, $personal_id, $sharing_status]);
 
         $affectedLines = $statement->rowCount();
         if ($affectedLines == 1){

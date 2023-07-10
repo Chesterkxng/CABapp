@@ -46,7 +46,7 @@
                                     <option class="option" value="LCL">Lieutenant-Colonel</option>
                                     <option class="option" value="CDT">Commandant</option>
                                     <option class="option" value="CNE">Capitaine</option>
-                                    <option class="option" value="LT">Lieutenant</option>
+                                    <option class="option" value="LTN">Lieutenant</option>
                                     <option class="option" value="SLT">Sous-Lieutenant</option>
                                     <option class="option" value="ACM">Ajdudant-Chef Major</option>
                                     <option class="option" value="ADC">Adjudant-Chef</option>

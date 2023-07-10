@@ -36,10 +36,12 @@ class SecurityQA
                         echo '<script type="text/javascript">
                                 unknownErrorAlert()
                             </script>';
+
                     } else {
                         echo '<script type="text/javascript">
                                 resetSuccessAlert()
                             </script>';
+                        unset($_SESSION['NEW_PASSWORD']);
                     }
                 }
             } else {

@@ -17,7 +17,7 @@ if (isset($_POST)){
             $title = $event['title']; 
             $start = $event['start']; 
             $end = $event['end']; 
-            $sharing_status = 0;
+            $sharing_status = 1;
     
             $eventRepository->addEvent($title, $start, $end, $personal_id, $sharing_status); 
         }
