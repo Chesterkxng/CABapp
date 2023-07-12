@@ -99,7 +99,6 @@ use Application\Lib\Database\DatabaseConnection;
                         
         
                     </div>
-                    </div>
                 </div>
             </div>
             <?php } ?>

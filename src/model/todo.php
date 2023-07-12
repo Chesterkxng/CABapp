@@ -21,7 +21,7 @@ class TodoRepository
     public function getGivenTodo(int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo` 
             WHERE  (PERSONAL_ID = ? AND RECIPIENT != ?) AND `STATUS` != 2"
         );
 
@@ -44,7 +44,7 @@ class TodoRepository
     public function getReceivedTodo(int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo` 
             WHERE (PERSONAL_ID != ? AND RECIPIENT = ? ) AND `STATUS` = 0"
         );
 
@@ -67,7 +67,7 @@ class TodoRepository
     public function getOwnTodo(int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo`
             WHERE (PERSONAL_ID = ? AND RECIPIENT= ?)  AND `STATUS` = 0"
         );
 
@@ -91,7 +91,7 @@ class TodoRepository
     public function getAlreadyDone(int $personal_id, int $recipient): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo`
             WHERE (PERSONAL_ID = ? OR RECIPIENT = ?) AND `STATUS` = 1"
         );
 
@@ -200,7 +200,7 @@ class TodoRepository
         public function getTodo(int $todo_id): Todo
         {
             $statement = $this->connection->getConnection()->prepare(
-                "SELECT * FROM TODO 
+                "SELECT * FROM `todo` 
                 WHERE  TODO_ID = ?"
             );
     
@@ -221,7 +221,7 @@ class TodoRepository
         public function getGivenTodoHistoric (int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo` 
             WHERE  (PERSONAL_ID = ? AND RECIPIENT != ?) AND `STATUS` = 2"
         );
 
@@ -244,7 +244,7 @@ class TodoRepository
     public function getReceivedTodoHistoric(int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo`
             WHERE (PERSONAL_ID != ? AND RECIPIENT = ? ) AND `STATUS` = 2"
         );
 
@@ -267,7 +267,7 @@ class TodoRepository
     public function getOwnTodoHistoric(int $personal_id): array
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT * FROM TODO 
+            "SELECT * FROM `todo`
             WHERE (PERSONAL_ID = ? AND RECIPIENT= ?)  AND `STATUS` = 2"
         );
 

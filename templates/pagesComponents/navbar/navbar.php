@@ -181,6 +181,7 @@
                              <ul class="children" id="calender">
                                 <li class="child"><a href="index.php?action=eventsList" class="ml-4"><i class="fa fa-angle-right mr-2"></i> EVENTS LIST</a></li>
                                 <li class="child"><a href="index.php?action=calendar" class="ml-4"><i class="fa fa-angle-right mr-2"></i> CALENDAR</a></li>
+                                <li class="child"><a href="index.php?action=sharedCalendar" class="ml-4"><i class="fa fa-angle-right mr-2"></i> SHARED CALENDAR</a></li>
                              </ul>   
                          </li>  
 

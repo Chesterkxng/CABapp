@@ -3,6 +3,8 @@ session_start();
 
 use Application\Lib\Database\DatabaseConnection;
 
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,18 +28,30 @@ use Application\Lib\Database\DatabaseConnection;
         <h5 class="mb-3"><strong> OWN </strong></h5>
 
         <div class="row">
-            <?php foreach($ownTodo as $todo){
+            <?php 
+                $currentDate = new DateTime(date('Y-m-d'));
+            
+                foreach($ownTodo as $todo){
                 $deadline = substr($todo->deadline,0,10); 
                 $time_limit = substr($todo->deadline,11,16); 
+                $deadlineday = new DateTime($deadline);
+
+                $datediff = date_diff($deadlineday, $currentDate);
                 
                 ?>
             <div class="col-sm-4" style="margin-top: 10px;">
+                <?php if ($deadlineday < $currentDate){ ?>
+                <div class="card text-white bg-danger mb-3">
+                <?php } elseif($datediff->days < 1) {?>
+                <div class="card text-white bg-info mb-3">
+                    <?php } else { ?>
                 <div class="card shadow-sm">
+                        <?php } ?>
                     <div class="card-body">
                         <h5 class="card-title"><strong><?= $todo->title ?></strong></h5>
                         <p class="card-text p-typo"><strong>DETAILS:</strong> 
-                        <?= $todo->details ?> </p>
-                        <p class="card-text text-danger p-typo"><strong>DEADLINE: <?= $deadline." A ".$time_limit ?></strong> </p>
+                        <?= nl2br($todo->details)?> </p>
+                        <p class="card-text p-typo"><strong>DEADLINE:</strong> <?= $deadline." A ".$time_limit ?> </p>
                         
                         
                         <div style="display: flex; justify-content: right;">
@@ -144,7 +158,6 @@ use Application\Lib\Database\DatabaseConnection;
 
                 
                         </div>
-                    </div>
                     </div>
                 </div>
             </div>

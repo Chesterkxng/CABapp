@@ -1,6 +1,6 @@
 <?php 
  
-namespace Application\lib\Dashboard;
+namespace Application\Lib\Dashboard;
 session_start();
 
 require_once('src/lib/database.php'); 
@@ -14,63 +14,59 @@ class DashboardRepository
     public function ownTodoNumber(int $personal_id): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT COUNT(TODO_ID) AS ownTodoNumber FROM TODO 
+            "SELECT COUNT(TODO_ID) AS ownTodoNumber FROM `todo` 
             WHERE (PERSONAL_ID = ? AND RECIPIENT= ?)  AND `STATUS` = 0"
         ); 
+
+        $ownTodoNumber = 0; 
         $statement->execute([$personal_id, $personal_id]); 
         $row = $statement->fetch(); 
         if (!empty($row['ownTodoNumber'])){
             $ownTodoNumber = $row['ownTodoNumber'];
-        } else {
-            $ownTodoNumber = 0; 
-        }
+        } 
         return $ownTodoNumber; 
     }
 
     public function givenTodoNumber(int $personal_id): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT COUNT(TODO_ID) AS givenTodoNumber FROM TODO 
+            "SELECT COUNT(TODO_ID) AS givenTodoNumber FROM `todo`
             WHERE  (PERSONAL_ID = ? AND RECIPIENT != ?) AND `STATUS` != 2"
         ); 
+        $givenTodoNumber = 0; 
         $statement->execute([$personal_id, $personal_id]); 
         $row = $statement->fetch(); 
         if (!empty($row['givenTodoNumber'])){
             $givenTodoNumber = $row['givenTodoNumber'];
-        } else {
-            $givenTodoNumber = 0; 
-        }
+        } 
         return $givenTodoNumber; 
     }
 
     public function receivedTodoNumber(int $personal_id): int
     {
         $statement = $this->connection->getConnection()->prepare(
-            "SELECT COUNT(TODO_ID) AS receivedTodoNumber FROM TODO 
+            "SELECT COUNT(TODO_ID) AS receivedTodoNumber FROM `todo` 
             WHERE (PERSONAL_ID != ? AND RECIPIENT = ? ) AND `STATUS` = 0"
         ); 
+        $receivedTodoNumber = 0;
         $statement->execute([$personal_id, $personal_id]); 
         $row = $statement->fetch(); 
         if (!empty($row['receivedTodoNumber'])){
             $receivedTodoNumber = $row['receivedTodoNumber'];
-        } else {
-            $receivedTodoNumber = 0; 
-        }
+        } 
         return $receivedTodoNumber; 
     }
-
 
     public function passportsNumber(): int
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT COUNT(PASSPORT_ID) AS passportsNumber FROM `passport` "
         );  
+        $passportsNumber = 0; 
         $row = $statement->fetch(); 
         if (!empty($row['passportsNumber'])){
             $passportsNumber = $row['passportsNumber'];
-        } else {
-            $passportsNumber = 0; 
-        }
+        } 
         return $passportsNumber; 
     }
 
@@ -82,13 +78,12 @@ class DashboardRepository
         $statement = $this->connection->getConnection()->prepare(
             "SELECT COUNT(PASSPORT_ID) AS expiredPassportsNumber FROM `passport` 
             where `EXPIRATION_DATE` <= ? "
-        );  
+        ); 
+        $expiredPassportsNumber = 0;
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
         if (!empty($row['expiredPassportsNumber'])){
             $expiredPassportsNumber = $row['expiredPassportsNumber'];
-        } else {
-            $expiredPassportsNumber = 0; 
         }
         return $expiredPassportsNumber; 
     }
@@ -101,13 +96,12 @@ class DashboardRepository
             "SELECT COUNT(PASSPORT_ID) AS availablePassportsNumber FROM `passport` 
             where `EXPIRATION_DATE` > ? "
         );  
+        $availablePassportsNumber = 0; 
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
         if (!empty($row['availablePassportsNumber'])){
             $availablePassportsNumber = $row['availablePassportsNumber'];
-        } else {
-            $availablePassportsNumber = 0; 
-        }
+        } 
         return $availablePassportsNumber; 
     }
     public function UpcomingExpirationNumber(): int
@@ -139,12 +133,11 @@ class DashboardRepository
         $statement = $this->connection->getConnection()->query(
             "SELECT COUNT(VISA_ID) AS visasNumber FROM `visa` "
         );  
+        $visasNumber = 0; 
         $row = $statement->fetch(); 
         if (!empty($row['visasNumber'])){
             $visasNumber = $row['visasNumber'];
-        } else {
-            $visasNumber = 0; 
-        }
+        } 
         return $visasNumber; 
     }
 
@@ -157,12 +150,11 @@ class DashboardRepository
             "SELECT COUNT(VISA_ID) AS expiredVisasNumber FROM `visa` 
             where `EXPIRATION_DATE` <= ? "
         );  
+        $expiredVisasNumber = 0; 
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
         if (!empty($row['expiredVisasNumber'])){
             $expiredVisasNumber = $row['expiredVisasNumber'];
-        } else {
-            $expiredVisasNumber = 0; 
         }
         return $expiredVisasNumber; 
     }
@@ -175,13 +167,12 @@ class DashboardRepository
             "SELECT COUNT(VISA_ID) AS availableVisasNumber FROM `visa` 
             where `EXPIRATION_DATE` > ? "
         );  
+        $availableVisasNumber = 0; 
         $statement->execute([$currentDate]); 
         $row = $statement->fetch(); 
         if (!empty($row['availableVisasNumber'])){
             $availableVisasNumber = $row['availableVisasNumber'];
-        } else {
-            $availableVisasNumber = 0; 
-        }
+        } 
         return $availableVisasNumber; 
     } 
     public function UpcomingExpiratioVisaNumber(): int
@@ -215,14 +206,12 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS monthlyIntOM FROM `om` 
             WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'INTERIEUR' "
         ); 
+        $monthlyIntOM = 0; 
         $row = $statement->fetch(); 
-        $monthlyIntOM = $row['monthlyIntOM'];
-
+        
         if (!empty($row['monthlyIntOM'])){
             $monthlyIntOM = $row['monthlyIntOM'];
-        } else {
-            $monthlyIntOM = 0; 
-        }
+        } 
         return $monthlyIntOM; 
     } 
 
@@ -233,13 +222,10 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS monthlyExtOM FROM `om` 
             WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'EXTERIEUR' "
         ); 
+        $monthlyExtOM = 0;
         $row = $statement->fetch(); 
-        $monthlyExtOM = $row['monthlyExtOM'];
-
         if (!empty($row['monthlyExtOM'])){
             $monthlyExtOM = $row['monthlyExtOM'];
-        } else {
-            $monthlyExtOM = 0; 
         }
         return $monthlyExtOM; 
     } 
@@ -251,13 +237,10 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS monthlyDOM FROM `om` 
             WHERE EDITION_DATE LIKE '$date%' AND `TYPE` = 'DEMANDE D\'OM' "
         ); 
+        $monthlyDOM = 0; 
         $row = $statement->fetch(); 
-        $monthlyDOM = $row['monthlyDOM'];
-
         if (!empty($row['monthlyDOM'])){
             $monthlyDOM = $row['monthlyDOM'];
-        } else {
-            $monthlyDOM = 0; 
         }
         return $monthlyDOM; 
     }
@@ -268,13 +251,10 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS totalIntOM FROM `om` 
             WHERE `TYPE` = 'INTERIEUR' "
         ); 
+        $totalIntOM = 0; 
         $row = $statement->fetch(); 
-        $totalIntOM = $row['totalIntOM'];
-
         if (!empty($row['totalIntOM'])){
             $totalIntOM = $row['totalIntOM'];
-        } else {
-            $totalIntOM = 0; 
         }
         return $totalIntOM; 
     } 
@@ -285,14 +265,11 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS totalExtOM FROM `om` 
             WHERE `TYPE` = 'EXTERIEUR' "
         ); 
-        $row = $statement->fetch(); 
-        $totalExtOM = $row['totalExtOM'];
-
+        $totalExtOM = 0; 
+        $row = $statement->fetch();         
         if (!empty($row['totalExtOM'])){
             $totalExtOM = $row['totalExtOM'];
-        } else {
-            $totalExtOM = 0; 
-        }
+        } 
         return $totalExtOM; 
     } 
 
@@ -302,13 +279,10 @@ class DashboardRepository
             "SELECT  COUNT(OM_ID) AS totalDOM FROM `om` 
             WHERE `TYPE` = 'DEMANDE D\'OM' "
         ); 
+        $totalDOM = 0; 
         $row = $statement->fetch(); 
-        $totalDOM = $row['totalDOM'];
-
         if (!empty($row['totalDOM'])){
             $totalDOM = $row['totalDOM'];
-        } else {
-            $totalDOM = 0; 
         }
         return $totalDOM; 
     }
