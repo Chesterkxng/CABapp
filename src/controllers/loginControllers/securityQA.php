@@ -1,10 +1,12 @@
 <?php
 namespace Application\Controllers\LoginControllers\SecurityQA;
+
 session_start();
 require_once('src/lib/database.php');
 require_once('src/model/login.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
+
 class SecurityQA
 {
     public function SecurityQAPage()

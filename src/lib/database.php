@@ -9,7 +9,7 @@ class DatabaseConnection
     public function getConnection(): \PDO
     {
         if ($this->database === null) {
-            $this->database = new \PDO('mysql:host=localhost;dbname=cabdb;charset=utf8', 'root','');
+            $this->database = new \PDO('mysql:host=localhost;dbname=cabdb;charset=utf8', 'root', '');
         }
 
         return $this->database;

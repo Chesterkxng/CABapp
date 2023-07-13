@@ -1,5 +1,6 @@
 <?php
 namespace Application\Controllers\LoginControllers\SignOut;
+
 class SignOut
 {
     public function signOut()

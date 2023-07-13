@@ -1,11 +1,13 @@
 <?php 
 namespace Application\Controllers\TodoControllers\Todo;
 require_once('src/lib/database.php'); 
+require_once('src/lib/dashboard.php'); 
 require_once('src/model/personal.php');
 require_once('src/model/todo.php'); 
 
 use Application\Lib\Database\DatabaseConnection; 
 use Application\Model\Personal\PersonalRepository; 
+use Application\Lib\Dashboard\DashboardRepository; 
 use Application\Model\Todo\TodoRepository; 
 
 Class Todo 
@@ -17,6 +19,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php'); 
     }
 

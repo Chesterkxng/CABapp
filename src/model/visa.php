@@ -1,76 +1,79 @@
 <?php
 
-namespace Application\Model\Visa; 
+namespace Application\Model\Visa;
 
-require_once('src/lib/database.php'); 
-use Application\Lib\Database\DatabaseConnection; 
+require_once('src/lib/database.php');
+use Application\Lib\Database\DatabaseConnection;
 
 class Visa
 {
-    public int $visa_id; 
-    public string $visaNumber; 
-    public string $passNumber; 
-    public string $deliveryDate; 
-    public string $expirationDate; 
+    public int $visa_id;
+    public string $visaNumber;
+    public string $passNumber;
+    public string $deliveryDate;
+    public string $expirationDate;
 
 }
 
-class VisaRepository 
+class VisaRepository
 {
-    public DatabaseConnection $connexion; 
+    public DatabaseConnection $connexion;
 
-    public function addVisa(string $visaNumber,string $passNumber, string $deliveryDate, string $expirationDate) : bool {
+    public function addVisa(string $visaNumber, string $passNumber, string $deliveryDate, string $expirationDate): bool
+    {
 
         $statement = $this->connexion->getConnection()->prepare(
             "INSERT INTO `visa`(`VISA_NUMBER`, `PASSNUMBER`, `DELIVERY_DATE`, `EXPIRATION_DATE`)
              VALUES (?, ?, ?, ?)"
-        ); 
-        $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate]); 
-        $affectedline = $statement->rowCount(); 
-        if ($affectedline == 1){
-            return 1; 
+        );
+        $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate]);
+        $affectedline = $statement->rowCount();
+        if ($affectedline == 1) {
+            return 1;
         } else {
-            return 0; 
+            return 0;
         }
     }
 
-    public function getVisas() : array {
+    public function getVisas(): array
+    {
         $statement = $this->connexion->getConnection()->query(
             "SELECT * FROM `visa`"
-        ); 
-        $visas = []; 
-        while ($row = $statement->fetch()){
-            $visa = new Visa(); 
-            $visa->visa_id = $row["VISA_ID"]; 
+        );
+        $visas = [];
+        while ($row = $statement->fetch()) {
+            $visa = new Visa();
+            $visa->visa_id = $row["VISA_ID"];
             $visa->visaNumber = $row["VISA_NUMBER"];
-            $visa->passNumber = $row["PASSNUMBER"];  
-            $visa->deliveryDate = $row["DELIVERY_DATE"]; 
+            $visa->passNumber = $row["PASSNUMBER"];
+            $visa->deliveryDate = $row["DELIVERY_DATE"];
             $visa->expirationDate = $row["EXPIRATION_DATE"];
-            $visas[] = $visa; 
+            $visas[] = $visa;
         }
-        return $visas; 
+        return $visas;
 
     }
 
-    public function getVisa(int $visa_id) : Visa {
+    public function getVisa(int $visa_id): Visa
+    {
         $statement = $this->connexion->getConnection()->prepare(
             "SELECT * FROM `visa` 
             WHERE `VISA_ID` = ?"
-        ); 
-        $statement->execute([$visa_id]);  
-        while ($row = $statement->fetch()){
-            $visa = new Visa(); 
-            $visa->visa_id = $row["VISA_ID"]; 
+        );
+        $statement->execute([$visa_id]);
+        while ($row = $statement->fetch()) {
+            $visa = new Visa();
+            $visa->visa_id = $row["VISA_ID"];
             $visa->visaNumber = $row["VISA_NUMBER"];
-            $visa->passNumber = $row["PASSNUMBER"];  
-            $visa->deliveryDate = $row["DELIVERY_DATE"]; 
+            $visa->passNumber = $row["PASSNUMBER"];
+            $visa->deliveryDate = $row["DELIVERY_DATE"];
             $visa->expirationDate = $row["EXPIRATION_DATE"];
         }
-        return $visa; 
+        return $visa;
 
     }
 
-    public function updateVisa (string $visaNumber, string $passNumber ,string $deliveryDate, string $expirationDate, int $visa_id): bool
+    public function updateVisa(string $visaNumber, string $passNumber, string $deliveryDate, string $expirationDate, int $visa_id): bool
     {
         $statement = $this->connexion->getConnection()->prepare(
             "UPDATE `visa` 
@@ -81,14 +84,14 @@ class VisaRepository
             `EXPIRATION_DATE`= ? 
             WHERE `VISA_ID`= ?"
         );
-        $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate, $visa_id]); 
-        $affectedline = $statement->rowCount(); 
-        if ($affectedline == 1){
-            return 1; 
+        $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate, $visa_id]);
+        $affectedline = $statement->rowCount();
+        if ($affectedline == 1) {
+            return 1;
         } else {
-            return 0; 
+            return 0;
         }
-        
+
     }
     public function deleteVisa($visa_id): bool
     {
@@ -96,14 +99,14 @@ class VisaRepository
             "DELETE FROM `visa` WHERE `VISA_ID`= ?"
         );
         $statement->execute([$visa_id]);
-        $affectedline = $statement->rowCount(); 
-        if ($affectedline == 1){
-            return 1; 
+        $affectedline = $statement->rowCount();
+        if ($affectedline == 1) {
+            return 1;
         } else {
-            return 0; 
+            return 0;
         }
 
     }
 
-    
+
 }

@@ -1,5 +1,6 @@
 <?php
 namespace Application\Controllers\PersonalControllers\Personal;
+
 session_start();
 require_once('src/lib/database.php');
 require_once('src/model/personal.php');
@@ -8,6 +9,7 @@ require_once('src/model/login.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
 use Application\Model\Personal\PersonalRepository;
+
 class Personal
 {
     public function updateCurrentProfilPage(int $login_id)
@@ -21,7 +23,8 @@ class Personal
         require('templates/personal/updateForm.php');
     }
     public function updateProfile(int $login_id, array $input)
-    {   $personalRepository = new PersonalRepository();
+    {
+        $personalRepository = new PersonalRepository();
         $personalRepository->connection = new DatabaseConnection;
         $loginRepository = new LoginRepository();
         $loginRepository->connection = new DatabaseConnection();
@@ -82,7 +85,7 @@ class Personal
             } else {
                 throw new \Exception('Les données du formulaire sont invalides.');
             }
-            $succes = $loginRepository->modifySecurityQA($login_id,$username, $security_question, $security_answer);
+            $succes = $loginRepository->modifySecurityQA($login_id, $username, $security_question, $security_answer);
             if ($succes == 0) {
                 echo '<script type="text/javascript">
                                 unknownErrorAlert()

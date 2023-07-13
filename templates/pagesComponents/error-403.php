@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -10,7 +11,8 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
-  <body>
+
+<body>
     <!--Page loader-->
     <div class="loader-wrapper">
         <div class="loader-circle">
@@ -18,24 +20,26 @@
         </div>
     </div>
     <!--Page loader-->
-    
+
     <!--Page Wrapper-->
 
     <div class="container-fluid">
 
         <div class="col-md-4 offset-md-4 col-sm-4 offset-sm-4">
             <div class="code text-danger mt-5">403</div>
-            <div class="title mb-4 text-center text-secondary text-uppercase">Sorry, you do not have acces to this page...</div>
-            
+            <div class="title mb-4 text-center text-secondary text-uppercase">Sorry, you do not have acces to this
+                page...</div>
+
             <div class="buttons mb-5">
                 <div class="row">
                     <div class="col-sm-12">
-                        <button onclick="history.back();" class="btn btn-danger btn-block p-2"><i class="fa fa-angle-left pull-left"></i> Go back</button>
+                        <button onclick="history.back();" class="btn btn-danger btn-block p-2"><i
+                                class="fa fa-angle-left pull-left"></i> Go back</button>
                     </div>
                 </div>
             </div>
-            
-            
+
+
             <!-- Copyright -->
             <div class="copyright text-center">
                 <div class="mb-2">
@@ -43,11 +47,12 @@
                 </div>
             </div>
             <!-- ./Copyright -->
-            
+
         </div>
 
     </div>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
-    
-    </body>
+
+</body>
+
 </html>

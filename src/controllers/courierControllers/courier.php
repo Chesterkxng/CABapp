@@ -1,20 +1,23 @@
-<?php 
+<?php
 
 namespace Application\Controllers\CourierControllers\Courier;
-require_once('src/model/courier.php'); 
-require_once('src/lib/database.php'); 
-use Application\Lib\Database\DatabaseConnection; 
-use Application\Model\Courier\CourierRepository; 
+
+require_once('src/model/courier.php');
+require_once('src/lib/database.php');
+use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Courier\CourierRepository;
 
 
-class Courier 
+class Courier
 {
-    public function courierAddingForm(){
-        require('templates/courier/addingForm.php'); 
+    public function courierAddingForm()
+    {
+        require('templates/courier/addingForm.php');
     }
 
-    public function addCourier(array $input){
-        require('templates/courier/addingForm.php'); 
+    public function addCourier(array $input)
+    {
+        require('templates/courier/addingForm.php');
         if ($input !== null) {
             $recipient = null;
             $object = null;
@@ -23,8 +26,8 @@ class Courier
             $url = null;
             if (
                 !empty($input['recipient']) && !empty($input['object']) && !empty($input['details'])
-                && !empty($input['date']) 
-               
+                && !empty($input['date'])
+
             ) {
                 $recipient = htmlspecialchars($input['recipient']);
                 $object = htmlspecialchars($input['object']);
@@ -33,12 +36,12 @@ class Courier
 
             } else {
                 throw new \Exception('Les données du formulaire sont invalides.');
-            } 
+            }
 
-            $filename = $_FILES['uploadfile']['name']; 
-            $location = 'docs/courier/'.$filename; 
-            if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)){
-                $url = $location; 
+            $filename = $_FILES['uploadfile']['name'];
+            $location = 'docs/courier/' . $filename;
+            if (move_uploaded_file($_FILES['uploadfile']['tmp_name'], $location)) {
+                $url = $location;
 
                 $courierRepository = new CourierRepository();
                 $courierRepository->connection = new DatabaseConnection();
@@ -62,14 +65,15 @@ class Courier
 
 
 
-            
+
         }
     }
 
-    public function courierArchives(){
+    public function courierArchives()
+    {
         $courierRepository = new CourierRepository();
         $courierRepository->connection = new DatabaseConnection();
-        $couriers = $courierRepository->getCouriers(); 
-        require('templates/courier/courierArchives.php'); 
+        $couriers = $courierRepository->getCouriers();
+        require('templates/courier/courierArchives.php');
     }
 }

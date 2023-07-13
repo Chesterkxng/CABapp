@@ -101,7 +101,7 @@ class SignUp
                 throw new \Exception('Les données du formulaire sont invalides.');
             }
             $succes = $loginRepository->updateLoginInfoSU($username, $security_question, $security_answer, $profil_type, $user_id);
-            print_r($succes); 
+            print_r($succes);
             if ($succes == 0) {
                 echo '<script type="text/javascript">
                                 unknownErrorAlert()

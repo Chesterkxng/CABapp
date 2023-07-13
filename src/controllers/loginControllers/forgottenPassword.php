@@ -1,10 +1,12 @@
 <?php
 namespace Application\Controllers\LoginControllers\forgottenPassword;
+
 session_start();
 require_once('src/lib/database.php');
 require_once('src/model/login.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
+
 class forgottenPassword
 {
     public function forgottenPasswordPage()

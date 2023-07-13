@@ -1,37 +1,41 @@
-<?php 
-namespace Application\Controllers\VisaControllers\Visa; 
-session_start(); 
-require_once('src/lib/database.php'); 
-require_once('src/model/visa.php'); 
+<?php
+namespace Application\Controllers\VisaControllers\Visa;
 
-use Application\Lib\Database\DatabaseConnection; 
-use Application\Model\Visa\VisaRepository; 
+session_start();
+require_once('src/lib/database.php');
+require_once('src/model/visa.php');
+
+use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Visa\VisaRepository;
 
 class Visa
 {
-    public function visasList(){
-        $visaRepository = new VisaRepository(); 
-        $visaRepository->connexion = new DatabaseConnection(); 
-        $visas = $visaRepository->getVisas(); 
+    public function visasList()
+    {
+        $visaRepository = new VisaRepository();
+        $visaRepository->connexion = new DatabaseConnection();
+        $visas = $visaRepository->getVisas();
 
         require('templates/visa/visaList.php');
     }
 
-    public function visaAddingForm(){
-        require('templates/visa/addingForm.php'); 
+    public function visaAddingForm()
+    {
+        require('templates/visa/addingForm.php');
     }
 
-    public function addVisa(array $input){
+    public function addVisa(array $input)
+    {
         require('templates/visa/addingForm.php');
         if ($input !== null) {
-            $visanumber = null; 
+            $visanumber = null;
             $passnumber = null;
             $delivery_date = null;
             $expiration_date = null;
             if (
-                !empty($input['passnumber']) && !empty($input['visanumber']) 
-                 && !empty($input['deliverydate']) && !empty($input['expirationdate'])
-               
+                !empty($input['passnumber']) && !empty($input['visanumber'])
+                && !empty($input['deliverydate']) && !empty($input['expirationdate'])
+
             ) {
                 $passnumber = htmlspecialchars($input['passnumber']);
                 $visanumber = htmlspecialchars($input['visanumber']);
@@ -40,8 +44,8 @@ class Visa
             } else {
                 throw new \Exception('Les données du formulaire sont invalides.');
             }
-            $visaRepository = new VisaRepository(); 
-            $visaRepository->connexion = new DatabaseConnection(); 
+            $visaRepository = new VisaRepository();
+            $visaRepository->connexion = new DatabaseConnection();
             $success = $visaRepository->addVisa(strtoupper($visanumber), strtoupper($passnumber), $delivery_date, $expiration_date);
             if ($success == 0) {
                 echo '<script type="text/javascript">
@@ -54,27 +58,29 @@ class Visa
             }
         }
     }
-    public function visaUpdateForm(int $visa_id){
-        $visaRepository = new VisaRepository(); 
-        $visaRepository->connexion = new DatabaseConnection(); 
-        $visa = $visaRepository->getVisa($visa_id); 
-        require('templates/visa/updateForm.php'); 
+    public function visaUpdateForm(int $visa_id)
+    {
+        $visaRepository = new VisaRepository();
+        $visaRepository->connexion = new DatabaseConnection();
+        $visa = $visaRepository->getVisa($visa_id);
+        require('templates/visa/updateForm.php');
     }
 
-    public function updateVisa(array $input, int $visa_id){
-        $visaRepository = new VisaRepository(); 
-        $visaRepository->connexion = new DatabaseConnection(); 
-        $visa = $visaRepository->getVisa($visa_id); 
-        require('templates/visa/updateForm.php'); 
+    public function updateVisa(array $input, int $visa_id)
+    {
+        $visaRepository = new VisaRepository();
+        $visaRepository->connexion = new DatabaseConnection();
+        $visa = $visaRepository->getVisa($visa_id);
+        require('templates/visa/updateForm.php');
         if ($input !== null) {
-            $visanumber = null; 
+            $visanumber = null;
             $passnumber = null;
             $delivery_date = null;
             $expiration_date = null;
             if (
-                !empty($input['passnumber']) && !empty($input['visanumber']) 
-                 && !empty($input['deliverydate']) && !empty($input['expirationdate'])
-               
+                !empty($input['passnumber']) && !empty($input['visanumber'])
+                && !empty($input['deliverydate']) && !empty($input['expirationdate'])
+
             ) {
                 $passnumber = htmlspecialchars($input['passnumber']);
                 $visanumber = htmlspecialchars($input['visanumber']);
@@ -87,7 +93,8 @@ class Visa
             if ($success == 0) {
                 echo '<script type="text/javascript">
                     updateErrorAlert()
-                    </script>';;
+                    </script>';
+                ;
             } else {
                 echo '<script type="text/javascript">
                         updateSuccessAlert()
@@ -95,22 +102,24 @@ class Visa
             }
         }
     }
-    public function sendDeletePopup(int $visa_id){
-        $visaRepository = new VisaRepository(); 
-        $visaRepository->connexion = new DatabaseConnection(); 
-        $visas = $visaRepository->getVisas(); 
+    public function sendDeletePopup(int $visa_id)
+    {
+        $visaRepository = new VisaRepository();
+        $visaRepository->connexion = new DatabaseConnection();
+        $visas = $visaRepository->getVisas();
         require('templates/visa/visaList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
          </script>';
 
     }
-    public function deleteVisa(int $visa_id){
-        $visaRepository = new VisaRepository(); 
-        $visaRepository->connexion = new DatabaseConnection(); 
-        $visas = $visaRepository->getVisas(); 
+    public function deleteVisa(int $visa_id)
+    {
+        $visaRepository = new VisaRepository();
+        $visaRepository->connexion = new DatabaseConnection();
+        $visas = $visaRepository->getVisas();
         require('templates/visa/visaList.php');
-        $bool = $visaRepository->deleteVisa($visa_id); 
+        $bool = $visaRepository->deleteVisa($visa_id);
         if ($bool == 1) {
             echo '<script type="text/javascript">
                         deletingSuccessAlert()

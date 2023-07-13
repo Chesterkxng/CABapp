@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <?php
@@ -21,7 +23,7 @@
             <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">MISSION INFOS</h6>
-                    <form  id="Moform" action = "index.php?action=saveDOM" method="POST" onsubmit="event.preventDefault()">
+                    <form id="Moform" action="index.php?action=saveDOM" method="POST" onsubmit="event.preventDefault()">
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="grade">GRADE</label>
                             <div class="col-sm-5">
@@ -50,64 +52,74 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="name">NAME</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" autocomplete="off" class="form-control" id="name" name="name" required />
+                                <input type="text" style="text-transform: uppercase;" autocomplete="off"
+                                    class="form-control" id="name" name="name" required />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="Matricule">PERSONNEL NUMBER</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;"  autocomplete="off" class="form-control" id="PN" name="PN" required />
+                                <input type="text" style="text-transform: uppercase;" autocomplete="off"
+                                    class="form-control" id="PN" name="PN" required />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">DESTINATION COUNTRY</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" class="form-control" id="country" name="country" required />
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    class="form-control" id="country" name="country" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">DESTINATION CITY</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" class="form-control" id="city" name="city" required />
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    class="form-control" id="city" name="city" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">OBJECT OF THE MISSION</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" placeholder="MISSION PRESIDENTIELLE" value="MISSION PRESIDENTIELLE" class="form-control" id="object" name="object" required />
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    placeholder="MISSION PRESIDENTIELLE" value="MISSION PRESIDENTIELLE"
+                                    class="form-control" id="object" name="object" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="deliverydate">DEPARTURE DATE</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" class="form-control"  id="departuredate" name="departuredate" required />
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    class="form-control" id="departuredate" name="departuredate" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="expirationdate">RETURN DATE</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off"  style="text-transform: uppercase;" class="form-control" id="returndate" name="returndate" required/>
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    class="form-control" id="returndate" name="returndate" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button  onclick="generateDOM()" class="btn btn-info btn-lg btn-block"><strong>GENERATE</strong></button>
+                                <button onclick="generateDOM()"
+                                    class="btn btn-info btn-lg btn-block"><strong>GENERATE</strong></button>
                             </div>
                         </div>
-                        <div id= "btn_save" class="form-group row">
-                            
+                        <div id="btn_save" class="form-group row">
+
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <?php require('templates/OM/scripts/DOM.js.php'); 
-    require('templates/pagesComponents/popup/MO.php')?>
+    <?php require('templates/OM/scripts/DOM.js.php');
+    require('templates/pagesComponents/popup/MO.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
-    
+
 </body>
+
 </html>

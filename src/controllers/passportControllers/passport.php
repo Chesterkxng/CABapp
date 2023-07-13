@@ -1,27 +1,31 @@
-<?php 
-namespace Application\Controllers\PassportControllers\Passport; 
-session_start(); 
-require_once('src/lib/database.php'); 
-require_once('src/model/passport.php'); 
+<?php
+namespace Application\Controllers\PassportControllers\Passport;
 
-use Application\Lib\Database\DatabaseConnection; 
-use Application\Model\Passport\PassportRepository; 
+session_start();
+require_once('src/lib/database.php');
+require_once('src/model/passport.php');
+
+use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Passport\PassportRepository;
 
 class Passport
 {
-    public function passportsList(){
-        $passportRepository = new PassportRepository(); 
-        $passportRepository->connexion = new DatabaseConnection(); 
-        $passports = $passportRepository->getPassports(); 
+    public function passportsList()
+    {
+        $passportRepository = new PassportRepository();
+        $passportRepository->connexion = new DatabaseConnection();
+        $passports = $passportRepository->getPassports();
 
         require('templates/passport/passportList.php');
     }
 
-    public function passportAddingForm(){
-        require('templates/passport/addingForm.php'); 
+    public function passportAddingForm()
+    {
+        require('templates/passport/addingForm.php');
     }
 
-    public function addPassport(array $input){
+    public function addPassport(array $input)
+    {
         require('templates/passport/addingForm.php');
         if ($input !== null) {
             $passnumber = null;
@@ -33,7 +37,7 @@ class Passport
             if (
                 !empty($input['passnumber']) && !empty($input['grade']) && !empty($input['surname'])
                 && !empty($input['firstName']) && !empty($input['deliverydate']) && !empty($input['expirationdate'])
-               
+
             ) {
                 $passnumber = htmlspecialchars($input['passnumber']);
                 $grade = htmlspecialchars($input['grade']);
@@ -58,17 +62,19 @@ class Passport
             }
         }
     }
-    public function passportUpdateForm(int $passport_id){
-        $passportRepository = new PassportRepository(); 
-        $passportRepository->connexion = new DatabaseConnection(); 
-        $passport = $passportRepository->getPassport($passport_id); 
-        require('templates/passport/updateForm.php'); 
+    public function passportUpdateForm(int $passport_id)
+    {
+        $passportRepository = new PassportRepository();
+        $passportRepository->connexion = new DatabaseConnection();
+        $passport = $passportRepository->getPassport($passport_id);
+        require('templates/passport/updateForm.php');
     }
 
-    public function updatePassport(array $input, int $passport_id){
-        $passportRepository = new PassportRepository(); 
-        $passportRepository->connexion = new DatabaseConnection(); 
-        $passport = $passportRepository->getPassport($passport_id); 
+    public function updatePassport(array $input, int $passport_id)
+    {
+        $passportRepository = new PassportRepository();
+        $passportRepository->connexion = new DatabaseConnection();
+        $passport = $passportRepository->getPassport($passport_id);
         require('templates/passport/updateForm.php');
         if ($input !== null) {
             $passnumber = null;
@@ -80,7 +86,7 @@ class Passport
             if (
                 !empty($input['passnumber']) && !empty($input['grade']) && !empty($input['surname'])
                 && !empty($input['firstName']) && !empty($input['deliverydate']) && !empty($input['expirationdate'])
-               
+
             ) {
                 $passnumber = htmlspecialchars($input['passnumber']);
                 $grade = htmlspecialchars($input['grade']);
@@ -95,7 +101,8 @@ class Passport
             if ($success == 0) {
                 echo '<script type="text/javascript">
                     updateErrorAlert()
-                    </script>';;
+                    </script>';
+                ;
             } else {
                 echo '<script type="text/javascript">
                         updateSuccessAlert()
@@ -103,22 +110,24 @@ class Passport
             }
         }
     }
-    public function sendDeletePopup(int $passport_id){
-        $passportRepository = new PassportRepository(); 
-        $passportRepository->connexion = new DatabaseConnection(); 
-        $passports = $passportRepository->getPassports(); 
+    public function sendDeletePopup(int $passport_id)
+    {
+        $passportRepository = new PassportRepository();
+        $passportRepository->connexion = new DatabaseConnection();
+        $passports = $passportRepository->getPassports();
         require('templates/passport/passportList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
          </script>';
 
     }
-    public function deletePassport(int $passport_id){
-        $passportRepository = new PassportRepository(); 
-        $passportRepository->connexion = new DatabaseConnection(); 
-        $passports = $passportRepository->getPassports(); 
+    public function deletePassport(int $passport_id)
+    {
+        $passportRepository = new PassportRepository();
+        $passportRepository->connexion = new DatabaseConnection();
+        $passports = $passportRepository->getPassports();
         require('templates/passport/passportList.php');
-        $bool = $passportRepository->deletePassport($passport_id); 
+        $bool = $passportRepository->deletePassport($passport_id);
         if ($bool == 1) {
             echo '<script type="text/javascript">
                         deletingSuccessAlert()

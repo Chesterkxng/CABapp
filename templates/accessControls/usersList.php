@@ -43,25 +43,39 @@ use Application\Model\Passport\PassportRepository;
                             $i = 1;
 
                             foreach ($users as $user) {
-                                
-                            ?>
+
+                                ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($i) ?></td>
-                                    <td><?= htmlspecialchars($user->username) ?></td>
-                                    <td><?= htmlspecialchars($user->security_question) ?></td>
-                                    <td><?= htmlspecialchars($user->security_answer) ?></td>
-                                    <td><?= htmlspecialchars($user->profil_type) ?></td>
-                                        
+                                    <td>
+                                        <?= htmlspecialchars($i) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($user->username) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($user->security_question) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($user->security_answer) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($user->profil_type) ?>
+                                    </td>
+
                                     <td class="align-middle text-center">
-                                        <form style="display:inline;" action="index.php?action=updateUserForm&login=<?= $user->login_id ?>" method="post">
+                                        <form style="display:inline;"
+                                            action="index.php?action=updateUserForm&login=<?= $user->login_id ?>"
+                                            method="post">
                                             <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                         </form>
-                                        <form style="display:inline;" action="index.php?action=deleteUserPopup&login=<?= $user->login_id ?>" method="post">
+                                        <form style="display:inline;"
+                                            action="index.php?action=deleteUserPopup&login=<?= $user->login_id ?>"
+                                            method="post">
                                             <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
-                            <?php
+                                <?php
                                 $i = $i + 1;
                             }
                             ?>
@@ -73,7 +87,7 @@ use Application\Model\Passport\PassportRepository;
             <?php require('templates/pagesComponents/popup/visa.php'); ?>
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#users-table').DataTable();
                 });
             </script>

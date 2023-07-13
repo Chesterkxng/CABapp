@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
 	<title>FORMS</title>
 	<meta charset="utf-8">
@@ -13,10 +14,10 @@
 </head>
 
 <body class="img js-fullheight" style="background-image: url(templates/externalForms/images/airbus.jpg);">
-	<section class="ftco-section" >
+	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section" >BIENVENU(E) SUR LA PAGE </h2>
+					<h2 class="heading-section">BIENVENU(E) SUR LA PAGE </h2>
 				</div>
 			</div>

@@ -2,7 +2,8 @@
 session_start();
 
 use Application\Lib\Database\DatabaseConnection;
-$events_js = json_encode($events); 
+
+$events_js = json_encode($events);
 
 ?>
 <!doctype html>
@@ -22,33 +23,34 @@ $events_js = json_encode($events);
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
-                <h5 class="mb-0" ><strong>Fullcalendar</strong></h5>
-
-                
-                <div class="row mt-3">
-                    <div class="col-md-12 col-sm-12">
-                        
-                         <button class="btn btn-primary btn-lg btn-block"  onclick="saveCalendar()" name="calendarSaver"   id='calendarSaver'><strong>SAVE CALENDAR</strong></button>
-                    </div>
+        <h5 class="mb-0"><strong>Fullcalendar</strong></h5>
 
 
-                    <div class="col-md-12 col-sm-12">
-                        <!--Full Calendar-->
-                        <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm lh-sm">
-                    
-                                
-                            <div class="table-responsive" id="calendarFull"></div>
+        <div class="row mt-3">
+            <div class="col-md-12 col-sm-12">
 
-                        </div>
+                <button class="btn btn-primary btn-lg btn-block" onclick="saveCalendar()" name="calendarSaver"
+                    id='calendarSaver'><strong>SAVE CALENDAR</strong></button>
+            </div>
 
-                    </div>
+
+            <div class="col-md-12 col-sm-12">
+                <!--Full Calendar-->
+                <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm lh-sm">
+
+
+                    <div class="table-responsive" id="calendarFull"></div>
+
                 </div>
+
+            </div>
+        </div>
     </div>
 
-    <?php  
-     require('templates/pagesComponents/navbar/navbarFooter.php'); 
-     require('templates/pagesComponents/navbar/calendarFooter.php');?>
-    
+    <?php
+    require('templates/pagesComponents/navbar/navbarFooter.php');
+    require('templates/pagesComponents/navbar/calendarFooter.php'); ?>
+
 
 </body>
 

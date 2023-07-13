@@ -46,49 +46,69 @@ use Application\Lib\Database\DatabaseConnection;
                             $i = 1;
 
                             foreach ($intOMs as $OM) {
-                            
-                            ?>
-                                <tr>
-                                    <td><?= htmlspecialchars($i) ?></td>
-                                    <td><?= htmlspecialchars($OM->recipient) ?></td>
-                                    <td><?= htmlspecialchars($OM->city) ?></td>
-                                    <td><?= str_replace("\N", "<br/>",$OM->companions) ?></td>
-                                    <td><?= htmlspecialchars($OM->object) ?></td>
-                                    <td><?= htmlspecialchars($OM->means) ?></td>
-                                    <td><?= htmlspecialchars($OM->departure_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td> 
-                                <?php 
-                                if ($OM->url !=""){
-                                 ?>
-                                    <td>
-                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
-                                            <button class="btn btn-danger btn-sm btn-block">
-                                                VIEW FILE  
-                                                <i class="fa fa-file-pdf"></i>
-                                            </button>
-                                        </a>   
-                                    </td> 
-                                <?php 
-                                    } else {
-                                ?> 
-                                    <td>
-                                    <form action="index.php?action=uploadForm&type=1&om_id=<?= $OM->om_id ?>" method="post">
-                                        <button class="btn btn-info btn-sm btn-block">
-                                                JOIN FILE  
-                                                <i class="fa fa-link"></i>
-                                        </button>
 
-                                    </form>
-                                    </td>
-
-                                <?php
-                                    }
                                 ?>
+                                <tr>
+                                    <td>
+                                        <?= htmlspecialchars($i) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->recipient) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->city) ?>
+                                    </td>
+                                    <td>
+                                        <?= str_replace("\N", "<br/>", $OM->companions) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->object) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->means) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->departure_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->return_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->edition_date) ?>
+                                    </td>
+                                    <?php
+                                    if ($OM->url != "") {
+                                        ?>
+                                        <td>
+                                            <a href="#"
+                                                onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                                <button class="btn btn-danger btn-sm btn-block">
+                                                    VIEW FILE
+                                                    <i class="fa fa-file-pdf"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        <td>
+                                            <form action="index.php?action=uploadForm&type=1&om_id=<?= $OM->om_id ?>"
+                                                method="post">
+                                                <button class="btn btn-info btn-sm btn-block">
+                                                    JOIN FILE
+                                                    <i class="fa fa-link"></i>
+                                                </button>
+
+                                            </form>
+                                        </td>
+
+                                        <?php
+                                    }
+                                    ?>
 
 
                                 </tr>
-                            <?php
+                                <?php
                                 $i = $i + 1;
                             }
                             ?>
@@ -98,7 +118,7 @@ use Application\Lib\Database\DatabaseConnection;
                 <!--/Striped table-->
             </div>
         </div>
-            <h5 class="mb-3"><strong>EXTERIOR MISSION ORDERS</strong></h5>
+        <h5 class="mb-3"><strong>EXTERIOR MISSION ORDERS</strong></h5>
         <div class="row mt-3">
             <div class="col-sm-12">
 
@@ -119,52 +139,72 @@ use Application\Lib\Database\DatabaseConnection;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             $i = 1;
 
                             foreach ($extOMs as $OM) {
-                            
-                            ?>
+
+                                ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($i) ?></td>
-                                    <td><?= htmlspecialchars($OM->recipient) ?></td>
-                                    <td><?= htmlspecialchars($OM->country) ?></td>
-                                    <td><?= htmlspecialchars($OM->city) ?></td>
-                                    <td><?= str_replace("\N", "<br/>",$OM->companions) ?></td>
-                                    <td><?= htmlspecialchars($OM->object) ?></td>
-                                    <td><?= htmlspecialchars($OM->departure_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>       
-                                    <?php 
-                                if ($OM->url !=""){
-                                 ?>
                                     <td>
-                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
-                                            <button class="btn btn-danger btn-sm btn-block">
-                                                VIEW FILE  
-                                                <i class="fa fa-file-pdf"></i>
-                                            </button>
-                                        </a>   
-                                    </td> 
-                                <?php 
-                                    } else {
-                                ?> 
-                                    <td>
-                                    <form action="index.php?action=uploadForm&type=2&om_id=<?= $OM->om_id ?>" method="post">
-                                        <button class="btn btn-info btn-sm btn-block">
-                                                JOIN FILE  
-                                                <i class="fa fa-link"></i>
-                                        </button>
-
-                                    </form>
+                                        <?= htmlspecialchars($i) ?>
                                     </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->recipient) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->country) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->city) ?>
+                                    </td>
+                                    <td>
+                                        <?= str_replace("\N", "<br/>", $OM->companions) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->object) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->departure_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->return_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->edition_date) ?>
+                                    </td>
+                                    <?php
+                                    if ($OM->url != "") {
+                                        ?>
+                                        <td>
+                                            <a href="#"
+                                                onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                                <button class="btn btn-danger btn-sm btn-block">
+                                                    VIEW FILE
+                                                    <i class="fa fa-file-pdf"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        <td>
+                                            <form action="index.php?action=uploadForm&type=2&om_id=<?= $OM->om_id ?>"
+                                                method="post">
+                                                <button class="btn btn-info btn-sm btn-block">
+                                                    JOIN FILE
+                                                    <i class="fa fa-link"></i>
+                                                </button>
 
-                                <?php
+                                            </form>
+                                        </td>
+
+                                        <?php
                                     }
-                                ?>   
+                                    ?>
 
                                 </tr>
-                            <?php
+                                <?php
                                 $i = $i + 1;
                             }
                             ?>
@@ -195,52 +235,72 @@ use Application\Lib\Database\DatabaseConnection;
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             $i = 1;
 
                             foreach ($DOMs as $OM) {
-                            
-                            ?>
+
+                                ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($i) ?></td>
-                                    <td><?= htmlspecialchars($OM->recipient) ?></td>
-                                    <td><?= htmlspecialchars($OM->country) ?></td>
-                                    <td><?= htmlspecialchars($OM->city) ?></td>
-                                    <td><?= str_replace("\N", "<br/>",$OM->companions) ?></td>
-                                    <td><?= htmlspecialchars($OM->object) ?></td>
-                                    <td><?= htmlspecialchars($OM->departure_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->return_date) ?></td>
-                                    <td><?= htmlspecialchars($OM->edition_date) ?></td>       
-                                <?php 
-                                if ($OM->url !=""){
-                                 ?>
                                     <td>
-                                        <a href="#" onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
-                                            <button class="btn btn-danger btn-sm btn-block">
-                                                VIEW FILE  
-                                                <i class="fa fa-file-pdf"></i>
-                                            </button>
-                                        </a>   
-                                    </td> 
-                                <?php 
-                                    } else {
-                                ?> 
-                                    <td>
-                                    <form action="index.php?action=uploadForm&type=3&om_id=<?= $OM->om_id ?>" method="post">
-                                        <button class="btn btn-info btn-sm btn-block">
-                                                JOIN FILE  
-                                                <i class="fa fa-link"></i>
-                                        </button>
-
-                                    </form>
+                                        <?= htmlspecialchars($i) ?>
                                     </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->recipient) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->country) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->city) ?>
+                                    </td>
+                                    <td>
+                                        <?= str_replace("\N", "<br/>", $OM->companions) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->object) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->departure_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->return_date) ?>
+                                    </td>
+                                    <td>
+                                        <?= htmlspecialchars($OM->edition_date) ?>
+                                    </td>
+                                    <?php
+                                    if ($OM->url != "") {
+                                        ?>
+                                        <td>
+                                            <a href="#"
+                                                onclick="window.open('<?= htmlspecialchars($OM->url) ?>', '_blank'); return false;">
+                                                <button class="btn btn-danger btn-sm btn-block">
+                                                    VIEW FILE
+                                                    <i class="fa fa-file-pdf"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                    <?php
+                                    } else {
+                                        ?>
+                                        <td>
+                                            <form action="index.php?action=uploadForm&type=3&om_id=<?= $OM->om_id ?>"
+                                                method="post">
+                                                <button class="btn btn-info btn-sm btn-block">
+                                                    JOIN FILE
+                                                    <i class="fa fa-link"></i>
+                                                </button>
 
-                                <?php
+                                            </form>
+                                        </td>
+
+                                        <?php
                                     }
-                                ?>    
+                                    ?>
 
                                 </tr>
-                            <?php
+                                <?php
                                 $i = $i + 1;
                             }
                             ?>
@@ -251,17 +311,17 @@ use Application\Lib\Database\DatabaseConnection;
             </div>
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#intMO-table').DataTable();
                 });
             </script>
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#extMO-table').DataTable();
                 });
             </script>
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#DOMs-table').DataTable();
                 });
             </script>

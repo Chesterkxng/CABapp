@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <?php
@@ -26,44 +28,54 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="passnumber">TITLE</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" value="<?= $event->title?>" class="form-control" id="title" name="title" />
+                                <input type="text" style="text-transform: uppercase;" value="<?= $event->title ?>"
+                                    class="form-control" id="title" name="title" />
                             </div>
                         </div>
 
 
 
-                    
+
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">STARTING DATE</label>
                             <div class="col-sm-5">
-                                <input type="date" autocomplete="off" style="text-transform: uppercase;" value="<?= substr($event->start,0,10) ?>" class="form-control" id="starting_date" name="starting_date"  required/>
+                                <input type="date" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= substr($event->start, 0, 10) ?>" class="form-control" id="starting_date"
+                                    name="starting_date" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">STARTING HOUR</label>
                             <div class="col-sm-5">
-                                <input type="time" autocomplete="off" style="text-transform: uppercase;" value="<?= substr($event->start,11,16) ?>" step="2" class="form-control" id="starting_hour" name="starting_hour" />
+                                <input type="time" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= substr($event->start, 11, 16) ?>" step="2" class="form-control"
+                                    id="starting_hour" name="starting_hour" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">ENDING DATE</label>
                             <div class="col-sm-5">
-                                <input type="date" autocomplete="off" style="text-transform: uppercase;" value="<?= substr($event->end,0,10) ?>"  class="form-control" id="ending_date" name="ending_date"  required/>
+                                <input type="date" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= substr($event->end, 0, 10) ?>" class="form-control" id="ending_date"
+                                    name="ending_date" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">ENDING HOUR</label>
                             <div class="col-sm-5">
-                                <input type="time" autocomplete="off" style="text-transform: uppercase;" value="<?= substr($event->end,11,16) ?>" step="2" class="form-control" id="ending_hour" name="ending_hour" />
+                                <input type="time" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= substr($event->end, 11, 16) ?>" step="2" class="form-control"
+                                    id="ending_hour" name="ending_hour" />
                             </div>
                         </div>
-                        
-                        
+
+
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPDATE</strong></button>
+                                <button type="submit"
+                                    class="btn btn-info btn-lg btn-block"><strong>UPDATE</strong></button>
                             </div>
                         </div>
                     </form>
@@ -74,4 +86,5 @@
     <?php require('templates/pagesComponents/popup/event.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
+
 </html>

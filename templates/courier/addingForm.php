@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <?php
@@ -26,43 +28,48 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="recipient">RECIPIENT(S)</label>
                             <div class="col-sm-5">
-                                <textarea type="text" rows = "2"  placeholder="write the recipients in abbreviated form" style="text-transform: uppercase;" class="form-control" id="recipient" name="recipient" required></textarea>
+                                <textarea type="text" rows="2" placeholder="write the recipients in abbreviated form"
+                                    style="text-transform: uppercase;" class="form-control" id="recipient"
+                                    name="recipient" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="object">OBJECT</label>
                             <div class="col-sm-5">
-                                <textarea type="text" autocomplete="off" rows ="2" style="text-transform: uppercase;" class="form-control" id="object" name="object" required></textarea>
+                                <textarea type="text" autocomplete="off" rows="2" style="text-transform: uppercase;"
+                                    class="form-control" id="object" name="object" required></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="details">DETAILS</label>
                             <div class="col-sm-5">
-                                <textarea type="text" rows ="3" autocomplete="off" style="text-transform: uppercase;" class="form-control" id="details" name="details"></textarea>
+                                <textarea type="text" rows="3" autocomplete="off" style="text-transform: uppercase;"
+                                    class="form-control" id="details" name="details"></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">UPLOAD FILE</label>
                             <div class="col-sm-5">
-                                <input type="file"  class="form-control" id="uploadedfile" name="uploadfile" required />
+                                <input type="file" class="form-control" id="uploadedfile" name="uploadfile" required />
                             </div>
                         </div>
 
-             
+
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="date">EDITION DATE</label>
                             <div class="col-sm-5">
                                 <input type="date" class="form-control" id="date" name="date" required />
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPLOAD</strong></button>
+                                <button type="submit"
+                                    class="btn btn-info btn-lg btn-block"><strong>UPLOAD</strong></button>
                             </div>
                         </div>
                     </form>
@@ -73,4 +80,5 @@
     <?php require('templates/pagesComponents/popup/courier.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
+
 </html>

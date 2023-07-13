@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <?php
@@ -21,12 +23,15 @@
             <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">PASSPORT INFOS</h6>
-                    <form action="index.php?action=updatePassport&passport_id=<?= $passport->passport_id ?>" method="post">
+                    <form action="index.php?action=updatePassport&passport_id=<?= $passport->passport_id ?>"
+                        method="post">
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="passnumber">PASSPORT NUMBER</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" value="<?= $passport->passNumber ?>" class="form-control" id="passnumber" name="passnumber" />
+                                <input type="text" style="text-transform: uppercase;"
+                                    value="<?= $passport->passNumber ?>" class="form-control" id="passnumber"
+                                    name="passnumber" />
                             </div>
                         </div>
 
@@ -59,31 +64,38 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">SURNAME</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" value="<?= $passport->surname ?>" class="form-control" id="surname" name="surname"  required/>
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= $passport->surname ?>" class="form-control" id="surname" name="surname"
+                                    required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">FIRST NAME</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" style="text-transform: uppercase;" value="<?= $passport->firstname ?>" class="form-control" id="firstName" name="firstName" required />
+                                <input type="text" autocomplete="off" style="text-transform: uppercase;"
+                                    value="<?= $passport->firstname ?>" class="form-control" id="firstName"
+                                    name="firstName" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="deliverydate">DELIVERY DATE</label>
                             <div class="col-sm-5">
-                                <input type="date"  class="form-control" value="<?= $passport->deliveryDate ?>"  id="deliverydate" name="deliverydate"  required/>
+                                <input type="date" class="form-control" value="<?= $passport->deliveryDate ?>"
+                                    id="deliverydate" name="deliverydate" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="expirationdate">EXPIRATION DATE</label>
                             <div class="col-sm-5">
-                                <input type="date"  class="form-control" value="<?= $passport->expirationDate ?>" id="expirationdate" name="expirationdate" required />
+                                <input type="date" class="form-control" value="<?= $passport->expirationDate ?>"
+                                    id="expirationdate" name="expirationdate" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPDATE</strong></button>
+                                <button type="submit"
+                                    class="btn btn-info btn-lg btn-block"><strong>UPDATE</strong></button>
                             </div>
                         </div>
                     </form>
@@ -94,4 +106,5 @@
     <?php require('templates/pagesComponents/popup/passport.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
+
 </html>

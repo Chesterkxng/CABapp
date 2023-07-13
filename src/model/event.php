@@ -1,35 +1,36 @@
-<?php 
-namespace Application\Model\Event; 
-require_once('src/lib/database.php'); 
-use Application\Lib\Database\DatabaseConnection; 
+<?php
+namespace Application\Model\Event;
+
+require_once('src/lib/database.php');
+use Application\Lib\Database\DatabaseConnection;
 
 class Event
 {
-    public int $event_id; 
-    public string $title; 
-    public string $start; 
-    public string $end; 
-    public int $personal_id; 
-    public int $sharing_status; 
+    public int $event_id;
+    public string $title;
+    public string $start;
+    public string $end;
+    public int $personal_id;
+    public int $sharing_status;
 }
 class EventRepository
 {
-    public DatabaseConnection $connection; 
-    
+    public DatabaseConnection $connection;
+
     public function getEvents(): array
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT * FROM `event`"
-        ); 
-        $events = []; 
-        while ($row = $statement->fetch()){
-            $event = new Event(); 
+        );
+        $events = [];
+        while ($row = $statement->fetch()) {
+            $event = new Event();
             $event->event_id = $row['EVENT_ID'];
             $event->title = $row['TITLE'];
             $event->start = $row['START'];
             $event->end = $row['END'];
-            $event->personal_id= $row['PERSONAL_ID'];
-            $events[]= $event; 
+            $event->personal_id = $row['PERSONAL_ID'];
+            $events[] = $event;
         }
         return $events;
 
@@ -41,17 +42,17 @@ class EventRepository
             "SELECT * FROM `event` 
             WHERE PERSONAL_ID = ? AND 
             SHARING_STATUS = 0"
-        ); 
-        $statement->execute([$personal_id]); 
-        $events = []; 
-        while ($row = $statement->fetch()){
-            $event = new Event(); 
+        );
+        $statement->execute([$personal_id]);
+        $events = [];
+        while ($row = $statement->fetch()) {
+            $event = new Event();
             $event->event_id = $row['EVENT_ID'];
             $event->title = $row['TITLE'];
             $event->start = $row['START'];
             $event->end = $row['END'];
             $event->personal_id = $row['PERSONAL_ID'];
-            $events[]= $event; 
+            $events[] = $event;
         }
         return $events;
 
@@ -62,16 +63,16 @@ class EventRepository
         $statement = $this->connection->getConnection()->query(
             "SELECT * FROM `event` 
             WHERE SHARING_STATUS = 1"
-        ); 
-        $events = []; 
-        while ($row = $statement->fetch()){
-            $event = new Event(); 
+        );
+        $events = [];
+        while ($row = $statement->fetch()) {
+            $event = new Event();
             $event->event_id = $row['EVENT_ID'];
             $event->title = $row['TITLE'];
             $event->start = $row['START'];
             $event->end = $row['END'];
             $event->personal_id = $row['PERSONAL_ID'];
-            $events[]= $event; 
+            $events[] = $event;
         }
         return $events;
 
@@ -82,10 +83,10 @@ class EventRepository
     {
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM `event` WHERE `EVENT_ID` = ?"
-        );  
-        $statement->execute([$event_id]); 
-        while ($row = $statement->fetch()){
-            $event = new Event(); 
+        );
+        $statement->execute([$event_id]);
+        while ($row = $statement->fetch()) {
+            $event = new Event();
             $event->event_id = $row['EVENT_ID'];
             $event->title = $row['TITLE'];
             $event->start = $row['START'];
@@ -99,30 +100,30 @@ class EventRepository
     {
         $statement = $this->connection->getConnection()->prepare(
             "DELETE FROM `event` WHERE `EVENT_ID` = ?"
-        );  
+        );
         $statement->execute([$event_id]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1){
-            return 1 ;
-        }else{
+        if ($affectedLines == 1) {
+            return 1;
+        } else {
             return 0;
         }
     }
 
 
-    public function addEvent(string $title, string $start, string $end, int $personal_id, int $sharing_status ): bool
+    public function addEvent(string $title, string $start, string $end, int $personal_id, int $sharing_status): bool
     {
         $statement = $this->connection->getConnection()->prepare(
             "INSERT INTO `event`(`TITLE`, `START`, `END`,`PERSONAL_ID`,`SHARING_STATUS`) 
             VALUES (?, ?, ?, ?, ?)"
-        );  
+        );
         $statement->execute([$title, $start, $end, $personal_id, $sharing_status]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1){
-            return 1 ;
-        }else{
+        if ($affectedLines == 1) {
+            return 1;
+        } else {
             return 0;
         }
     }
@@ -137,16 +138,15 @@ class EventRepository
             `START`= ?,
             `END`= ? 
             WHERE `EVENT_ID` = ?"
-        );  
+        );
         $statement->execute([$title, $start, $end, $event_id]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1){
-            return 1 ;
-        }else{
+        if ($affectedLines == 1) {
+            return 1;
+        } else {
             return 0;
         }
     }
 
 }
-

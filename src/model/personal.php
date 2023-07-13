@@ -97,6 +97,28 @@ class PersonalRepository
             return $personal;
         }
 
+        public function getProfilebyPersonalID(int $personal_id): ?Personal
+        {
+            $statement = $this->connection->getConnection()->prepare(
+                " SELECT * FROM personal WHERE `PERSONAL_ID`= ? "
+            );
+
+            $statement->execute([$personal_id]);
+            while($row = $statement->fetch()){
+
+                $personal = new Personal(); 
+                $personal->personal_id = $row['PERSONAL_ID'];
+                $personal->login_id = $row['LOGIN_ID']; 
+                $personal->grade = $row['GRADE'];
+                $personal->surname = $row['SURNAME']; 
+                $personal->first_name = $row['FIRST_NAME'];
+                $personal->function = $row['FUNCTION'];
+
+
+            }
+            return $personal;
+        }
+
         public function addProfile(int $login_id, string $grade, string $first_name, string $surname, string $function): bool
         {
             $statement = $this->connection->getConnection()->prepare(

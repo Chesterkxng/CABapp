@@ -1,10 +1,12 @@
 <?php
 namespace Application\Controllers\LoginControllers\Profile;
+
 session_start();
 require_once('src/lib/database.php');
 require_once('src/model/personal.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Personal\PersonalRepository;
+
 class Profile
 {
     // load the Profile Completion Page after the SIGN UP

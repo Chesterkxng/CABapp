@@ -174,7 +174,7 @@ try {
                 if (isset($_SESSION['ISAUTH'])) {
                     $isAuth = $_SESSION['ISAUTH'];
                     if ($isAuth == 1) {
-                        (new Personal())->UpdateSecurityInfos($input,$login_id);
+                        (new Personal())->UpdateSecurityInfos($input, $login_id);
                     }
                 }
             }
@@ -890,7 +890,7 @@ try {
         } elseif ($_GET['action'] === 'updateUserForm') {
             $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $login_id = $_GET['login']; 
+                $login_id = $_GET['login'];
                 if (isset($_SESSION['ISAUTH'])) {
                     $isAuth = $_SESSION['ISAUTH'];
                     $profile_type = $_SESSION['profile_type'];
@@ -906,13 +906,13 @@ try {
         } elseif ($_GET['action'] === 'updateUser') {
             $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $user_id = $_GET['login']; 
-                $input = $_POST;  
+                $user_id = $_GET['login'];
+                $input = $_POST;
                 if (isset($_SESSION['ISAUTH'])) {
                     $isAuth = $_SESSION['ISAUTH'];
                     $profile_type = $_SESSION['profile_type'];
                     if ($isAuth == 1 && $profile_type == 0) {
-                       (new SignUp())->UpdateUserSU($input,$user_id);
+                        (new SignUp())->UpdateUserSU($input, $user_id);
                     } else {
                         (new Error())->forbiddenPage();
                     }

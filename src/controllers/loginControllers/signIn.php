@@ -17,7 +17,7 @@ class SignIn
     {
         require('templates/login/signIn.php');
     }
-    public function connect(array $input)    // modifier le html pour que les valeurs puisse etre recus 
+    public function connect(array $input) // modifier le html pour que les valeurs puisse etre recus 
     {
         require('templates/login/signIn.php');
         if ($input !== null) {
@@ -44,13 +44,13 @@ class SignIn
                     $isFilledProfile = $profileRepository->isProfileFilled($login_id);
 
                     if ($isFilledProfile == 1) {
-                        
+
                         $personal_id = $profileRepository->getPersonalID($login_id);
                         $_SESSION['LOGIN_ID'] = $login_id;
                         $_SESSION['ISAUTH'] = 1;
                         $_SESSION['PERSONAL_ID'] = $personal_id;
                         $_SESSION['profile_type'] = $profil_type;
-                        
+
                         echo '<script type="text/javascript">
                                 loginSuccesAlert()
                             </script>';
