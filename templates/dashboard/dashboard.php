@@ -267,8 +267,6 @@ $profile_type = $_SESSION['profile_type'];
                 </div>
             </div>
             
-    
-            
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
 </html>

@@ -97,4 +97,36 @@ class Personal
             }
         }
     }
+
+    public function UpdateProfilePicture(int $login_id)
+    {
+        $personalRepository = new PersonalRepository();
+        $personalRepository->connection = new DatabaseConnection;
+        $loginRepository = new LoginRepository();
+        $loginRepository->connection = new DatabaseConnection();
+        $personal = $personalRepository->getProfile($login_id);
+        $user = $loginRepository->getUserLoginInfos($login_id);
+        require('templates/personal/updateForm.php');
+
+        $filename = $_FILES['pp']['name'];
+        $location = 'templates/pagesComponents/navbar/assets/pp/' . $filename;
+        if (move_uploaded_file($_FILES['pp']['tmp_name'], $location)) {
+            $nameofpp = $filename;
+            $success = $personalRepository->updateProfilePicture($nameofpp, $login_id);
+            if ($success == 0) {
+                echo '<script type="text/javascript">
+                                unknownErrorAlert()
+                            </script>';
+            } else {
+                echo '<script type="text/javascript">
+                        updateProfileSuccessAlert()
+                            </script>';
+                if ($personal->picture_name != 'welcome2.png') {
+                    unlink('templates/pagesComponents/navbar/assets/pp/' .$personal->picture_name);
+                }
+            }
+
+        }
+    }
+
 }

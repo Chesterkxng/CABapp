@@ -42,7 +42,7 @@
                  <div class="col-sm-8 col-4 text-right flex-header-menu justify-content-end">
                      <div class="mr-4">
                          <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             <img src="templates\pagesComponents\navbar\assets\img\avatar.jpg" alt="Adam" class="rounded-circle" width="40px" height="40px">
+                             <img src="templates\pagesComponents\navbar\assets\img\setting1.png" alt="Setting" class="rounded-circle" width="40px" height="40px">
                          </a>
                          <div class="dropdown-menu dropdown-menu-right mt-13" aria-labelledby="dropdownMenuLink">
                              <a class="dropdown-item" href="index.php?action=updateProfilePage&login_id=<?= $login_id ?>"><i class="fa fa-user pr-2"></i> Profile</a>
@@ -64,7 +64,7 @@
              <div class="inner-sidebar mr-3">
                  <!--Image Avatar-->
                  <div class="avatar text-center">
-                     <img src="templates\pagesComponents\navbar\assets\img\welcome2.png" alt="" class="rounded" />
+                     <img src="templates\pagesComponents\navbar\assets\pp\<?= $profile->picture_name ?>" alt="" class="rounded" />
                      <p><strong><?= $profile->surname ?> <?= $profile->first_name ?></strong></p>
                      <span class="text-primary small"><strong><?= $profile->function ?></strong></span>
                  </div>

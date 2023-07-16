@@ -23,107 +23,155 @@ use Application\Lib\Database\DatabaseConnection;
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
         <h5 class="mb-3"><strong>TODO LIST HISTORIC</strong></h5>
 
-        <h5 class="mb-3"><strong> OWN </strong></h5>
-
-        <div class="row">
-            <?php foreach ($ownTodo as $todo) {
-                $deadline = substr($todo->deadline, 0, 10);
-                $time_limit = substr($todo->deadline, 11, 16);
-
-                ?>
-                <div class="col-sm-4" style="margin-top: 10px;">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>
-                                    <?= $todo->title ?>
-                                </strong></h5>
-                            <p class="card-text p-typo"><strong>DETAILS:</strong>
-                                <?= $todo->details ?>
-                            </p>
-                            <p class="card-text text-danger p-typo"><strong>DEADLINE:
-                                    <?= $deadline . " A " . $time_limit ?>
-                                </strong> </p>
+        <div class="accordion" id="accordionExample3">
+            <div class="card shadow">
+                <div class="card-header accordion-header p-1" id="headingOne3">
+                    <h5 class="mb-0 panel-title">
+                        <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseOne3" aria-controls="collapseOne3"><strong>
+                                OWN TODO</strong>
+                        </button>
+                    </h5>
+                </div>
 
 
-                            <div style="display: flex; justify-content: right;">
+                <div id="collapseOne3" class="row collapse" aria-labelledby="headingOne3"
+                    data-parent="#accordionExample3">
+                    <?php
 
-                                <form action="index.php?action=todoDeletePopup&todo_id=<?= $todo->todo_id ?>" method="post">
-                                    <button type="submit" class="btn btn-danger icon-round shadow">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                </form>
+
+                    foreach ($ownTodo as $todo) {
+                        $deadline = substr($todo->deadline, 0, 10);
+                        $time_limit = substr($todo->deadline, 11, 16);
+
+                        ?>
+                        <div class="col-sm-4" style="margin-top: 10px;">
+
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title"><strong>
+                                            <?= $todo->title ?>
+                                        </strong></h5>
+                                    <p class="card-text p-typo"><strong>DETAILS:</strong>
+                                        <?= nl2br($todo->details) ?>
+                                    </p>
+                                    <p class="card-text p-typo"><strong>DEADLINE:</strong>
+                                        <?= $deadline . " A " . $time_limit ?>
+                                    </p>
+
+
+                                    <div style="display: flex; justify-content: right;">
+                                        <form action="index.php?action=todoDeletePopup&todo_id=<?= $todo->todo_id ?>"
+                                            method="post">
+                                            <button type="submit" class="btn btn-danger icon-round shadow">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
                             </div>
-
                         </div>
-                    </div>
+                    <?php } ?>
+
                 </div>
-            <?php } ?>
-
-
-
+            </div>
         </div>
 
-        <h5 class="mb-3" style="margin-top: 20px;"><strong> GIVEN </strong></h5>
 
-        <div class="row">
-            <?php foreach ($givenTodo as $todo) {
-                $deadline = substr($todo->deadline, 0, 10);
-                $time_limit = substr($todo->deadline, 11, 16);
 
-                ?>
-                <div class="col-sm-4" style="margin-top: 10px;">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>
-                                    <?= $todo->title ?>
-                                </strong></h5>
-                            <p class="card-text p-typo"><strong>DETAILS:</strong>
-                                <?= $todo->details ?>
-                            </p>
-                            <p class="card-text text-danger p-typo"><strong>DEADLINE:
+
+
+        <div class="card shadow">
+            <div class="card-header accordion-header p-1" id="headingTwo3">
+                <h5 class="mb-0 panel-title">
+                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3"><strong>
+                            GIVEN TODO</strong>
+                    </button>
+                </h5>
+            </div>
+
+
+            <div id="collapseTwo3" class="row collapse" aria-labelledby="headingTwo3" data-parent="#accordionExample3">
+                <?php foreach ($givenTodo as $todo) {
+                    $deadline = substr($todo->deadline, 0, 10);
+                    $time_limit = substr($todo->deadline, 11, 16);
+                    $personal = $personalRepository->getProfilebyPersonalID($todo->recipient);
+                    ?>
+                    <div class="col-sm-4" style="margin-top: 10px;">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>
+                                        <?= $todo->title ?>
+                                    </strong></h5>
+                                <p class="card-text p-typo"><strong>DETAILS:</strong>
+                                    <?= $todo->details ?>
+                                </p>
+                                <p class="card-text p-typo"><strong>TO:</strong>
+                                    <?= $personal->grade . ' ' . $personal->surname . ' ' . $personal->first_name ?>
+                                </p>
+                                <p class="card-text p-typo"><strong>DEADLINE:</strong>
                                     <?= $deadline . " A " . $time_limit ?>
-                                </strong> </p>
+                                </p>
 
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
-
-
-        <h5 class="mb-3" style="margin-top: 20px;"><strong> RECEIVED </strong></h5>
-
-        <div class="row">
-            <?php foreach ($receivedTodo as $todo) {
-                $deadline = substr($todo->deadline, 0, 10);
-                $time_limit = substr($todo->deadline, 11, 16);
-
-                ?>
-                <div class="col-sm-4" style="margin-top: 10px;">
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title"><strong>
-                                    <?= $todo->title ?>
-                                </strong></h5>
-                            <p class="card-text p-typo"><strong>DETAILS:</strong>
-                                <?= $todo->details ?>
-                            </p>
-                            <p class="card-text text-danger p-typo"><strong>DEADLINE:
-                                    <?= $deadline . " A " . $time_limit ?>
-                                </strong> </p>
-
-
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
+            </div>
         </div>
 
 
 
+        <div class="card shadow">
+            <div class="card-header accordion-header p-1" id="headingThree3">
+                <h5 class="mb-0 panel-title">
+                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3"><strong>
+                            RECEIVED TODO</strong>
+                    </button>
+                </h5>
+            </div>
+
+
+
+            <div id="collapseThree3" class="row collapse" aria-labelledby="headingThree3"
+                data-parent="#accordionExample3">
+                <?php foreach ($receivedTodo as $todo) {
+                    $deadline = substr($todo->deadline, 0, 10);
+                    $time_limit = substr($todo->deadline, 11, 16);
+                    $personal = $personalRepository->getProfilebyPersonalID($todo->personal_id);
+                    ?>
+                    <div class="col-sm-4" style="margin-top: 10px;">
+
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title"><strong>
+                                        <?= $todo->title ?>
+                                    </strong></h5>
+                                <p class="card-text p-typo"><strong>DETAILS:</strong>
+                                    <?= $todo->details ?>
+                                </p>
+                                <p class="card-text p-typo"><strong>FROM:</strong>
+                                    <?= $personal->grade . ' ' . $personal->surname . ' ' . $personal->first_name ?>
+                                </p>
+                                <p class="card-text p-typo"><strong>DEADLINE:
+                                        <?= $deadline . " A " . $time_limit ?>
+                                    </strong> </p>
+
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+
+
+        </div>
 
     </div>
-
+    </div>
     <?php
     require('templates/pagesComponents/popup/todo.php');
     require('templates/pagesComponents/navbar/navbarFooter.php'); ?>

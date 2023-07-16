@@ -82,6 +82,34 @@
                 </div>
             </div>
         </div>
+        <h5 class="mb-3"><strong>PROFILE PICTURE</strong></h5>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
+                    <h6 class="mb-4">PICTURE SELECTION</h6>
+                    <form action="index.php?action=updateProfilePicture&login_id=<?= $login_id ?>" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for="pp">SELECT THE PICTURE</label>
+                            <div class="col-sm-5">
+                                <input type="file" autocomplete="off"
+                                    class="form-control" id="pp" name="pp" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="control-label col-sm-3" for=""></label>
+                            <div class="col-sm-5">
+                                <button type="submit" class="btn btn-info btn-lg btn-block">
+                                    <strong>UPDATE PROFILE PICTURE</strong>
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
         <h5 class="mb-3"><strong>SECURITY INFORMATIONS</strong></h5>
         <div class="row">
             <div class="col-sm-12">

@@ -137,6 +137,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
 
         echo '<script type="text/javascript">
@@ -151,6 +156,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
         $bool = $todoRepository->deleteTodo($todo_id); 
 
@@ -172,6 +182,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
 
         echo '<script type="text/javascript">
@@ -187,6 +202,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
         $bool = $todoRepository->markTodoAsDone($todo_id); 
 
@@ -209,6 +229,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
 
         echo '<script type="text/javascript">
@@ -224,6 +249,11 @@ Class Todo
         $ownTodo = $todoRepository->getOwnTodo($personal_id); 
         $givenTodo = $todoRepository->getGivenTodo($personal_id); 
         $receivedTodo = $todoRepository->getReceivedTodo($personal_id); 
+        $dashboardRepository = new DashboardRepository(); 
+        $dashboardRepository->connection = new DatabaseConnection(); 
+        $ownTodoNumber = $dashboardRepository->ownTodoNumber($personal_id) ; 
+        $givenTodoNumber = $dashboardRepository->givenTodoNumber($personal_id) ;
+        $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id) ;
         require('templates/todo/todoList.php');
         $bool = $todoRepository->markTodoAsTraited($todo_id); 
 

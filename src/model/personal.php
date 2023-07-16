@@ -14,6 +14,7 @@ class Personal
     public string $surname;
     public string $first_name; 
     public string $function; 
+    public string $picture_name; 
     
 
 }
@@ -91,6 +92,7 @@ class PersonalRepository
                 $personal->surname = $row['SURNAME']; 
                 $personal->first_name = $row['FIRST_NAME'];
                 $personal->function = $row['FUNCTION'];
+                $personal->picture_name = $row['PICTURE_NAME'];
 
 
             }
@@ -177,6 +179,24 @@ class PersonalRepository
                  WHERE LOGIN_ID = ?"
             ); 
             $statement->execute([strtoupper($grade), strtoupper($first_name), strtoupper($surname), strtoupper($function), $login_id]); 
+
+            $affectedLine = $statement->rowCount();
+            if ($affectedLine == 1){
+                return 1 ;
+            }else{
+                return 0;
+            }
+        } 
+
+
+        public function updateProfilePicture(string $nameofpp,int $login_id): bool
+        {
+            $statement = $this->connection->getConnection()->prepare(
+                "UPDATE  personal
+                SET `PICTURE_NAME` = ?
+                 WHERE LOGIN_ID = ?"
+            ); 
+            $statement->execute([$nameofpp, $login_id]); 
 
             $affectedLine = $statement->rowCount();
             if ($affectedLine == 1){

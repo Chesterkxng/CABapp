@@ -44,6 +44,11 @@ require_once('src/controllers/courierControllers/courier.php');
 // ERROR HANDLING IMPORT 
 require_once('src/controllers/errorHandlingControllers/error.php');
 
+require_once('src/lib/dashboard.php');
+require_once('src/lib/database.php');
+
+use Application\lib\Dashboard\DashboardRepository;
+
 
 use Application\Controllers\LoginControllers\SignUp\SignUp;
 use Application\Controllers\LoginControllers\Profile\Profile;
@@ -175,6 +180,17 @@ try {
                     $isAuth = $_SESSION['ISAUTH'];
                     if ($isAuth == 1) {
                         (new Personal())->UpdateSecurityInfos($input, $login_id);
+                    }
+                }
+            }
+        } elseif ($_GET['action'] === 'updateProfilePicture') {
+            $found = 1;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $login_id = $_GET['login_id'];
+                if (isset($_SESSION['ISAUTH'])) {
+                    $isAuth = $_SESSION['ISAUTH'];
+                    if ($isAuth == 1) {
+                        (new Personal())->UpdateProfilePicture($login_id);
                     }
                 }
             }
@@ -686,6 +702,8 @@ try {
                 (new SignIn())->signInPage();
             }
         }
+        
+
         // courier Router
         if ($_GET['action'] === 'courierAddingForm') {
             $found = 1;
@@ -921,6 +939,23 @@ try {
                 }
             }
         }
+        if (isset($_SESSION['ISAUTH'])) {
+            $isAuth = $_SESSION['ISAUTH'];
+            if (isset($_SESSION['PERSONAL_ID'])) {
+                $personal_id = $_SESSION['PERSONAL_ID'];
+            }
+            if ($isAuth == 1) {
+                $dashboardRepository = new DashboardRepository();
+                $dashboardRepository->connection = new DatabaseConnection();
+                $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id);
+                if ($receivedTodoNumber != 0) {
+                    echo '<script type="text/javascript">
+                    alertify.error("You have ' . $receivedTodoNumber . ' received tasks","",0);
+                 </script>';
+                }
+            }
+        }
+
 
 
 
@@ -949,6 +984,8 @@ try {
                 (new extForm())->addVisa($input);
             }
         }
+
+
 
 
 
