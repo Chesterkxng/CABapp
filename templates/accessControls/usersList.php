@@ -27,60 +27,62 @@ use Application\Model\Passport\PassportRepository;
             <div class="col-sm-12">
                 <!--Striped table-->
                 <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm">
-                    <table class="table table-striped" id="users-table">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>USERNAME </th>
-                                <th>SECURITY QUESTION</th>
-                                <th>SECURITY ANSWER</th>
-                                <th>PROFILE TYPE</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 1;
-
-                            foreach ($users as $user) {
-
-                                ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="users-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <?= htmlspecialchars($i) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($user->username) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($user->security_question) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($user->security_answer) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($user->profil_type) ?>
-                                    </td>
-
-                                    <td class="align-middle text-center">
-                                        <form style="display:inline;"
-                                            action="index.php?action=updateUserForm&login=<?= $user->login_id ?>"
-                                            method="post">
-                                            <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                        </form>
-                                        <form style="display:inline;"
-                                            action="index.php?action=deleteUserPopup&login=<?= $user->login_id ?>"
-                                            method="post">
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    <th>N°</th>
+                                    <th>USERNAME </th>
+                                    <th>SECURITY QUESTION</th>
+                                    <th>SECURITY ANSWER</th>
+                                    <th>PROFILE TYPE</th>
+                                    <th>ACTION</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                                $i = $i + 1;
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                $i = 1;
+
+                                foreach ($users as $user) {
+
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= htmlspecialchars($i) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($user->username) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($user->security_question) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($user->security_answer) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($user->profil_type) ?>
+                                        </td>
+
+                                        <td class="align-middle text-center">
+                                            <form style="display:inline;"
+                                                action="index.php?action=updateUserForm&login=<?= $user->login_id ?>"
+                                                method="post">
+                                                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                            </form>
+                                            <form style="display:inline;"
+                                                action="index.php?action=deleteUserPopup&login=<?= $user->login_id ?>"
+                                                method="post">
+                                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    $i = $i + 1;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!--/Striped table-->
             </div>

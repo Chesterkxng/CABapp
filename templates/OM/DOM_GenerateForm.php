@@ -45,6 +45,8 @@
                                     <option class="option" value="ADT">Adjudant</option>
                                     <option class="option" value="SCH">Sergent-Chef</option>
                                     <option class="option" value="SGT">Sergent</option>
+                                    <option class="option" value="MR">Monsieur</option>
+                                    <option class="option" value="MME">Madame</option>
                                 </select>
                             </div>
                         </div>

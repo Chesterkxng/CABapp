@@ -26,57 +26,59 @@ use Application\Lib\Database\DatabaseConnection;
             <div class="col-sm-12">
                 <!--Striped table-->
                 <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm">
-                    <table class="table table-striped" id="couriers-table">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>OBJECT</th>
-                                <th>DETAILS</th>
-                                <th>RECIPIENT </th>
-                                <th>EDITION DATE</th>
-                                <th>DOCUMENTS</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 1;
-
-                            foreach ($couriers as $courier) {
-
-                                ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="couriers-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <?= htmlspecialchars($i) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($courier->object) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($courier->details) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($courier->recipient) ?>
-                                    </td>
-                                    <td>
-                                        <?= htmlspecialchars($courier->edition_date) ?>
-                                    </td>
-                                    <td><a href="#"
-                                            onclick="window.open('<?= htmlspecialchars($courier->url) ?>', '_blank'); return false;">
-                                            <button class="btn btn-danger btn-sm btn-block">
-                                                VIEW FILE
-                                                <i class="fa fa-file-pdf"></i>
-                                            </button>
-                                        </a>
-                                    </td>
+                                    <th>N°</th>
+                                    <th>OBJECT</th>
+                                    <th>DETAILS</th>
+                                    <th>RECIPIENT </th>
+                                    <th>EDITION DATE</th>
+                                    <th>DOCUMENTS</th>
 
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                                $i = $i + 1;
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                $i = 1;
+
+                                foreach ($couriers as $courier) {
+
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?= htmlspecialchars($i) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($courier->object) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($courier->details) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($courier->recipient) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($courier->edition_date) ?>
+                                        </td>
+                                        <td><a href="#"
+                                                onclick="window.open('<?= htmlspecialchars($courier->url) ?>', '_blank'); return false;">
+                                                <button class="btn btn-danger btn-sm btn-block">
+                                                    VIEW FILE
+                                                    <i class="fa fa-file-pdf"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    <?php
+                                    $i = $i + 1;
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!--/Striped table-->
             </div>

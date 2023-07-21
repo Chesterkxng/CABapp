@@ -94,7 +94,8 @@ class OMRepository
     public function getIntOMs()
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `om` WHERE `TYPE`= 'INTERIEUR'"
+            "SELECT * FROM `om` WHERE `TYPE`= 'INTERIEUR' 
+            ORDER BY `EDITION_DATE` DESC"
         );
         $OMs = [];
         while ($row = $statement->fetch()) {
@@ -120,7 +121,8 @@ class OMRepository
     public function getExtOMs()
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `om` WHERE `TYPE`='EXTERIEUR'"
+            "SELECT * FROM `om` WHERE `TYPE`='EXTERIEUR'
+            ORDER BY `EDITION_DATE` DESC"
         );
         $OMs = [];
         while ($row = $statement->fetch()) {
@@ -146,7 +148,8 @@ class OMRepository
     public function getDOMs()
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `om` WHERE `TYPE`='DEMANDE D\'OM'"
+            "SELECT * FROM `om` WHERE `TYPE`='DEMANDE D\'OM'
+            ORDER BY `EDITION_DATE` DESC"
         );
         $OMs = [];
         while ($row = $statement->fetch()) {

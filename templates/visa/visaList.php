@@ -27,97 +27,99 @@ use Application\Model\Passport\PassportRepository;
             <div class="col-sm-12">
                 <!--Striped table-->
                 <div class="mt-1 mb-3 p-3 button-container bg-white border shadow-sm">
-                    <table class="table table-striped" id="visas-table">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>PASSNUMBER </th>
-                                <th>GRADE</th>
-                                <th>SURNAME</th>
-                                <th>FIRST NAME</th>
-                                <th>DELIVERY DATE</th>
-                                <th>EXPIRATION DATE</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $i = 1;
-
-                            foreach ($visas as $visa) {
-                                $passportRepository = new PassportRepository();
-                                $passportRepository->connexion = new DatabaseConnection(); 
-                                $passport = $passportRepository->getPassportByPassNumber($visa->passNumber); 
-                            ?>
+                    <div class="table-responsive">
+                        <table class="table table-striped" id="visas-table">
+                            <thead>
                                 <tr>
-                                    <td><?= htmlspecialchars($i) ?></td>
-                                    <td><?= htmlspecialchars($visa->passNumber) ?></td>
-                                    <td><?= htmlspecialchars($passport->grade) ?></td>
-                                    <td><?= htmlspecialchars($passport->surname) ?></td>
-                                    <td><?= htmlspecialchars($passport->firstname) ?></td>
-                                    <td><?= htmlspecialchars($visa->deliveryDate) ?></td>
+                                    <th>N°</th>
+                                    <th>PASSNUMBER </th>
+                                    <th>GRADE</th>
+                                    <th>SURNAME</th>
+                                    <th>FIRST NAME</th>
+                                    <th>DELIVERY DATE</th>
+                                    <th>EXPIRATION DATE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                $i = 1;
 
-                                    <?php $currentDate = new DateTime(date('Y-m-d'));
-                                    $expirationDate = new DateTime($visa->expirationDate);
-                                    if ($currentDate >= $expirationDate) { ?>
-                                        <td>
-                                            <label class="badge badge-danger badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
-                                        </td>
+                                foreach ($visas as $visa) {
+                                    $passportRepository = new PassportRepository();
+                                    $passportRepository->connexion = new DatabaseConnection();
+                                    $passport = $passportRepository->getPassportByPassNumber($visa->passNumber);
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($i) ?></td>
+                                        <td><?= htmlspecialchars($visa->passNumber) ?></td>
+                                        <td><?= htmlspecialchars($passport->grade) ?></td>
+                                        <td><?= htmlspecialchars($passport->surname) ?></td>
+                                        <td><?= htmlspecialchars($passport->firstname) ?></td>
+                                        <td><?= htmlspecialchars($visa->deliveryDate) ?></td>
 
-                                    <?php
-                                    } else {
-
-
-                                    $datediff = date_diff($expirationDate, $currentDate);
-                                    switch ($datediff->days) {
-                                        case ($datediff->days < 61 && $datediff->days > 1): ?>
+                                        <?php $currentDate = new DateTime(date('Y-m-d'));
+                                        $expirationDate = new DateTime($visa->expirationDate);
+                                        if ($currentDate >= $expirationDate) { ?>
                                             <td>
-                                                <label class="badge badge-warning badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                <label class="badge badge-danger badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
                                             </td>
-                                        <?php break;
-                                        case ($datediff->days > 61): ?>
-                                            <td>
-                                                <label class="badge badge-success badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
-                                            </td>
+
+                                            <?php
+                                        } else {
+
+
+                                            $datediff = date_diff($expirationDate, $currentDate);
+                                            switch ($datediff->days) {
+                                                case ($datediff->days < 61 && $datediff->days > 1): ?>
+                                                    <td>
+                                                        <label class="badge badge-warning badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                    </td>
+                                                <?php break;
+                                                case ($datediff->days > 61): ?>
+                                                    <td>
+                                                        <label class="badge badge-success badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                    </td>
 
                                         <?php
-                                            break;
+                                                    break;
+                                            }
                                         }
-                                    }
-                                    ?>
-                                        
+                                        ?>
 
 
 
-                                    <td class="align-middle text-center">
-                                        <form style="display:inline;" action="index.php?action=updateVisaForm&visa_id=<?= $visa->visa_id ?>" method="post">
-                                            <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
-                                        </form>
-                                        <form style="display:inline;" action="index.php?action=deleteVisaPopup&visa_id=<?= $visa->visa_id ?>" method="post">
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+
+                                        <td class="align-middle text-center">
+                                            <form style="display:inline;" action="index.php?action=updateVisaForm&visa_id=<?= $visa->visa_id ?>" method="post">
+                                                <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                            </form>
+                                            <form style="display:inline;" action="index.php?action=deleteVisaPopup&visa_id=<?= $visa->visa_id ?>" method="post">
+                                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php
+                                    $i = $i + 1;
+                                }
+                                ?>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <form style="display:inline;" action="index.php?action=visaAddingForm" method="post">
+                                            <button class="btn btn-primary btn-block"><i class="fa fa-plus"></i></button>
                                         </form>
                                     </td>
                                 </tr>
-                            <?php
-                                $i = $i + 1;
-                            }
-                            ?>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <form style="display:inline;" action="index.php?action=visaAddingForm" method="post">
-                                        <button class="btn btn-primary btn-block"><i class="fa fa-plus"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!--/Striped table-->
             </div>

@@ -50,6 +50,8 @@
                                     <option class="option" value="CAL">Caporal</option>
                                     <option class="option" value="SD1">Soldat de 1ère Classe</option>
                                     <option class="option" value="SD2">Soldat de 2ème Classe</option>
+                                    <option class="option" value="MR">Monsieur</option>
+                                    <option class="option" value="MME">Madame</option>
                                 </select>
                             </div>
                         </div>
