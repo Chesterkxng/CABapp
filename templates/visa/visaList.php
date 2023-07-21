@@ -51,18 +51,32 @@ use Application\Model\Passport\PassportRepository;
                                     $passport = $passportRepository->getPassportByPassNumber($visa->passNumber);
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($i) ?></td>
-                                        <td><?= htmlspecialchars($visa->passNumber) ?></td>
-                                        <td><?= htmlspecialchars($passport->grade) ?></td>
-                                        <td><?= htmlspecialchars($passport->surname) ?></td>
-                                        <td><?= htmlspecialchars($passport->firstname) ?></td>
-                                        <td><?= htmlspecialchars($visa->deliveryDate) ?></td>
+                                        <td>
+                                            <?= htmlspecialchars($i) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($visa->passNumber) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->grade) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->surname) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->firstname) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($visa->deliveryDate) ?>
+                                        </td>
 
                                         <?php $currentDate = new DateTime(date('Y-m-d'));
                                         $expirationDate = new DateTime($visa->expirationDate);
                                         if ($currentDate >= $expirationDate) { ?>
                                             <td>
-                                                <label class="badge badge-danger badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                <label class="badge badge-danger badge-pill">
+                                                    <?= htmlspecialchars($visa->expirationDate) ?>
+                                                </label>
                                             </td>
 
                                             <?php
@@ -73,12 +87,16 @@ use Application\Model\Passport\PassportRepository;
                                             switch ($datediff->days) {
                                                 case ($datediff->days < 61 && $datediff->days > 1): ?>
                                                     <td>
-                                                        <label class="badge badge-warning badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                        <label class="badge badge-warning badge-pill">
+                                                            <?= htmlspecialchars($visa->expirationDate) ?>
+                                                        </label>
                                                     </td>
                                                 <?php break;
                                                 case ($datediff->days > 61): ?>
                                                     <td>
-                                                        <label class="badge badge-success badge-pill"><?= htmlspecialchars($visa->expirationDate) ?></label>
+                                                        <label class="badge badge-success badge-pill">
+                                                            <?= htmlspecialchars($visa->expirationDate) ?>
+                                                        </label>
                                                     </td>
 
                                         <?php
@@ -103,6 +121,7 @@ use Application\Model\Passport\PassportRepository;
                                     $i = $i + 1;
                                 }
                                 ?>
+                            <tfoot>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -117,6 +136,7 @@ use Application\Model\Passport\PassportRepository;
                                         </form>
                                     </td>
                                 </tr>
+                            </tfoot>
                             </tbody>
                         </table>
                     </div>

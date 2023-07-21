@@ -49,18 +49,32 @@ use Application\Lib\Database\DatabaseConnection;
 
                                 ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($i) ?></td>
-                                        <td><?= htmlspecialchars($passport->passNumber) ?></td>
-                                        <td><?= htmlspecialchars($passport->grade) ?></td>
-                                        <td><?= htmlspecialchars($passport->surname) ?></td>
-                                        <td><?= htmlspecialchars($passport->firstname) ?></td>
-                                        <td><?= htmlspecialchars($passport->deliveryDate) ?></td>
+                                        <td>
+                                            <?= htmlspecialchars($i) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->passNumber) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->grade) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->surname) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->firstname) ?>
+                                        </td>
+                                        <td>
+                                            <?= htmlspecialchars($passport->deliveryDate) ?>
+                                        </td>
 
                                         <?php $currentDate = new DateTime(date('Y-m-d'));
                                         $expirationDate = new DateTime($passport->expirationDate);
                                         if ($currentDate >= $expirationDate) { ?>
                                             <td>
-                                                <label class="badge badge-danger badge-pill"><?= htmlspecialchars($passport->expirationDate) ?></label>
+                                                <label class="badge badge-danger badge-pill">
+                                                    <?= htmlspecialchars($passport->expirationDate) ?>
+                                                </label>
                                             </td>
 
                                             <?php
@@ -70,12 +84,16 @@ use Application\Lib\Database\DatabaseConnection;
                                             switch ($datediff->days) {
                                                 case ($datediff->days < 92 && $datediff->days > 1): ?>
                                                     <td>
-                                                        <label class="badge badge-warning badge-pill"><?= htmlspecialchars($passport->expirationDate) ?></label>
+                                                        <label class="badge badge-warning badge-pill">
+                                                            <?= htmlspecialchars($passport->expirationDate) ?>
+                                                        </label>
                                                     </td>
                                                 <?php break;
                                                 case ($datediff->days > 92): ?>
                                                     <td>
-                                                        <label class="badge badge-success badge-pill"><?= htmlspecialchars($passport->expirationDate) ?></label>
+                                                        <label class="badge badge-success badge-pill">
+                                                            <?= htmlspecialchars($passport->expirationDate) ?>
+                                                        </label>
                                                     </td>
 
                                         <?php
@@ -98,6 +116,7 @@ use Application\Lib\Database\DatabaseConnection;
                                     $i = $i + 1;
                                 }
                                 ?>
+                            <tfoot>
                                 <tr>
                                     <td></td>
                                     <td></td>
@@ -112,6 +131,7 @@ use Application\Lib\Database\DatabaseConnection;
                                         </form>
                                     </td>
                                 </tr>
+                            </tfoot>
                             </tbody>
                         </table>
                     </div>
