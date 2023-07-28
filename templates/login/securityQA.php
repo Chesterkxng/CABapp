@@ -1,53 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <title>CABapp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="templates\pagesComponents\navbar\assets\img\insigneAir.png" type="image/icon type">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="templates\pagesComponents\navbar\assets\css\bootstrap.min.css">
+    <!--Custom style.css-->
+    <link rel="stylesheet" href="templates\pagesComponents\navbar\assets\css\quicksand.css">
+    <link rel="stylesheet" href="templates\pagesComponents\navbar\assets\css\style.css">
+
+</head>
 <?php
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
 
-?>
-<?php require('templates/login/header.php') ?>
-<div class="row justify-content-center">
-	<div class="col-md-6 col-lg-4">
-		<div class="login-wrap p-0">
-			<h3 class="mb-4 text-center" style="font-weight:400 ;">Forgotten password ?</h3>
-			<!-- formulaire pour la vérification -->
-			<?php if (isset($_SESSION['USERNAME']) && isset($_SESSION['NEW_PASSWORD'])) {
-				$username = $_SESSION['USERNAME'];
-				$newPassword = $_SESSION['NEW_PASSWORD'];
-				$loginRepository = new LoginRepository();
-				$loginRepository->connection = new DatabaseConnection();
-				$loginInfos = $loginRepository->getLoginInfos($username);
-			} ?>
-			<form action="index.php?action=verifyQA" method='post' class="signin-form">
-				<div class="form-group">
-					<input type="text" readonly class="form-control" autocomplete="off" id="Username" name="Username"
-						value="<?= $loginInfos->username ?>">
-				</div>
-				<div class="form-group">
-					<input type="text" readonly class="form-control" autocomplete="off" id="security_answer"
-						name="security_question" value="<?= $loginInfos->security_question ?>">
-				</div>
-				<div class="form-group">
-					<input type="text" class="form-control" autocomplete="off" id="security_answer"
-						name="security_answer" placeholder="Type your answer" required>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="form-control btn btn-primary submit px-3">Verify your identity</button>
-				</div>
-			</form>
-			<!-- fin du formulaire pour la verification -->
-			<h3 class="mb-4 text-center">have an account ?</h3>
-			<!-- formulaire pour la connexion -->
-			<form action="index.php?action=signInPage" method='post' class="signin-form">
-				<div class="form-group">
-					<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
-				</div>
-			</form>
-			<!-- fin du formulaire pour la connexion-->
-		</div>
-	</div>
-</div>
-</div>
-</section>
-<?php require('templates/pagesComponents/popup/login.php') ?>
+if (isset($_SESSION['USERNAME']) && isset($_SESSION['NEW_PASSWORD'])) {
+    $username = $_SESSION['USERNAME'];
+    $newPassword = $_SESSION['NEW_PASSWORD'];
+    $loginRepository = new LoginRepository();
+    $loginRepository->connection = new DatabaseConnection();
+    $loginInfos = $loginRepository->getLoginInfos($username);
+} ?>
+
+<body class="login-body" style="background-image: url(templates/login/images/airbus.jpg);">
+
+    <!--Login Wrapper-->
+
+    <div class="container-fluid login-wrapper">
+        <div class="login-box">
+            <h1 class="text-center mb-5"><i class="fa fa-rocket text-primary"></i> CABapp</h1>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-12 login-box-info" style="opacity: 1;">
+                    <h3 class="mb-4">WELCOME CABapp</h3>
+                    <p class="mb-4">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
+
+                </div>
+                <div class="col-md-6 col-sm-6 col-12 login-box-form p-4">
+                    <h3 class="mb-2">Login</h3>
+                    <small class="text-muted bc-description">Security Question</small>
+                    <form action="index.php?action=verifyQA" method='post' class="mt-2">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control mt-0" placeholder="Username" autocomplete="off"
+                                id="Username" name="Username" value="<?= $loginInfos->username ?>" readonly>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="text" class="form-control mt-0" placeholder="Password" name="security_question"
+                                value="<?= $loginInfos->security_question ?>" readonly>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                            </div>
+                            <input type="text" class="form-control mt-0" placeholder="security answer" name="security_answer"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-theme btn-block p-2 mb-1">Verify your identity</button>
+                        </div>
+                    </form>
+                    <form action="index.php?action=signInPage" class="signin-form">
+						<div class="form-group">
+							<button type="submit" class="form-control btn btn-theme btn-block p-2 mb-1">Sign in</button>
+						</div>
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php require('templates/pagesComponents/popup/login.php') ?>
+    <!--Custom Js Script-->
 </body>
 
 </html>

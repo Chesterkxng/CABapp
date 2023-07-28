@@ -95,7 +95,7 @@
       buttons: true
     }).then(okay => {
       if (okay) {
-        window.location.href = "index.php?action=deleteEvent&event_id=<?= $event->event_id ?>";
+        window.location.href = "index.php?action=deleteEvent&event_id=<?= $event_id ?>";
       } else {
         window.location.href = "index.php?action=eventsList";
       }

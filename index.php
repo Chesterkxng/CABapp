@@ -702,7 +702,7 @@ try {
                 (new SignIn())->signInPage();
             }
         }
-        
+
 
         // courier Router
         if ($_GET['action'] === 'courierAddingForm') {
@@ -944,7 +944,7 @@ try {
             if (isset($_SESSION['PERSONAL_ID'])) {
                 $personal_id = $_SESSION['PERSONAL_ID'];
             }
-            if ($isAuth == 1) {
+            if ($isAuth == 1 && !empty($personal_id)) {
                 $dashboardRepository = new DashboardRepository();
                 $dashboardRepository->connection = new DatabaseConnection();
                 $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id);

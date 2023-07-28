@@ -17,6 +17,7 @@ class SignIn
     {
         require('templates/login/signIn.php');
     }
+
     public function connect(array $input) // modifier le html pour que les valeurs puisse etre recus 
     {
         require('templates/login/signIn.php');
