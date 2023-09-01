@@ -35,11 +35,35 @@ class VisaRepository
         }
     }
 
-    public function getVisas(): array
+    public function getAvailableVisas(): array
     {
-        $statement = $this->connexion->getConnection()->query(
-            "SELECT * FROM `visa`"
+        $statement = $this->connexion->getConnection()->prepare(
+            "SELECT * FROM `visa` 
+            WHERE EXPIRATION_DATE >= ?"
         );
+        $date = date("Y-m-d"); 
+        $statement->execute([$date]); 
+        $visas = [];
+        while ($row = $statement->fetch()) {
+            $visa = new Visa();
+            $visa->visa_id = $row["VISA_ID"];
+            $visa->visaNumber = $row["VISA_NUMBER"];
+            $visa->passNumber = $row["PASSNUMBER"];
+            $visa->deliveryDate = $row["DELIVERY_DATE"];
+            $visa->expirationDate = $row["EXPIRATION_DATE"];
+            $visas[] = $visa;
+        }
+        return $visas;
+
+    }
+    public function getExpiredVisas(): array
+    {
+        $statement = $this->connexion->getConnection()->prepare(
+            "SELECT * FROM `visa` 
+            WHERE EXPIRATION_DATE < ?"
+        );
+        $date = date("Y-m-d"); 
+        $statement->execute([$date]); 
         $visas = [];
         while ($row = $statement->fetch()) {
             $visa = new Visa();
@@ -93,7 +117,7 @@ class VisaRepository
         }
 
     }
-    public function deleteVisa($visa_id): bool
+    public function deleteVisa(int $visa_id): bool
     {
         $statement = $this->connexion->getConnection()->prepare(
             "DELETE FROM `visa` WHERE `VISA_ID`= ?"

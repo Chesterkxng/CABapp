@@ -39,11 +39,39 @@ class PassportRepository
         }
     }
 
-    public function getPassports(): array
+    public function getAvailablePassports(): array
     {
-        $statement = $this->connexion->getConnection()->query(
-            "SELECT * FROM `passport`"
+        $statement = $this->connexion->getConnection()->prepare(
+            "SELECT * FROM `passport`
+            WHERE EXPIRATION_DATE >= ? 
+            ORDER BY `GRADE`"
         );
+        $date = date("Y-m-d");
+        $statement->execute([$date]);
+        $passports = [];
+        while ($row = $statement->fetch()) {
+            $passport = new Passport();
+            $passport->passport_id = $row["PASSPORT_ID"];
+            $passport->passNumber = $row["PASSNUMBER"];
+            $passport->grade = $row["GRADE"];
+            $passport->surname = $row["SURNAME"];
+            $passport->firstname = $row["FIRST_NAME"];
+            $passport->deliveryDate = $row["DELIVERY_DATE"];
+            $passport->expirationDate = $row["EXPIRATION_DATE"];
+            $passports[] = $passport;
+        }
+        return $passports;
+
+    }
+    public function getExpiredPassports(): array
+    {
+        $statement = $this->connexion->getConnection()->prepare(
+            "SELECT * FROM `passport`
+            WHERE EXPIRATION_DATE < ? 
+            ORDER BY `GRADE`"
+        );
+        $date = date("Y-m-d");
+        $statement->execute([$date]);
         $passports = [];
         while ($row = $statement->fetch()) {
             $passport = new Passport();

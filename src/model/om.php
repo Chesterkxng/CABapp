@@ -94,7 +94,7 @@ class OMRepository
     public function getIntOMs()
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `om` WHERE `TYPE`= 'INTERIEUR' 
+            "SELECT * FROM `om` WHERE `TYPE`= 'INTERIEUR'
             ORDER BY `EDITION_DATE` DESC"
         );
         $OMs = [];

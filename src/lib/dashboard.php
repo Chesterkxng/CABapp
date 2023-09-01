@@ -190,7 +190,7 @@ class DashboardRepository
         $UpcomingExpirationVisaNumber = 0;
         while ($row = $statement->fetch()) {
             if ((int) substr($row['EXPIRATION_DATE'], 0, 4) == (int) $year) {
-                if ((int) substr($row['EXPIRATION_DATE'], 5, 7) - (int) $month <= 2) {
+                if ((int) substr($row['EXPIRATION_DATE'], 5, 7) - (int) $month <= 2 && (int) substr($row['EXPIRATION_DATE'], 5, 7) - (int) $month >= 0) {
                     $UpcomingExpirationVisaNumber += 1;
                 }
             } else {

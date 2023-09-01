@@ -14,7 +14,8 @@ class Passport
     {
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
-        $passports = $passportRepository->getPassports();
+        $AvailablePassports = $passportRepository->getAvailablePassports();
+        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
 
         require('templates/passport/passportList.php');
     }
@@ -114,7 +115,8 @@ class Passport
     {
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
-        $passports = $passportRepository->getPassports();
+        $AvailablePassports = $passportRepository->getAvailablePassports();
+        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
         require('templates/passport/passportList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
@@ -125,7 +127,8 @@ class Passport
     {
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
-        $passports = $passportRepository->getPassports();
+        $AvailablePassports = $passportRepository->getAvailablePassports();
+        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
         require('templates/passport/passportList.php');
         $bool = $passportRepository->deletePassport($passport_id);
         if ($bool == 1) {

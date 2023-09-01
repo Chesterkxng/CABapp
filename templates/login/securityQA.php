@@ -34,7 +34,7 @@ if (isset($_SESSION['USERNAME']) && isset($_SESSION['NEW_PASSWORD'])) {
 
     <div class="container-fluid login-wrapper">
         <div class="login-box">
-            <h1 class="text-center mb-5"><i class="fa fa-rocket text-primary"></i> CABapp</h1>
+            <h1 class="text-center mb-5"><i class="fa fa-university text-primary"></i> CABapp</h1>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-12 login-box-info" style="opacity: 1;">
                     <h3 class="mb-4">WELCOME CABapp</h3>

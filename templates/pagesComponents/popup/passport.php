@@ -95,7 +95,7 @@
       buttons: true
     }).then(okay => {
       if (okay) {
-        window.location.href = "index.php?action=deletePassport&passport_id=<?= $passport->passport_id ?>";
+        window.location.href = "index.php?action=deletePassport&passport_id=<?= $passport_id ?>";
       } else {
         window.location.href = "index.php?action=passportsList";
       }

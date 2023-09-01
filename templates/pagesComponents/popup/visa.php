@@ -95,7 +95,7 @@
       buttons: true
     }).then(okay => {
       if (okay) {
-        window.location.href = "index.php?action=deleteVisa&visa_id=<?= $visa->visa_id ?>";
+        window.location.href = "index.php?action=deleteVisa&visa_id=<?= $visa_id ?>";
       } else {
         window.location.href = "index.php?action=visasList";
       }

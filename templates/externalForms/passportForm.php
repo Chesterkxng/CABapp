@@ -29,7 +29,7 @@
                             <label class="control-label col-sm-3" for="passnumber">PASSPORT NUMBER</label>
                             <div class="col-sm-5">
                                 <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    id="passnumber" name="passnumber" required />
+                                    id="passnumber" name="passnumber" autocomplete="off" required />
                             </div>
                         </div>
 
@@ -49,13 +49,15 @@
                                     <option class="option" value="LCL">Lieutenant-Colonel</option>
                                     <option class="option" value="CDT">Commandant</option>
                                     <option class="option" value="CNE">Capitaine</option>
-                                    <option class="option" value="LT">Lieutenant</option>
+                                    <option class="option" value="LTN">Lieutenant</option>
                                     <option class="option" value="SLT">Sous-Lieutenant</option>
                                     <option class="option" value="ACM">Ajdudant-Chef Major</option>
                                     <option class="option" value="ADC">Adjudant-Chef</option>
                                     <option class="option" value="ADT">Adjudant</option>
                                     <option class="option" value="SCH">Sergent-Chef</option>
                                     <option class="option" value="SGT">Sergent</option>
+                                    <option class="option" value="MR">Monsieur</option>
+                                    <option class="option" value="MME">Madame</option>
                                 </select>
                             </div>
                         </div>

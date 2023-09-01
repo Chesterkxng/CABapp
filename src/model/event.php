@@ -41,7 +41,8 @@ class EventRepository
         $statement = $this->connection->getConnection()->prepare(
             "SELECT * FROM `event` 
             WHERE PERSONAL_ID = ? AND 
-            SHARING_STATUS = 0"
+            SHARING_STATUS = 0
+            ORDER BY `START` DESC"
         );
         $statement->execute([$personal_id]);
         $events = [];
@@ -62,7 +63,8 @@ class EventRepository
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT * FROM `event` 
-            WHERE SHARING_STATUS = 1"
+            WHERE SHARING_STATUS = 1
+            ORDER BY `START` DESC"
         );
         $events = [];
         while ($row = $statement->fetch()) {

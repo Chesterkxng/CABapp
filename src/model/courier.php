@@ -37,7 +37,7 @@ class CourierRepository
     public function getCouriers(): array
     {
         $statement = $this->connection->getConnection()->query(
-            "SELECT * FROM `courier`"
+            "SELECT * FROM `courier` ORDER BY `EDITION_DATE` DESC"
         );
         $couriers = [];
         while ($row = $statement->fetch()) {

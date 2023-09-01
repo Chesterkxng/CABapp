@@ -944,7 +944,7 @@ try {
             if (isset($_SESSION['PERSONAL_ID'])) {
                 $personal_id = $_SESSION['PERSONAL_ID'];
             }
-            if ($isAuth == 1 && !empty($personal_id)) {
+            if ($isAuth == 1) {
                 $dashboardRepository = new DashboardRepository();
                 $dashboardRepository->connection = new DatabaseConnection();
                 $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id);

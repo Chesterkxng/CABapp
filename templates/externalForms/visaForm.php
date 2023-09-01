@@ -30,7 +30,7 @@
                             <label class="control-label col-sm-3" for="passnumber">VISA NUMBER</label>
                             <div class="col-sm-5">
                                 <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    id="visanumber" name="visanumber" required />
+                                    id="visanumber" name="visanumber" autocomplete="off" required />
                             </div>
                         </div>
 

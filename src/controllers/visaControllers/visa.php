@@ -14,7 +14,8 @@ class Visa
     {
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
-        $visas = $visaRepository->getVisas();
+        $AvailableVisas = $visaRepository->getAvailableVisas();
+        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
 
         require('templates/visa/visaList.php');
     }
@@ -106,7 +107,8 @@ class Visa
     {
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
-        $visas = $visaRepository->getVisas();
+        $AvailableVisas = $visaRepository->getAvailableVisas();
+        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
         require('templates/visa/visaList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
@@ -117,7 +119,8 @@ class Visa
     {
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
-        $visas = $visaRepository->getVisas();
+        $AvailableVisas = $visaRepository->getAvailableVisas();
+        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
         require('templates/visa/visaList.php');
         $bool = $visaRepository->deleteVisa($visa_id);
         if ($bool == 1) {
