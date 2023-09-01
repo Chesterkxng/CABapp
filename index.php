@@ -701,6 +701,30 @@ try {
             } else {
                 (new SignIn())->signInPage();
             }
+        } elseif ($_GET['action'] === 'todoDeletePopup2') {
+            $found = 1;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $todo_id = $_GET['todo_id'];
+                if (isset($_SESSION['ISAUTH'])) {
+                    $isAuth = $_SESSION['ISAUTH'];
+                    if ($isAuth == 1) {
+                        (new Todo())->sendDeletePopup2($todo_id);
+                    }
+                } else {
+                    (new SignIn())->signInPage();
+                }
+            }
+        } elseif ($_GET['action'] === 'deleteTodo2') {
+            $found = 1;
+            $todo_id = $_GET['todo_id'];
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new Todo())->deleteTodo2($todo_id);
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
         }
 
 

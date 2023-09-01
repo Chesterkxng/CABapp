@@ -83,6 +83,22 @@
     )
   }
 </script>
+<script type="text/javascript">
+  function deletingSuccessAlert2() {
+    swal({
+      title: "Todo Message!",
+      text: "Todo deleted successfully!",
+      icon: "success",
+    }).then(okay => {
+      if (okay) {
+        window.location.href = "index.php?action=todoHistoric";
+      } else {
+        window.location.href = "index.php?action=todoHistoric";
+      }
+    }
+    )
+  }
+</script>
 
 
 
@@ -98,6 +114,23 @@
         window.location.href = "index.php?action=deleteTodo&todo_id=<?= $todo_id ?>";
       } else {
         window.location.href = "index.php?action=todosList";
+      }
+    }
+    )
+  }
+</script>
+<script type="text/javascript">
+  function deletingConfirmAlert2() {
+    swal({
+      title: "Todo Message!",
+      text: "are you sure ?",
+      icon: "warning",
+      buttons: true
+    }).then(okay => {
+      if (okay) {
+        window.location.href = "index.php?action=deleteTodo2&todo_id=<?= $todo_id ?>";
+      } else {
+        window.location.href = "index.php?action=todoHistoric";
       }
     }
     )

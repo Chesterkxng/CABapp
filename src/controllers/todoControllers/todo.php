@@ -277,4 +277,41 @@ Class Todo
         $receivedTodo = $todoRepository->getReceivedTodoHistoric($personal_id); 
         require('templates/todo/historic.php'); 
     }
+    public function sendDeletePopup2(int $todo_id){
+        $todoRepository = new TodoRepository(); 
+        $todoRepository->connection = new DatabaseConnection(); 
+        $personal_id = $_SESSION['PERSONAL_ID'];
+        $personal_id = $_SESSION['PERSONAL_ID'];
+        $ownTodo = $todoRepository->getOwnTodoHistoric($personal_id); 
+        $givenTodo = $todoRepository->getGivenTodoHistoric($personal_id); 
+        $receivedTodo = $todoRepository->getReceivedTodoHistoric($personal_id); 
+        require('templates/todo/historic.php'); 
+        
+        echo '<script type="text/javascript">
+            deletingConfirmAlert2()
+         </script>';
+
+    }
+    public function deleteTodo2(int $todo_id){
+        $todoRepository = new TodoRepository(); 
+        $todoRepository->connection = new DatabaseConnection(); 
+        $personal_id = $_SESSION['PERSONAL_ID'];
+        $personal_id = $_SESSION['PERSONAL_ID'];
+        $ownTodo = $todoRepository->getOwnTodoHistoric($personal_id); 
+        $givenTodo = $todoRepository->getGivenTodoHistoric($personal_id); 
+        $receivedTodo = $todoRepository->getReceivedTodoHistoric($personal_id); 
+        require('templates/todo/historic.php'); 
+        $bool = $todoRepository->deleteTodo($todo_id); 
+
+        if ($bool == 1) {
+            echo '<script type="text/javascript">
+                        deletingSuccessAlert2()
+                    </script>';
+        } else {
+            echo '<script type="text/javascript">
+                    deletingErrorAlert()
+                </script>';
+        }
+
+    }
 }

@@ -61,7 +61,7 @@ use Application\Lib\Database\DatabaseConnection;
 
 
                                     <div style="display: flex; justify-content: right;">
-                                        <form action="index.php?action=todoDeletePopup&todo_id=<?= $todo->todo_id ?>"
+                                        <form action="index.php?action=todoDeletePopup2&todo_id=<?= $todo->todo_id ?>"
                                             method="post">
                                             <button type="submit" class="btn btn-danger icon-round shadow">
                                                 <i class="fa fa-trash"></i>
