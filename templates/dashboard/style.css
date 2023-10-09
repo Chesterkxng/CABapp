@@ -1,0 +1,25 @@
+#firstTab, #secondTab, #thirdTab, #fourthTab {
+    border: 1rem;
+    border-color:black;
+    margin-left: 100px;
+    padding: 8px;
+}
+
+#title {
+    text-decoration: underline;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+#subtitle {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: block;
+
+}

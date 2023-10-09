@@ -32,9 +32,10 @@ class Dashboard
         $totalExtOM = $dashboardRepository->totalExtOM();
         $totalDOM = $dashboardRepository->totalDOM();
         require('templates/dashboard/dashboard.php');
-
-
-
     }
 
+    public function procedureMan()
+    {
+        require("templates/dashboard/procedureMan.php");
+    }
 }

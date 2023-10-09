@@ -220,6 +220,20 @@ try {
                 (new SignIn())->signInPage();
             }
         }
+        if ($_GET['action'] === 'procedureMan') {
+            $found = 1;
+            if (isset($_SESSION['PERSONAL_ID'])) {
+                $personal_id = $_SESSION['PERSONAL_ID'];
+            }
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                if ($isAuth == 1) {
+                    (new Dashboard())->procedureMan();
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }
 
         // END OF DASHBOARD ROUTEUR 
 
