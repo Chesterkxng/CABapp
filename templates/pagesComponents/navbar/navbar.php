@@ -175,6 +175,20 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                 </li>
 
                                 <li class="parent">
+                                    <a href="#" onclick="toggle_menu('archives'); return false" class=""><i
+                                            class="fa fa-archive mr-3"> </i>
+                                        <span class="none">ARCHIVRES<i
+                                                class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                    </a>
+                                    <ul class="children" id="archives">
+                                        <li class="child"><a href="index.php?action=archiveAddingForm" class="ml-4"><i
+                                                    class="fa fa-angle-right mr-2"></i> ADD DOCUMENT</a></li>
+                                        <li class="child"><a href="index.php?action=Archives" class="ml-4"><i
+                                                    class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="parent">
                                     <a href="#" onclick="toggle_menu('accessControls'); return false" class=""><i
                                             class="fa fa-key mr-3"> </i>
                                         <span class="none">ACCESS CONTROL<i
@@ -281,6 +295,20 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                         <li class="child"><a href="index.php?action=courierAddingForm" class="ml-4"><i
                                                     class="fa fa-angle-right mr-2"></i> ADD COURIER</a></li>
                                         <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i
+                                                    class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="parent">
+                                    <a href="#" onclick="toggle_menu('archives'); return false" class=""><i
+                                            class="fa fa-archive mr-3"> </i>
+                                        <span class="none">ARCHIVES<i
+                                                class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                    </a>
+                                    <ul class="children" id="archives">
+                                        <li class="child"><a href="index.php?action=archiveAddingForm" class="ml-4"><i
+                                                    class="fa fa-angle-right mr-2"></i> ADD DOCUMENT</a></li>
+                                        <li class="child"><a href="index.php?action=Archives" class="ml-4"><i
                                                     class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
                                     </ul>
                                 </li>

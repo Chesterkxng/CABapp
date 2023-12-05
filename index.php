@@ -41,6 +41,9 @@ require_once('src/controllers/extFormControllers/extForm.php');
 // Courier IMPORT
 require_once('src/controllers/courierControllers/courier.php');
 
+// Archive IMPORT
+require_once('src/controllers/archiveControllers/archive.php');
+
 // ERROR HANDLING IMPORT 
 require_once('src/controllers/errorHandlingControllers/error.php');
 
@@ -70,6 +73,7 @@ use Application\Controllers\TodoControllers\Todo\Todo;
 use Application\Controllers\MOControllers\MissionOrders\MissionOrders;
 use Application\Controllers\extFormControllers\extForm\extForm;
 use Application\Controllers\CourierControllers\Courier\Courier;
+use Application\controllers\ArchiveControllers\Archive\Archive;
 use Application\Controllers\ErrorHandlingControllers\Error\Error;
 
 
@@ -779,6 +783,51 @@ try {
                 $profile_type = $_SESSION['profile_type'];
                 if ($isAuth == 1 && $profile_type != 2) {
                     (new Courier())->courierArchives();
+                } else {
+                    (new Error())->forbiddenPage();
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        }
+
+         // Archivre Router
+         if ($_GET['action'] === 'archiveAddingForm') {
+            $found = 1;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                $profile_type = $_SESSION['profile_type'];
+                if ($isAuth == 1 && $profile_type != 2) {
+                    (new Archive())->archiveAddingForm();
+                } else {
+                    (new Error())->forbiddenPage();
+                }
+            } else {
+                (new SignIn())->signInPage();
+            }
+        } elseif ($_GET['action'] === 'addArchive') {
+            $found = 1;
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $input = $_POST;
+                if (isset($_SESSION['ISAUTH'])) {
+                    $isAuth = $_SESSION['ISAUTH'];
+                    $profile_type = $_SESSION['profile_type'];
+                    if ($isAuth == 1 && $profile_type != 2) {
+                        (new Archive())->addArchive($input);
+                    } else {
+                        (new Error())->forbiddenPage();
+                    }
+                } else {
+                    (new SignIn())->signInPage();
+                }
+            }
+        } elseif ($_GET['action'] === 'Archives') {
+            $found = 1;
+            if (isset($_SESSION['ISAUTH'])) {
+                $isAuth = $_SESSION['ISAUTH'];
+                $profile_type = $_SESSION['profile_type'];
+                if ($isAuth == 1 && $profile_type != 2) {
+                    (new Archive())->docArchives();
                 } else {
                     (new Error())->forbiddenPage();
                 }
