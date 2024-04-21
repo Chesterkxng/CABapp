@@ -3,8 +3,8 @@
 namespace Application\Controllers\DashboardControllers\Dashboard;
 
 session_start();
-require_once('src/lib/dashboard.php');
-require_once('src/lib/database.php');
+require_once ('src/lib/dashboard.php');
+require_once ('src/lib/database.php');
 use Application\lib\Dashboard\DashboardRepository;
 use Application\Lib\Database\DatabaseConnection;
 
@@ -31,11 +31,11 @@ class Dashboard
         $totalIntOM = $dashboardRepository->totalIntOM();
         $totalExtOM = $dashboardRepository->totalExtOM();
         $totalDOM = $dashboardRepository->totalDOM();
-        require('templates/dashboard/dashboard.php');
+        require ('templates/dashboard/dashboard.php');
     }
 
     public function procedureMan()
     {
-        require("templates/dashboard/procedureMan.php");
+        require ("templates/dashboard/procedureMan.php");
     }
 }

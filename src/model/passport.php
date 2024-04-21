@@ -2,7 +2,7 @@
 
 namespace Application\Model\Passport;
 
-require_once('src/lib/database.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 
 class Passport
@@ -22,8 +22,12 @@ class PassportRepository
     public DatabaseConnection $connexion;
 
     public function addPassport(
-        string $passNumber, string $grade, string $surname,
-        string $firstname, string $deliveryDate, string $expirationDate
+        string $passNumber,
+        string $grade,
+        string $surname,
+        string $firstname,
+        string $deliveryDate,
+        string $expirationDate
     ): bool {
 
         $statement = $this->connexion->getConnection()->prepare(
@@ -129,8 +133,13 @@ class PassportRepository
     }
 
     public function updatePassport(
-        $passNumber, string $grade, string $surname,
-        string $firstname, string $deliveryDate, string $expirationDate, int $passport_id
+        $passNumber,
+        string $grade,
+        string $surname,
+        string $firstname,
+        string $deliveryDate,
+        string $expirationDate,
+        int $passport_id
     ) {
         $statement = $this->connexion->getConnection()->prepare(
             "UPDATE `passport` 

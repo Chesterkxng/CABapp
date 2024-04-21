@@ -1,7 +1,7 @@
 <?php
 namespace Application\Model\Todo;
 
-require_once('src/lib/database.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 
 class Todo
@@ -113,8 +113,11 @@ class TodoRepository
     }
 
     public function AddTodo(
-        int $personal_id, string $title, string $details,
-        string $deadline, int $recipient
+        int $personal_id,
+        string $title,
+        string $details,
+        string $deadline,
+        int $recipient
     ): bool {
 
         $statement = $this->connection->getConnection()->prepare(
@@ -134,8 +137,12 @@ class TodoRepository
 
 
     public function updateTodo(
-        string $title, string $details,
-        string $deadline, int $recipient, int $personal_id, int $todo_id
+        string $title,
+        string $details,
+        string $deadline,
+        int $recipient,
+        int $personal_id,
+        int $todo_id
     ): bool {
 
         $statement = $this->connection->getConnection()->prepare(

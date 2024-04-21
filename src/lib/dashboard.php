@@ -4,7 +4,7 @@ namespace Application\Lib\Dashboard;
 
 session_start();
 
-require_once('src/lib/database.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 use DateTime;
 

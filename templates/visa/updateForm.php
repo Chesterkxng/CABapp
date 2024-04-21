@@ -1,6 +1,7 @@
 <?php session_start() ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <?php
@@ -44,13 +46,13 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="deliverydate">DELIVERY DATE</label>
                             <div class="col-sm-5">
-                                <input type="date"  class="form-control" value="<?= $visa->deliveryDate ?>" id="deliverydate" name="deliverydate" required />
+                                <input type="date" class="form-control" value="<?= $visa->deliveryDate ?>" id="deliverydate" name="deliverydate" required />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="expirationdate">EXPIRATION DATE</label>
                             <div class="col-sm-5">
-                                <input type="date"  class="form-control" id="expirationdate" value="<?= $visa->expirationDate ?>" name="expirationdate" required />
+                                <input type="date" class="form-control" id="expirationdate" value="<?= $visa->expirationDate ?>" name="expirationdate" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -67,4 +69,5 @@
     <?php require('templates/pagesComponents/popup/visa.php') ?>
     <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
+
 </html>

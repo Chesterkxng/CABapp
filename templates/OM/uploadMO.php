@@ -27,24 +27,19 @@ if (isset($_POST)) {
             <div class="col-sm-12">
                 <div class="mt-4 mb-3 p-3  button-container bg-white border shadow-sm">
                     <h6 class="mb-4">MISSION INFOS</h6>
-                    <form action="index.php?action=uploadMO&type=<?= $type ?>&om_id=<?= $OM->om_id ?>" method="post"
-                        enctype="multipart/form-data">
+                    <form action="index.php?action=uploadMO&type=<?= $type ?>&om_id=<?= $OM->om_id ?>" method="post" enctype="multipart/form-data">
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="name">RECIPIENT</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    value="<?= $OM->recipient ?>" id="name" name="name" readonly />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" value="<?= $OM->recipient ?>" id="name" name="name" readonly />
                             </div>
                         </div>
-
-
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">DESTINATION COUNTRY</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    value="<?= $OM->country ?>" id="country" name="country" readonly />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" value="<?= $OM->country ?>" id="country" name="country" readonly />
                             </div>
                         </div>
 
@@ -52,15 +47,13 @@ if (isset($_POST)) {
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">DESTINATION CITY</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    value="<?= $OM->city ?>" id="city" name="city" readonly />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" value="<?= $OM->city ?>" id="city" name="city" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="grade">COMPANIONS</label>
                             <div class="col-sm-5">
-                                <textarea class="form-control" rows="3" name="companion" id="companion"
-                                    readonly><?= str_replace("\N", "\n", $OM->companions) ?></textarea>
+                                <textarea class="form-control" rows="3" name="companion" id="companion" readonly><?= str_replace("\N", "\n", $OM->companions) ?></textarea>
                             </div>
                         </div>
 
@@ -69,30 +62,26 @@ if (isset($_POST)) {
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">OBJECT OF THE MISSION</label>
                             <div class="col-sm-5">
-                                <input type="text" value="<?= $OM->object ?>" style="text-transform: uppercase;"
-                                    class="form-control" id="object" name="object" readonly />
+                                <input type="text" value="<?= $OM->object ?>" style="text-transform: uppercase;" class="form-control" id="object" name="object" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">TRANSPORT MEANS</label>
                             <div class="col-sm-5">
-                                <input type="text" value="<?= $OM->means ?>" style="text-transform: uppercase;"
-                                    class="form-control" id="means" name="means" readonly />
+                                <input type="text" value="<?= $OM->means ?>" style="text-transform: uppercase;" class="form-control" id="means" name="means" readonly />
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="deliverydate">DEPARTURE DATE</label>
                             <div class="col-sm-5">
-                                <input type="text" value="<?= $OM->departure_date ?>" style="text-transform: uppercase;"
-                                    class="form-control" id="departuredate" name="departuredate" readonly />
+                                <input type="text" value="<?= $OM->departure_date ?>" style="text-transform: uppercase;" class="form-control" id="departuredate" name="departuredate" readonly />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="expirationdate">RETURN DATE</label>
                             <div class="col-sm-5">
-                                <input type="text" value="<?= $OM->return_date ?>" style="text-transform: uppercase;"
-                                    class="form-control" id="returndate" name="returndate" readonly />
+                                <input type="text" value="<?= $OM->return_date ?>" style="text-transform: uppercase;" class="form-control" id="returndate" name="returndate" readonly />
                             </div>
                         </div>
 
@@ -106,8 +95,7 @@ if (isset($_POST)) {
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for=""></label>
                             <div class="col-sm-5">
-                                <button type="submit"
-                                    class="btn btn-info btn-lg btn-block"><strong>UPLOAD</strong></button>
+                                <button type="submit" class="btn btn-info btn-lg btn-block"><strong>UPLOAD</strong></button>
                             </div>
                         </div>
 

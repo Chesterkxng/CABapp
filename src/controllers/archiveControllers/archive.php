@@ -2,8 +2,8 @@
 
 namespace Application\Controllers\ArchiveControllers\Archive;
 
-require_once('src/model/archive.php');
-require_once('src/lib/database.php');
+require_once ('src/model/archive.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Archive\ArchiveRepository;
 
@@ -12,12 +12,12 @@ class Archive
 {
     public function archiveAddingForm()
     {
-        require('templates/archives/addingForm.php');
+        require ('templates/archives/addingForm.php');
     }
 
     public function addArchive(array $input)
     {
-        require('templates/archives/addingForm.php');
+        require ('templates/archives/addingForm.php');
         if ($input !== null) {
             $object = null;
             $details = null;
@@ -59,11 +59,6 @@ class Archive
                             addingErrorAlert()
                    </script>';
             }
-
-
-
-
-
         }
     }
 
@@ -72,6 +67,6 @@ class Archive
         $ArchivreRepository = new ArchiveRepository();
         $ArchivreRepository->connection = new DatabaseConnection();
         $docs = $ArchivreRepository->getDocs();
-        require('templates/archives/docArchives.php');
+        require ('templates/archives/docArchives.php');
     }
 }

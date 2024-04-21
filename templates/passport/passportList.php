@@ -47,7 +47,7 @@ use Application\Lib\Database\DatabaseConnection;
 
                                 foreach ($AvailablePassports as $passport) {
 
-                                    ?>
+                                ?>
                                     <tr>
                                         <td>
                                             <?= htmlspecialchars($i) ?>
@@ -80,7 +80,7 @@ use Application\Lib\Database\DatabaseConnection;
                                                         <?= htmlspecialchars($passport->expirationDate) ?>
                                                     </label>
                                                 </td>
-                                                <?php break;
+                                            <?php break;
                                             case ($datediff->days > 92): ?>
                                                 <td>
                                                     <label class="badge badge-success badge-pill">
@@ -88,26 +88,22 @@ use Application\Lib\Database\DatabaseConnection;
                                                     </label>
                                                 </td>
 
-                                                <?php
+                                        <?php
                                                 break;
                                         }
                                         ?>
 
 
                                         <td class="align-middle text-center">
-                                            <form style="display:inline;"
-                                                action="index.php?action=updatePassportForm&passport_id=<?= $passport->passport_id ?>"
-                                                method="post">
+                                            <form style="display:inline;" action="index.php?action=updatePassportForm&passport_id=<?= $passport->passport_id ?>" method="post">
                                                 <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                             </form>
-                                            <form style="display:inline;"
-                                                action="index.php?action=deletePassportPopup&passport_id=<?= $passport->passport_id ?>"
-                                                method="post">
+                                            <form style="display:inline;" action="index.php?action=deletePassportPopup&passport_id=<?= $passport->passport_id ?>" method="post">
                                                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php
+                                <?php
                                     $i = $i + 1;
                                 }
                                 ?>
@@ -121,10 +117,8 @@ use Application\Lib\Database\DatabaseConnection;
                                     <td></td>
                                     <td></td>
                                     <td>
-                                        <form style="display:inline;" action="index.php?action=passportAddingForm"
-                                            method="post">
-                                            <button class="btn btn-primary btn-block"><i
-                                                    class="fa fa-plus"></i></button>
+                                        <form style="display:inline;" action="index.php?action=passportAddingForm" method="post">
+                                            <button class="btn btn-primary btn-block"><i class="fa fa-plus"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -161,7 +155,7 @@ use Application\Lib\Database\DatabaseConnection;
 
                                 foreach ($ExpiredPassports as $passport) {
 
-                                    ?>
+                                ?>
                                     <tr>
                                         <td>
                                             <?= htmlspecialchars($i) ?>
@@ -190,19 +184,15 @@ use Application\Lib\Database\DatabaseConnection;
 
 
                                         <td class="align-middle text-center">
-                                            <form style="display:inline;"
-                                                action="index.php?action=updatePassportForm&passport_id=<?= $passport->passport_id ?>"
-                                                method="post">
+                                            <form style="display:inline;" action="index.php?action=updatePassportForm&passport_id=<?= $passport->passport_id ?>" method="post">
                                                 <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
                                             </form>
-                                            <form style="display:inline;"
-                                                action="index.php?action=deletePassportPopup&passport_id=<?= $passport->passport_id ?>"
-                                                method="post">
+                                            <form style="display:inline;" action="index.php?action=deletePassportPopup&passport_id=<?= $passport->passport_id ?>" method="post">
                                                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
                                     </tr>
-                                    <?php
+                                <?php
                                     $i = $i + 1;
                                 }
                                 ?>
@@ -215,12 +205,12 @@ use Application\Lib\Database\DatabaseConnection;
             <?php require('templates/pagesComponents/popup/passport.php'); ?>
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
             <script type="text/javascript">
-                $(document).ready(function () {
+                $(document).ready(function() {
                     $('#AvailablePassports-table').DataTable();
                 });
             </script>
             <script type="text/javascript">
-                $(document).ready(function () {
+                $(document).ready(function() {
                     $('#ExpiredPassports-table').DataTable();
                 });
             </script>

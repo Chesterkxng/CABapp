@@ -2,8 +2,6 @@
 <script type="text/javascript">
   function updateSuccessAlert() {
     swal({
-      title: "Event Message!",
-      text: "event Infos modified successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -20,8 +18,6 @@
 <script type="text/javascript">
   function updateErrorAlert() {
     swal({
-      title: "Event Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 
@@ -35,8 +31,6 @@
 <script type="text/javascript">
   function addingSuccessAlert() {
     swal({
-      title: "Event Message!",
-      text: "Event added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -70,8 +64,6 @@
 <script type="text/javascript">
   function deletingSuccessAlert() {
     swal({
-      title: "Event Message!",
-      text: "Event deleted successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -89,7 +81,6 @@
 <script type="text/javascript">
   function deletingConfirmAlert() {
     swal({
-      title: "Event Message!",
       text: "are you sure ?",
       icon: "warning",
       buttons: true

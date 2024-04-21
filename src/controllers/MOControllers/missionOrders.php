@@ -2,8 +2,8 @@
 
 namespace Application\Controllers\MOControllers\MissionOrders;
 
-require_once('src/lib/database.php');
-require_once('src/model/om.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/om.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\OM\OMRepository;
@@ -12,11 +12,11 @@ class MissionOrders
 {
     public function extMOgenerateForm()
     {
-        require("templates/OM/ExMO_GenerateForm.php");
+        require ("templates/OM/ExMO_GenerateForm.php");
     }
     public function saveExtMO(array $input)
     {
-        require("templates/OM/ExMO_GenerateForm.php");
+        require ("templates/OM/ExMO_GenerateForm.php");
         if ($input !== null) {
             $grade = null;
             $name = null;
@@ -73,11 +73,11 @@ class MissionOrders
 
     public function intMOgenerateForm()
     {
-        require("templates/OM/inMO_GenerateForm.php");
+        require ("templates/OM/inMO_GenerateForm.php");
     }
     public function saveIntOM(array $input)
     {
-        require("templates/OM/inMO_GenerateForm.php");
+        require ("templates/OM/inMO_GenerateForm.php");
         if ($input !== null) {
             $grade = null;
             $name = null;
@@ -157,12 +157,12 @@ class MissionOrders
 
     public function DOMgenerateForm()
     {
-        require("templates/OM/DOM_GenerateForm.php");
+        require ("templates/OM/DOM_GenerateForm.php");
 
     }
     public function saveDOM(array $input)
     {
-        require("templates/OM/DOM_GenerateForm.php");
+        require ("templates/OM/DOM_GenerateForm.php");
         if ($input !== null) {
             $grade = null;
             $name = null;
@@ -223,7 +223,7 @@ class MissionOrders
         $intOMs = $OMRepository->getIntOMs();
         $extOMs = $OMRepository->getExtOMs();
         $DOMs = $OMRepository->getDOMs();
-        require('templates/OM/MOarchives.php');
+        require ('templates/OM/MOarchives.php');
 
     }
     public function uploadMOPage(int $om_id)
@@ -231,7 +231,7 @@ class MissionOrders
         $OMRepository = new OMRepository();
         $OMRepository->connection = new DatabaseConnection();
         $OM = $OMRepository->getOM($om_id);
-        require('templates/OM/uploadMO.php');
+        require ('templates/OM/uploadMO.php');
 
     }
 
@@ -240,7 +240,7 @@ class MissionOrders
         $OMRepository = new OMRepository();
         $OMRepository->connection = new DatabaseConnection();
         $OM = $OMRepository->getOM($om_id);
-        require('templates/OM/uploadMO.php');
+        require ('templates/OM/uploadMO.php');
 
         switch ($type) {
             case 1:

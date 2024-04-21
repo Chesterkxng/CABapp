@@ -1,9 +1,10 @@
-<?php 
-session_start(); 
-$profile_type = $_SESSION['profile_type']; 
- ?>
+<?php
+session_start();
+$profile_type = $_SESSION['profile_type'];
+?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>CABapp</title>
     <meta charset="utf-8">
@@ -15,6 +16,7 @@ $profile_type = $_SESSION['profile_type'];
     <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+
 <body>
     <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
     <!--Content right-->
@@ -63,126 +65,126 @@ $profile_type = $_SESSION['profile_type'];
                     </div>
                 </div>
             </div>
-            <?php if($profile_type != 2){?>
-            <h6 class="mb-3" style="color:darkblue"><strong>PASSPORT</strong></h6>
-            <div class="row pl-0">
-                
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $passportsNumber ?></strong></h3>
-                                <p><small class="text-muted bc-description">Registered Passports</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
-                                <i class="fas fa-book"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $availablePassportsNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Available Passports</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
-                                <i class="fas fa-hourglass-half"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Upcoming Passport's expirations</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
-                                <i class="fas fa-hourglass-end"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $expiredPassportsNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Expired Passports</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php if ($profile_type != 2) { ?>
+                <h6 class="mb-3" style="color:darkblue"><strong>PASSPORT</strong></h6>
+                <div class="row pl-0">
 
-            <h6 class="mb-3" style="color:darkblue"><strong>VISA</strong></h6>
-            <div class="row pl-0">
-                
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
-                                <i class="fas fa-id-card"></i>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $passportsNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Registered Passports</small></p>
+                                </div>
                             </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $visasNumber ?></strong></h3>
-                                <p><small class="text-muted bc-description">Registered Visas</small></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $availablePassportsNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Available Passports</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Upcoming Passport's expirations</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
+                                    <i class="fas fa-hourglass-end"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $expiredPassportsNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Expired Passports</small></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
-                                <i class="fas fa-id-card"></i>
+
+                <h6 class="mb-3" style="color:darkblue"><strong>VISA</strong></h6>
+                <div class="row pl-0">
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-info">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $visasNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Registered Visas</small></p>
+                                </div>
                             </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $availableVisasNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Available Visas</small></p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-success">
+                                    <i class="fas fa-id-card"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $availableVisasNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Available Visas</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
+                                    <i class="fas fa-hourglass-half"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationVisaNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Upcoming Visa's expirations</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="bg-white border shadow">
+                            <div class="media p-4">
+                                <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
+                                    <i class="fas fa-hourglass-end"></i>
+                                </div>
+                                <div class="media-body pl-2">
+                                    <h3 class="mt-0 mb-0"><strong><?= $expiredVisasNumber ?></strong></h3>
+                                    <p><small class="text-muted bc-description">Expired Visas</small></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-warning">
-                                <i class="fas fa-hourglass-half"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $UpcomingExpirationVisaNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Upcoming Visa's expirations</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
-                    <div class="bg-white border shadow">
-                        <div class="media p-4">
-                            <div class="align-self-center mr-3 rounded-circle notify-icon bg-danger">
-                                <i class="fas fa-hourglass-end"></i>
-                            </div>
-                            <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $expiredVisasNumber?></strong></h3>
-                                <p><small class="text-muted bc-description">Expired Visas</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <?php } ?>
 
             <h6 class="mb-3" style="color:darkblue"><strong>MISSION ORDERS</strong></h6>
             <h6 class="mb-3" style="color:darkblue"><strong>THIS MONTH</strong></h6>
             <div class="row pl-0">
-                
+
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
                     <div class="bg-white border shadow">
                         <div class="media p-4">
@@ -203,7 +205,7 @@ $profile_type = $_SESSION['profile_type'];
                                 <i class="fas fa-plane"></i>
                             </div>
                             <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $monthlyExtOM?></strong></h3>
+                                <h3 class="mt-0 mb-0"><strong><?= $monthlyExtOM ?></strong></h3>
                                 <p><small class="text-muted bc-description">EXTERIOR MO</small></p>
                             </div>
                         </div>
@@ -216,7 +218,7 @@ $profile_type = $_SESSION['profile_type'];
                                 <i class="fas fa-question"></i>
                             </div>
                             <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $monthlyDOM?></strong></h3>
+                                <h3 class="mt-0 mb-0"><strong><?= $monthlyDOM ?></strong></h3>
                                 <p><small class="text-muted bc-description">REQUEST MO</small></p>
                             </div>
                         </div>
@@ -225,7 +227,7 @@ $profile_type = $_SESSION['profile_type'];
             </div>
             <h6 class="mb-3" style="color:darkblue"><strong>TOTAL</strong></h6>
             <div class="row pl-0">
-                
+
                 <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-3">
                     <div class="bg-white border shadow">
                         <div class="media p-4">
@@ -246,7 +248,7 @@ $profile_type = $_SESSION['profile_type'];
                                 <i class="fas fa-plane"></i>
                             </div>
                             <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $totalExtOM?></strong></h3>
+                                <h3 class="mt-0 mb-0"><strong><?= $totalExtOM ?></strong></h3>
                                 <p><small class="text-muted bc-description">EXTERIOR MO</small></p>
                             </div>
                         </div>
@@ -259,14 +261,15 @@ $profile_type = $_SESSION['profile_type'];
                                 <i class="fas fa-question"></i>
                             </div>
                             <div class="media-body pl-2">
-                                <h3 class="mt-0 mb-0"><strong><?= $totalDOM?></strong></h3>
+                                <h3 class="mt-0 mb-0"><strong><?= $totalDOM ?></strong></h3>
                                 <p><small class="text-muted bc-description">REQUEST MO</small></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
 </body>
+
 </html>

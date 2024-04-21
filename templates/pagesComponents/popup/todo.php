@@ -2,8 +2,6 @@
 <script type="text/javascript">
   function updateSuccessAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Todo Infos modified successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -20,8 +18,6 @@
 <script type="text/javascript">
   function updateErrorAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 
@@ -35,8 +31,6 @@
 <script type="text/javascript">
   function addingSuccessAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Todo added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -55,8 +49,6 @@
 <script type="text/javascript">
   function addingErrorAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 
@@ -70,8 +62,6 @@
 <script type="text/javascript">
   function deletingSuccessAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Todo deleted successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -86,8 +76,6 @@
 <script type="text/javascript">
   function deletingSuccessAlert2() {
     swal({
-      title: "Todo Message!",
-      text: "Todo deleted successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -105,7 +93,6 @@
 <script type="text/javascript">
   function deletingConfirmAlert() {
     swal({
-      title: "Todo Message!",
       text: "are you sure ?",
       icon: "warning",
       buttons: true
@@ -122,7 +109,6 @@
 <script type="text/javascript">
   function deletingConfirmAlert2() {
     swal({
-      title: "Todo Message!",
       text: "are you sure ?",
       icon: "warning",
       buttons: true
@@ -141,8 +127,6 @@
 <script type="text/javascript">
   function deletingErrorAlert() {
     swal({
-      title: "Todo Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 
@@ -152,9 +136,8 @@
 <script type="text/javascript">
   function markAsDoneAlert() {
     swal({
-      title: "Todo Message!",
       text: "are you sure ?",
-      icon: "success",
+      icon: "info",
       buttons: true
     }).then(okay => {
       if (okay) {
@@ -170,7 +153,6 @@
 <script type="text/javascript">
   function markAsTraitedAlert() {
     swal({
-      title: "Todo Message!",
       text: "are you sure ?",
       icon: "success",
       buttons: true

@@ -2,8 +2,8 @@
 namespace Application\Controllers\LoginControllers\forgottenPassword;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/login.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/login.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
 
@@ -11,11 +11,11 @@ class forgottenPassword
 {
     public function forgottenPasswordPage()
     {
-        require('templates/login/forgottenPassword.php');
+        require ('templates/login/forgottenPassword.php');
     }
     public function redirectQA(array $input)
     {
-        require('templates/login/forgottenPassword.php');
+        require ('templates/login/forgottenPassword.php');
         if ($input !== null) {
             $username = null;
             $password = null;

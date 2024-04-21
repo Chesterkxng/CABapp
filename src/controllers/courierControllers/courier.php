@@ -2,22 +2,23 @@
 
 namespace Application\Controllers\CourierControllers\Courier;
 
-require_once('src/model/courier.php');
-require_once('src/lib/database.php');
+require_once ('src/model/courier.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Courier\CourierRepository;
+use Application\Model\NDS\NDSRepository;
 
 
 class Courier
 {
     public function courierAddingForm()
     {
-        require('templates/courier/addingForm.php');
+        require ('templates/courier/addingForm.php');
     }
 
     public function addCourier(array $input)
     {
-        require('templates/courier/addingForm.php');
+        require ('templates/courier/addingForm.php');
         if ($input !== null) {
             $recipient = null;
             $object = null;
@@ -68,12 +69,11 @@ class Courier
 
         }
     }
-
     public function courierArchives()
     {
         $courierRepository = new CourierRepository();
         $courierRepository->connection = new DatabaseConnection();
         $couriers = $courierRepository->getCouriers();
-        require('templates/courier/courierArchives.php');
+        require ('templates/courier/courierArchives.php');
     }
 }

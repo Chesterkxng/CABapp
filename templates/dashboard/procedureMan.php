@@ -200,20 +200,17 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="docs\templates\NDS.docx">
+                                        <a href="docs\templates\NDS.docx">
                                             Note de service
                                         </a>
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="docs\templates\INVITATION.docx">
+                                        <a href="docs\templates\INVITATION.docx">
                                             Lettre d’invitation
                                         </a>
                                         ;
-                                        <a
-                                            href="file:///D:/TRAVAIL%20CABINET/ATTESTATIONS/ATTESTATION%20MECANICIENS%20HELICONIA.docx">
+                                        <a href="file:///D:/TRAVAIL%20CABINET/ATTESTATIONS/ATTESTATION%20MECANICIENS%20HELICONIA.docx">
                                             attestation pour équipage
                                         </a>
                                     </p>
@@ -225,8 +222,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="docs\templates\CPC.docx">
+                                        <a href="docs\templates\CPC.docx">
                                             Certificat de présence au corps
                                         </a>
                                     </p>
@@ -238,15 +234,13 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="index.php?action=intMOgenerator">
+                                        <a href="index.php?action=intMOgenerator">
                                             Ordre de mission intérieur
                                         </a>
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="index.php?action=extMOgenerator"">
+                                        <a href="index.php?action=extMOgenerator"">
                                             Ordre de mission extérieur
                                         </a>
                                         pour servir de laissez-passer
@@ -254,15 +248,14 @@ $profile_type = $_SESSION['profile_type'];
                                     <p>
                                         -
                                         <a
-                                            href="docs\templates\COURRIER POUR DOM.docx">
+                                            href=" docs\templates\COURRIER POUR DOM.docx">
                                             Courrier
                                         </a>
                                         de demande d’ordre de mission
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="index.php?action=DOMgenerator">
+                                        <a href="index.php?action=DOMgenerator">
                                             Demande d’ordre de mission
                                         </a>
                                     </p>
@@ -274,19 +267,17 @@ $profile_type = $_SESSION['profile_type'];
                                         (suivre les bons et effectuer leurs recouvrements auprès
                                         de la régie Air)
                                     </p>
-                                    
+
                                     <p>
                                         -
-                                        <a
-                                            href="docs\templates\PASSPORT.docx">
+                                        <a href="docs\templates\PASSPORT.docx">
                                             Demande de renouvellement ou d’établissement de
                                             passeport
                                         </a>
                                     </p>
                                     <p>
                                         -
-                                        <a
-                                            href="docs\templates\VISA.docx">
+                                        <a href="docs\templates\VISA.docx">
                                             Demande de renouvellement ou d’établissement de visa
                                         </a>
                                     </p>
@@ -315,8 +306,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p align="center">
                                         (voir
-                                        <a
-                                            href="docs\templates\PRÉVISIONS_ACT.docx">
+                                        <a href="docs\templates\PRÉVISIONS_ACT.docx">
                                             modèle
                                         </a>
                                         d’agenda du CEMAIR)
@@ -384,8 +374,7 @@ $profile_type = $_SESSION['profile_type'];
                                 <td width="593" valign="top">
                                     <p>
                                         - Préparer
-                                        <a
-                                            href="docs\templates\PRESENCE.docx">
+                                        <a href="docs\templates\PRESENCE.docx">
                                             liste
                                         </a>
                                         de présence (actualiser la date et les noms des
@@ -393,8 +382,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         - Préparer
-                                        <a
-                                            href="docs\templates\MEMEMAIR.docx">
+                                        <a href="docs\templates\MEMEMAIR.docx">
                                             MEMO
                                         </a>
                                         CEMAIR
@@ -404,8 +392,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         - Etablir et suivre la
-                                        <a
-                                            href="">
+                                        <a href="">
                                             matrice
                                         </a>
                                         des diligences et des instructions du CEMAIR
@@ -595,8 +582,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </div>
                                     <p>
                                         - Suivre le fichier
-                                        <a
-                                            href="file:///D:/TRAVAIL%20CABINET/ABONNEMENTS%20ET%20FACTURES/ABONNEMENTS%20(Enregistr%C3%A9%20automatiquement).docx">
+                                        <a href="file:///D:/TRAVAIL%20CABINET/ABONNEMENTS%20ET%20FACTURES/ABONNEMENTS%20(Enregistr%C3%A9%20automatiquement).docx">
                                             ci-joint
                                         </a>
                                         pour le réabonnement canal
@@ -630,21 +616,18 @@ $profile_type = $_SESSION['profile_type'];
                                 <td width="600" valign="top">
                                     <p>
                                         - Etablir le
-                                        <a
-                                            href="">
+                                        <a href="">
                                             courrier
                                         </a>
                                         pour la demande d’ordre de mission et les
-                                        <a
-                                            href="">
+                                        <a href="">
                                             demandes
                                         </a>
                                         d’ordres de mission
                                     </p>
                                     <p>
                                         - Etablir les
-                                        <a
-                                            href="">
+                                        <a href="">
                                             ordres
                                         </a>
                                         de mission pour servir de laissez-passer
@@ -673,13 +656,11 @@ $profile_type = $_SESSION['profile_type'];
                                     <p>
                                         - Préparer liste de récipiendaires pour le panier
                                         de
-                                        <a
-                                            href="">
+                                        <a href="">
                                             Ramadan
                                         </a>
                                         , le panier de la
-                                        <a
-                                            href="">
+                                        <a href="">
                                             fête de Noel et le nouvel an
                                         </a>
                                     </p>
@@ -867,8 +848,7 @@ $profile_type = $_SESSION['profile_type'];
                                     </p>
                                     <p>
                                         - Certificat de présence au corps ou
-                                        <a
-                                            href="file:///D:/TRAVAIL%20CABINET/Attestation%20de%20prise%20de%20service.docx">
+                                        <a href="file:///D:/TRAVAIL%20CABINET/Attestation%20de%20prise%20de%20service.docx">
                                             Attestation de prise de service
                                         </a>
                                     </p>

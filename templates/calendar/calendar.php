@@ -16,12 +16,12 @@ $events_js = json_encode($events);
     <link rel="icon" href="templates\pagesComponents\navbar\assets\img\insigneAir.png" type="image/icon type">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
+    <?php require ('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
-    <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
+    <?php require ('templates/pagesComponents/navbar/navbar.php'); ?>
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
         <h5 class="mb-0"><strong>Fullcalendar</strong></h5>
 
@@ -48,8 +48,8 @@ $events_js = json_encode($events);
     </div>
 
     <?php
-    require('templates/pagesComponents/navbar/navbarFooter.php');
-    require('templates/pagesComponents/navbar/calendarFooter.php'); ?>
+    require ('templates/pagesComponents/navbar/navbarFooter.php');
+    require ('templates/pagesComponents/navbar/calendarFooter.php'); ?>
 
 
 </body>

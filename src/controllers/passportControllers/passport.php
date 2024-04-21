@@ -2,8 +2,8 @@
 namespace Application\Controllers\PassportControllers\Passport;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/passport.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/passport.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Passport\PassportRepository;
@@ -15,19 +15,19 @@ class Passport
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
         $AvailablePassports = $passportRepository->getAvailablePassports();
-        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
+        $ExpiredPassports = $passportRepository->getExpiredPassports();
 
-        require('templates/passport/passportList.php');
+        require ('templates/passport/passportList.php');
     }
 
     public function passportAddingForm()
     {
-        require('templates/passport/addingForm.php');
+        require ('templates/passport/addingForm.php');
     }
 
     public function addPassport(array $input)
     {
-        require('templates/passport/addingForm.php');
+        require ('templates/passport/addingForm.php');
         if ($input !== null) {
             $passnumber = null;
             $grade = null;
@@ -68,7 +68,7 @@ class Passport
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
         $passport = $passportRepository->getPassport($passport_id);
-        require('templates/passport/updateForm.php');
+        require ('templates/passport/updateForm.php');
     }
 
     public function updatePassport(array $input, int $passport_id)
@@ -76,7 +76,7 @@ class Passport
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
         $passport = $passportRepository->getPassport($passport_id);
-        require('templates/passport/updateForm.php');
+        require ('templates/passport/updateForm.php');
         if ($input !== null) {
             $passnumber = null;
             $grade = null;
@@ -116,8 +116,8 @@ class Passport
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
         $AvailablePassports = $passportRepository->getAvailablePassports();
-        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
-        require('templates/passport/passportList.php');
+        $ExpiredPassports = $passportRepository->getExpiredPassports();
+        require ('templates/passport/passportList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
          </script>';
@@ -128,8 +128,8 @@ class Passport
         $passportRepository = new PassportRepository();
         $passportRepository->connexion = new DatabaseConnection();
         $AvailablePassports = $passportRepository->getAvailablePassports();
-        $ExpiredPassports = $passportRepository->getExpiredPassports(); 
-        require('templates/passport/passportList.php');
+        $ExpiredPassports = $passportRepository->getExpiredPassports();
+        require ('templates/passport/passportList.php');
         $bool = $passportRepository->deletePassport($passport_id);
         if ($bool == 1) {
             echo '<script type="text/javascript">

@@ -3,8 +3,8 @@
 namespace Application\Controllers\LoginControllers\SignUp;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/login.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/login.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
@@ -13,11 +13,11 @@ class SignUp
 {
     public function userAddingForm()
     {
-        require('templates/accessControls/addingForm.php');
+        require ('templates/accessControls/addingForm.php');
     }
     public function addUser(array $input)
     {
-        require('templates/accessControls/addingForm.php');
+        require ('templates/accessControls/addingForm.php');
         if ($input !== null) {
             $username = null;
             $password = null;
@@ -65,7 +65,7 @@ class SignUp
         $loginRepository = new LoginRepository();
         $loginRepository->connection = new DatabaseConnection();
         $users = $loginRepository->getUsersInfos();
-        require('templates/accessControls/usersList.php');
+        require ('templates/accessControls/usersList.php');
     }
 
     public function updateUserLoginForm(int $login_id)
@@ -73,7 +73,7 @@ class SignUp
         $loginRepository = new LoginRepository();
         $loginRepository->connection = new DatabaseConnection();
         $user = $loginRepository->getUserLoginInfos($login_id);
-        require('templates/accessControls/updateForm.php');
+        require ('templates/accessControls/updateForm.php');
     }
 
 
@@ -82,7 +82,7 @@ class SignUp
         $loginRepository = new LoginRepository();
         $loginRepository->connection = new DatabaseConnection();
         $user = $loginRepository->getUserLoginInfos($user_id);
-        require('templates/accessControls/updateForm.php');
+        require ('templates/accessControls/updateForm.php');
         if ($input !== null) {
             $username = null;
             $profil_type = null;

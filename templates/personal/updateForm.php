@@ -53,22 +53,19 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">SURNAME</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control" id="surname"
-                                    name="surname" value="<?= $personal->surname ?>" />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" id="surname" name="surname" value="<?= $personal->surname ?>" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="firstName">FIRST NAME</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control"
-                                    id="firstName" name="firstName" value="<?= $personal->first_name ?>" />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" id="firstName" name="firstName" value="<?= $personal->first_name ?>" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="function">FUNCTION</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control" id="function"
-                                    name="function" value="<?= $personal->function ?>" />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" id="function" name="function" value="<?= $personal->function ?>" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -92,8 +89,7 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="pp">SELECT THE PICTURE</label>
                             <div class="col-sm-5">
-                                <input type="file" autocomplete="off"
-                                    class="form-control" id="pp" name="pp" required />
+                                <input type="file" autocomplete="off" class="form-control" id="pp" name="pp" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -120,8 +116,7 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="username">USERNAME</label>
                             <div class="col-sm-5">
-                                <input type="text" autocomplete="off" value="<?= $user->username ?>"
-                                    class="form-control" id="username" name="username" required />
+                                <input type="text" autocomplete="off" value="<?= $user->username ?>" class="form-control" id="username" name="username" required />
                             </div>
                         </div>
 
@@ -143,8 +138,7 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="securityanswer">SECURITY ANSWER</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" value="<?= $user->security_answer ?>"
-                                    id="securityanswer" name="securityanswer" required />
+                                <input type="text" class="form-control" value="<?= $user->security_answer ?>" id="securityanswer" name="securityanswer" required />
                             </div>
                         </div>
                         <div class="form-group row">

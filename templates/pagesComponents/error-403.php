@@ -33,8 +33,7 @@
             <div class="buttons mb-5">
                 <div class="row">
                     <div class="col-sm-12">
-                        <button onclick="history.back();" class="btn btn-danger btn-block p-2"><i
-                                class="fa fa-angle-left pull-left"></i> Go back</button>
+                        <button onclick="history.back();" class="btn btn-danger btn-block p-2"><i class="fa fa-angle-left pull-left"></i> Go back</button>
                     </div>
                 </div>
             </div>

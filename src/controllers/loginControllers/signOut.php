@@ -5,7 +5,7 @@ class SignOut
 {
     public function signOut()
     {
-        require('templates/login/signIn.php');
+        require ('templates/login/signIn.php');
         session_destroy();
     }
 }

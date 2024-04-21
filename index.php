@@ -40,6 +40,9 @@ require_once('src/controllers/extFormControllers/extForm.php');
 
 // Courier IMPORT
 require_once('src/controllers/courierControllers/courier.php');
+require_once('src/controllers/courierControllers/nds.php');
+require_once('src/controllers/courierControllers/message.php');
+require_once('src/controllers/courierControllers/bordereau.php');
 
 // Archive IMPORT
 require_once('src/controllers/archiveControllers/archive.php');
@@ -73,23 +76,38 @@ use Application\Controllers\TodoControllers\Todo\Todo;
 use Application\Controllers\MOControllers\MissionOrders\MissionOrders;
 use Application\Controllers\extFormControllers\extForm\extForm;
 use Application\Controllers\CourierControllers\Courier\Courier;
+use Application\Controllers\CourierControllers\NDS\NDS;
+use Application\Controllers\CourierControllers\Message\MSG;
+use Application\Controllers\CourierControllers\BE\BE;
 use Application\controllers\ArchiveControllers\Archive\Archive;
 use Application\Controllers\ErrorHandlingControllers\Error\Error;
 
-
 try {
-    if (isset($_GET['action']) && $_GET['action'] !== '') {
-        $found = 0;
-        // LOGIN ROUTER
 
-        // SIGN UP ROUTER
+    function checkAuthorization(int $checked_type)
+    {
+        if (!isset($_SESSION['ISAUTH'])) {
+            (new SignIn())->signInPage();
+            return false;
+        }
+        if ($checked_type == 2) {
+            (new Error())->forbiddenPage();
+            return false;
+        }
+        return true;
+    }
 
-        // Or when a registered account doesn't have the profile's informations filled    
-        if ($_GET['action'] === 'signUpProfilePage') {
-            $found = 1;
+    $action = $_GET['action'] ?? ''; // Get the action or set to empty string if not set
+
+    switch ($action) {
+        case '':
+            (new SignIn())->signInPage();
+            break;
+
+        case 'signUpProfilePage':
+
             $personalRepository = new PersonalRepository();
             $personalRepository->connection = new DatabaseConnection();
-
             if (isset($_SESSION['LOGIN_ID'])) {
                 $login_id = $_SESSION['LOGIN_ID'];
                 $isProfileFilled = $personalRepository->isProfileFilled($login_id);
@@ -97,941 +115,668 @@ try {
                     (new Profile())->signUpProfilePage();
                 }
             }
+            break;
 
+        case 'profileCompletion':
 
-            // once the profile informations Form is filled and the 'complete your profile' button is clicked 
-        } elseif ($_GET['action'] === 'profileCompletion') {
-            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new Profile())->profileCompletion($input);
             }
+            break;
 
-            // when the 'signIn button is clicked from the sign Up page 
-        } elseif ($_GET['action'] === 'signInPage') {
-            $found = 1;
+        case 'signInPage':
+
             (new SignIn())->signInPage();
-        }
+            break;
 
-        // END OF SIGN UP ROUTER
+        case 'signIn':
 
-        // SIGN IN ROUTER
-
-        //sign In controller
-        if ($_GET['action'] === 'signIn') {
-            $found = 1;
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new SignIn())->connect($input);
             }
+            break;
 
-            // when the forgotten password link is cliked
-        } elseif ($_GET['action'] === 'forgottenPasswordPage') {
-            $found = 1;
+        case 'forgottenPasswordPage':
+
             (new forgottenPassword())->forgottenPasswordPage();
+            break;
 
-            // when the informations are filled in the form and the password reset's button is pressed 
-        } elseif ($_GET['action'] === 'redirectQA') {
-            $found = 1;
+        case 'redirectQA':
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new forgottenPassword())->redirectQA($input);
             }
-            // if the informations filled are correct the popup will directly redirect to the security QA verification
-        } elseif ($_GET['action'] === 'securityQAPage') {
-            $found = 1;
-            (new SecurityQA())->SecurityQAPage();
+            break;
 
-            // when the security answer is set
-        } elseif ($_GET['action'] === 'verifyQA') {
-            $found = 1;
+        case 'securityQAPage':
+
+            (new SecurityQA())->SecurityQAPage();
+            break;
+
+        case 'verifyQA':
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
                 (new SecurityQA())->VerifiyQA($input);
             }
-        }
-        // END OF SIGN IN ROUTEUR 
-        elseif ($_GET['action'] === 'updateProfilePage') {
-            $found = 1;
+            break;
+
+        case 'updateProfilePage':
+
             $login_id = $_GET['login_id'];
             if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Personal())->updateCurrentProfilPage($login_id);
-                }
+                (new Personal())->updateCurrentProfilPage($login_id);
             } else {
                 (new SignIn())->signInPage();
             }
-            // update the connected profile based on informations filled 
-        } elseif ($_GET['action'] === 'updateProfileInfos') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $login_id = $_GET['login_id'];
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Personal())->updateProfile($login_id, $input);
-                    }
-                }
-            }
-        } elseif ($_GET['action'] === 'updateSecurityInfos') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $login_id = $_GET['login_id'];
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Personal())->UpdateSecurityInfos($input, $login_id);
-                    }
-                }
-            }
-        } elseif ($_GET['action'] === 'updateProfilePicture') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $login_id = $_GET['login_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Personal())->UpdateProfilePicture($login_id);
-                    }
-                }
-            }
-        }
+            break;
 
-        // SIGN OUT ROUTER 
-        if ($_GET['action'] === 'signOut') {
-            $found = 1;
+        case 'updateProfileInfos':
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $login_id = $_GET['login_id'];
+                $input = $_POST;
+                if (isset($_SESSION['ISAUTH'])) {
+                    (new Personal())->updateProfile($login_id, $input);
+                }
+            }
+            break;
+
+        case 'updateSecurityInfos':
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $login_id = $_GET['login_id'];
+                $input = $_POST;
+                if (isset($_SESSION['ISAUTH'])) {
+                    (new Personal())->UpdateSecurityInfos($input, $login_id);
+                }
+            }
+            break;
+
+        case 'updateProfilePicture':
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['ISAUTH'])) {
+                $login_id = $_GET['login_id'];
+                (new Personal())->UpdateProfilePicture($login_id);
+            }
+            break;
+
+        case 'signOut':
+
             (new SignOut())->signOut();
-        }
+            break;
 
+        case 'DashboardPage':
+        case 'procedureMan':
 
-        // DASHBORD ROUTER 
+            $personal_id = $_SESSION['PERSONAL_ID'] ?? null;
+            if (isset($_SESSION['ISAUTH'])) {
+                $action === 'DashboardPage' ? (new Dashboard())->DashboardPage($personal_id) : (new Dashboard())->procedureMan();
+            } else {
+                (new SignIn())->signInPage();
+            }
+            break;
 
-        //load the dasboardPage
-        if ($_GET['action'] === 'DashboardPage') {
-            $found = 1;
-            if (isset($_SESSION['PERSONAL_ID'])) {
-                $personal_id = $_SESSION['PERSONAL_ID'];
-            }
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Dashboard())->DashboardPage($personal_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
-        if ($_GET['action'] === 'procedureMan') {
-            $found = 1;
-            if (isset($_SESSION['PERSONAL_ID'])) {
-                $personal_id = $_SESSION['PERSONAL_ID'];
-            }
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Dashboard())->procedureMan();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+            // PASSEPORT ROUTER
+        case 'passportsList':
+        case 'passportAddingForm':
+        case 'updatePassportForm':
+        case 'updatePassport':
+        case 'deletePassportPopup':
+        case 'deletePassport':
 
-        // END OF DASHBOARD ROUTEUR 
+            if (checkAuthorization($_SESSION['profile_type'])) {
+                switch ($action) {
+                    case 'passportsList':
+                        (new Passport())->passportsList();
+                        break;
+                    case 'passportAddingForm':
+                        (new Passport())->passportAddingForm();
+                        break;
+                    case 'updatePassportForm':
+                        $passport_id = $_GET['passport_id'];
+                        (new Passport())->passportUpdateForm($passport_id);
+                        break;
+                    case 'updatePassport':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $passport_id = $_GET['passport_id'];
+                            $input = $_POST;
+                            (new Passport())->updatePassport($input, $passport_id);
+                        }
+                        break;
+                    case 'deletePassportPopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $passport_id = $_GET['passport_id'];
+                            (new Passport())->sendDeletePopup($passport_id);
+                        }
+                        break;
+                    case 'deletePassport':
+                        $passport_id = $_GET['passport_id'];
+                        (new Passport())->deletePassport($passport_id);
+                        break;
+                }
+            }
+            break;
 
-        // PASSPORT ROUTER 
-        // Passport List 
-        if ($_GET['action'] === 'passportsList') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Passport())->passportsList();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
-        //Passport Adding Form 
-        if ($_GET['action'] === 'passportAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
+            // VISA ROUTER 
+        case 'visasList':
+        case 'visaAddingForm':
+        case 'addVisa':
+        case 'updateVisaForm':
+        case 'updateVisa':
+        case 'deleteVisaPopup':
+        case 'deleteVisa':
 
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Passport())->passportAddingForm();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-            // add passport 
-        } elseif ($_GET['action'] === 'addPassport') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Passport())->addPassport($input);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            // Passport updating Form
-        } elseif ($_GET['action'] === 'updatePassportForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $passport_id = $_GET['passport_id'];
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Passport())->passportUpdateForm($passport_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-            // update passport  
-        } elseif ($_GET['action'] === 'updatePassport') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                $passport_id = $_GET['passport_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Passport())->updatePassport($input, $passport_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            // Passport deletion popup 
-        } elseif ($_GET['action'] === 'deletePassportPopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $passport_id = $_GET['passport_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Passport())->sendDeletePopup($passport_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            //  delete Passport    
-        } elseif ($_GET['action'] === 'deletePassport') {
-            $found = 1;
-            $passport_id = $_GET['passport_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Passport())->deletePassport($passport_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+            if (checkAuthorization($_SESSION['profile_type'])) {
+                switch ($action) {
+                    case 'visasList':
+                        (new Visa())->visasList();
+                        break;
 
-        // VISA ROUTER 
-        // VISA List 
-        if ($_GET['action'] === 'visasList') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
+                    case 'visaAddingForm':
+                        (new Visa())->visaAddingForm();
+                        break;
 
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Visa())->visasList();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
-        //visa Adding Form 
-        if ($_GET['action'] === 'visaAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Visa())->visaAddingForm();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-            // add visa 
-        } elseif ($_GET['action'] === 'addVisa') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Visa())->addVisa($input);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            // Visa updating Form
-        } elseif ($_GET['action'] === 'updateVisaForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $visa_id = $_GET['visa_id'];
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Visa())->visaUpdateForm($visa_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-            // update visa 
-        } elseif ($_GET['action'] === 'updateVisa') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                $visa_id = $_GET['visa_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Visa())->updateVisa($input, $visa_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            // visa deletion popup 
-        } elseif ($_GET['action'] === 'deleteVisaPopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $visa_id = $_GET['visa_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Visa())->sendDeletePopup($visa_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-            //  delete visa    
-        } elseif ($_GET['action'] === 'deleteVisa') {
-            $found = 1;
-            $visa_id = $_GET['visa_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Visa())->deleteVisa($visa_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
-        // END OF VISA ROUTER
+                    case 'addVisa':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new Visa())->addVisa($input);
+                        }
+                        break;
 
-        // CALENDAR 
+                    case 'updateVisaForm':
+                        if (checkAuthorization($_SESSION['profile_type'])) {
+                            $visa_id = $_GET['visa_id'];
+                            (new Visa())->visaUpdateForm($visa_id);
+                        }
+                        break;
 
-        if ($_GET['action'] === 'calendar') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Calendar())->calendar();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'sharedCalendar') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Calendar())->sharedCalendar();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'eventsList') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Calendar())->eventsList();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'updateEventForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $event_id = $_GET['event_id'];
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Calendar())->eventUpdateForm($event_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'updateEvent') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                $event_id = $_GET['event_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Calendar())->updateEvent($input, $event_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'deleteEventPopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $event_id = $_GET['event_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Calendar())->sendDeletePopup($event_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'deleteEvent') {
-            $found = 1;
-            $event_id = $_GET['event_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Calendar())->deleteEvent($event_id);
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+                    case 'updateVisa':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            $visa_id = $_GET['visa_id'];
+                            (new Visa())->updateVisa($input, $visa_id);
+                        }
+                        break;
 
-        // END OF CALENDAR 
+                    case 'deleteVisaPopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $visa_id = $_GET['visa_id'];
+                            (new Visa())->sendDeletePopup($visa_id);
+                        }
+                        break;
 
-        // TODO LIST 
-        if ($_GET['action'] === 'todosList') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->todoList();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'todoAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->todoAddingForm();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'addTodo') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->addTodo($input);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
+                    case 'deleteVisa':
+                        $visa_id = $_GET['visa_id'];
+                        (new Visa())->deleteVisa($visa_id);
+                        break;
                 }
             }
-        } elseif ($_GET['action'] === 'updateTodoForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $todo_id = $_GET['todo_id'];
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->todoUpdatingForm($todo_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'updateTodo') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                $todo_id = $_GET['todo_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->updateTodo($input, $todo_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'todoDeletePopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $todo_id = $_GET['todo_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->sendDeletePopup($todo_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'deleteTodo') {
-            $found = 1;
-            $todo_id = $_GET['todo_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->deleteTodo($todo_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'markAsdonePopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $todo_id = $_GET['todo_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->sendMarkAsDonePopup($todo_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'markAsDone') {
-            $found = 1;
-            $todo_id = $_GET['todo_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->MarkAsDone($todo_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'markAsTraitedPopup') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $todo_id = $_GET['todo_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->sendMarkasTraitedPopup($todo_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'markAsTraited') {
-            $found = 1;
-            $todo_id = $_GET['todo_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->MarkAsTraited($todo_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'todoHistoric') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->todoListHistoric();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'todoDeletePopup2') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $todo_id = $_GET['todo_id'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new Todo())->sendDeletePopup2($todo_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'deleteTodo2') {
-            $found = 1;
-            $todo_id = $_GET['todo_id'];
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new Todo())->deleteTodo2($todo_id);
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+            break;
 
+            // CALENDAR ROUTES
+        case 'calendar':
+        case 'sharedCalendar':
+        case 'eventsList':
+        case 'updateEventForm':
+        case 'updateEvent':
+        case 'deleteEventPopup':
+        case 'deleteEvent':
+            if (checkAuthorization($_SESSION['profile_type'])) {
+                switch ($action) {
+                    case 'calendar':
+                        (new Calendar())->calendar();
+                        break;
 
-        // courier Router
-        if ($_GET['action'] === 'courierAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Courier())->courierAddingForm();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'addCourier') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Courier())->addCourier($input);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'couriersArchives') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Courier())->courierArchives();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+                    case 'sharedCalendar':
+                        (new Calendar())->sharedCalendar();
+                        break;
 
-         // Archivre Router
-         if ($_GET['action'] === 'archiveAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Archive())->archiveAddingForm();
-                } else {
-                    (new Error())->forbiddenPage();
+                    case 'eventsList':
+                        (new Calendar())->eventsList();
+                        break;
+
+                    case 'updateEventForm':
+                        $event_id = $_GET['event_id'];
+                        (new Calendar())->eventUpdateForm($event_id);
+                        break;
+
+                    case 'updateEvent':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            $event_id = $_GET['event_id'];
+                            (new Calendar())->updateEvent($input, $event_id);
+                        }
+                        break;
+
+                    case 'deleteEventPopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $event_id = $_GET['event_id'];
+                            (new Calendar())->sendDeletePopup($event_id);
+                        }
+                        break;
+
+                    case 'deleteEvent':
+                        $event_id = $_GET['event_id'];
+                        (new Calendar())->deleteEvent($event_id);
+                        break;
                 }
-            } else {
-                (new SignIn())->signInPage();
             }
-        } elseif ($_GET['action'] === 'addArchive') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type != 2) {
-                        (new Archive())->addArchive($input);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'Archives') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type != 2) {
-                    (new Archive())->docArchives();
-                } else {
-                    (new Error())->forbiddenPage();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        }
+            break;
 
 
 
 
-        // MO GENERATOR 
-        if ($_GET['action'] === 'extMOgenerator') {
-            $found = 1;
+            // TODO LIST 
+        case 'todosList':
+        case 'todoAddingForm':
+        case 'addTodo':
+        case 'updateTodoForm':
+        case 'updateTodo':
+        case 'todoDeletePopup':
+        case 'deleteTodo':
+        case 'markAsdonePopup':
+        case 'markAsTraitedPopup':
+        case 'markAsTraited':
+        case 'todoHistoric':
+        case 'todoDeletePopup2':
+        case 'deleteTodo2':
             if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new MissionOrders())->extMOgenerateForm();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'saveExtMO') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new MissionOrders())->saveExtMO($input);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'intMOgenerator') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new MissionOrders())->intMOgenerateForm();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'saveIntMO') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new MissionOrders())->saveIntOM($input);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'DOMgenerator') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new MissionOrders())->DOMgenerateForm();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'saveDOM') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new MissionOrders())->saveDOM($input);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'MOArchives') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                if ($isAuth == 1) {
-                    (new MissionOrders())->MOArchives();
-                }
-            } else {
-                (new SignIn())->signInPage();
-            }
-        } elseif ($_GET['action'] === 'uploadForm') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $om_id = $_GET['om_id'];
-                $type = $_GET['type'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new MissionOrders())->uploadMOPage($om_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'uploadMO') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $om_id = $_GET['om_id'];
-                $type = $_GET['type'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    if ($isAuth == 1) {
-                        (new MissionOrders())->uploadMO($type, $om_id);
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        }
+                switch ($action) {
+                    case 'todosList':
+                        (new Todo())->todoList();
+                        break;
 
-        // ACCESS CONTROLS
-        if ($_GET['action'] === 'userAddingForm') {
-            $found = 1;
-            if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type == 0) {
-                    (new SignUp())->userAddingForm();
-                } else {
-                    (new Error())->forbiddenPage();
+                    case 'todoAddingForm':
+                        (new Todo())->todoAddingForm();
+                        break;
+
+                    case 'addTodo':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new Todo())->addTodo($input);
+                        }
+                        break;
+
+                    case 'updateTodoForm':
+                        $todo_id = $_GET['todo_id'];
+                        (new Todo())->todoUpdatingForm($todo_id);
+                        break;
+
+                    case 'updateTodo':
+                        $todo_id = $_GET['todo_id'];
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new Todo())->updateTodo($input, $todo_id);
+                        }
+                        break;
+
+                    case 'todoDeletePopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $todo_id = $_GET['todo_id'];
+                            (new Todo())->sendDeletePopup($todo_id);
+                        }
+                        break;
+
+                    case 'deleteTodo':
+                        $todo_id = $_GET['todo_id'];
+                        (new Todo())->deleteTodo($todo_id);
+                        break;
+
+                    case 'markAsdonePopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $todo_id = $_GET['todo_id'];
+                            (new Todo())->sendMarkAsDonePopup($todo_id);
+                        }
+                        break;
+
+                    case 'markAsDone':
+                        $todo_id = $_GET['todo_id'];
+                        (new Todo())->MarkAsDone($todo_id);
+                        break;
+
+                    case 'markAsTraitedPopup':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $todo_id = $_GET['todo_id'];
+                            (new Todo())->sendMarkasTraitedPopup($todo_id);
+                        }
+                        break;
+
+                    case 'markAsTraited':
+                        $todo_id = $_GET['todo_id'];
+                        (new Todo())->MarkAsTraited($todo_id);
+                        break;
+
+                    case 'todoHistoric':
+                        (new Todo())->todoListHistoric();
+                        break;
+
+                    case 'todoDeletePopup2':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $todo_id = $_GET['todo_id'];
+                            (new Todo())->sendDeletePopup2($todo_id);
+                        }
+                        break;
+
+                    case 'deleteTodo2':
+                        $todo_id = $_GET['todo_id'];
+                        (new Todo())->deleteTodo2($todo_id);
+                        break;
                 }
             } else {
                 (new SignIn())->signInPage();
             }
-        } elseif ($_GET['action'] === 'addUser') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type == 0) {
-                        (new SignUp())->addUser($input);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
-                }
-            }
-        } elseif ($_GET['action'] === 'usersList') {
-            $found = 1;
+            break;
+
+
+            // courier Routes
+        case 'courierAddingForm':  // LETTRES
+        case 'addCourier':
+        case 'couriersArchives':
+        case 'NDSArchives':  // NDS
+        case 'ndsAddingForm':
+        case 'addNDS':
+        case 'NDSupdatingForm':
+        case 'updateNDS':
+        case 'deleteNDSPopup':
+        case 'deleteNDS':
+        case 'MSGArchives':    // MSG
+        case 'MSGAddingForm':
+        case 'addMSG':
+        case 'MSGupdatingForm':
+        case 'updateMSG':
+        case 'deleteMSGPopup':
+        case 'deleteMSG':
+        case 'BEArchives': // BE
+        case 'beAddingForm':
+        case 'addBE':
+        case 'BEupdatingForm':
+        case 'updateBE':
+        case 'deleteBEPopup':
+        case 'deleteBE':
+
             if (isset($_SESSION['ISAUTH'])) {
-                $isAuth = $_SESSION['ISAUTH'];
-                $profile_type = $_SESSION['profile_type'];
-                if ($isAuth == 1 && $profile_type == 0) {
-                    (new SignUp())->usersList();
-                } else {
-                    (new Error())->forbiddenPage();
+                switch ($action) {
+                    case 'courierAddingForm':
+                        (new Courier())->courierAddingForm();
+                        break;
+
+                    case 'addCourier':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new Courier())->addCourier($input);
+                        }
+                        break;
+
+                    case 'couriersArchives':
+                        (new Courier())->courierArchives();
+                        break;
+
+                    case 'NDSArchives':
+                        (new NDS())->NDSArchives();
+                        break;
+
+                    case 'ndsAddingForm':
+                        (new NDS())->NDSAddingForm();
+                        break;
+
+                    case 'addNDS':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new NDS())->addNDS($input);
+                        }
+                        break;
+
+                    case 'NDSupdatingForm':
+                        $nds_id = $_GET['nds_id'];
+                        (new NDS())->NDSUpdatingForm($nds_id);
+                        break;
+
+                    case 'updateNDS':
+                        $nds_id = $_GET['nds_id'];
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new NDS())->updateNDS($input, $nds_id);
+                        }
+                        break;
+
+                    case 'deleteNDSPopup':
+                        $nds_id = $_GET['nds_id'];
+                        (new NDS())->sendDeletePopup($nds_id);
+                        break;
+
+                    case 'deleteNDS':
+                        $nds_id = $_GET['nds_id'];
+                        (new NDS())->deleteNDS($nds_id);
+                        break;
+
+                    case 'MSGArchives':
+                        (new MSG())->MSGArchives();
+                        break;
+
+                    case 'MSGAddingForm':
+                        (new MSG())->MSGAddingForm();
+                        break;
+
+                    case 'addMSG':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new MSG())->addMSG($input);
+                        }
+                        break;
+
+                    case 'MSGupdatingForm':
+                        $msg_id = $_GET['msg_id'];
+                        (new MSG())->MSGUpdatingForm($msg_id);
+                        break;
+
+                    case 'updateMSG':
+                        $msg_id = $_GET['msg_id'];
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new MSG())->updateMSG($input, $msg_id);
+                        }
+                        break;
+
+                    case 'deleteMSGPopup':
+                        $msg_id = $_GET['msg_id'];
+                        (new MSG())->sendDeletePopup($msg_id);
+                        break;
+
+                    case 'deleteMSG':
+                        $msg_id = $_GET['msg_id'];
+                        (new MSG())->deleteMSG($msg_id);
+                        break;
+
+                    case 'BEArchives':
+                        (new BE())->BEArchives();
+                        break;
+
+                    case 'beAddingForm':
+                        (new BE())->BEAddingForm();
+                        break;
+
+                    case 'addBE':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new BE())->addBE($input);
+                        }
+                        break;
+
+                    case 'BEupdatingForm':
+                        $be_id = $_GET['be_id'];
+                        (new BE())->BEUpdatingForm($be_id);
+                        break;
+
+                    case 'updateBE':
+                        $be_id = $_GET['be_id'];
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new BE())->updateBE($input, $be_id);
+                        }
+                        break;
+
+                    case 'deleteBEPopup':
+                        $be_id = $_GET['be_id'];
+                        (new BE())->sendDeletePopup($be_id);
+                        break;
+
+                    case 'deleteBE':
+                        $be_id = $_GET['be_id'];
+                        (new BE())->deleteBE($be_id);
+                        break;
                 }
             } else {
                 (new SignIn())->signInPage();
             }
-        } elseif ($_GET['action'] === 'updateUserForm') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $login_id = $_GET['login'];
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type == 0) {
-                        (new SignUp())->updateUserLoginForm($login_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
+            break;
+
+
+
+            // ARCHIVES ROUTES
+        case 'archiveAddingForm':
+        case 'addArchive':
+        case 'Archives':
+            if (checkAuthorization($_SESSION['profile_type'])) {
+                switch ($action) {
+                    case 'archiveAddingForm':
+                        (new Archive())->archiveAddingForm();
+                        break;
+
+                    case 'addArchive':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new Archive())->addArchive($input);
+                        }
+                        break;
+
+                    case 'Archives':
+                        (new Archive())->docArchives();
+                        break;
                 }
             }
-        } elseif ($_GET['action'] === 'updateUser') {
-            $found = 1;
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $user_id = $_GET['login'];
-                $input = $_POST;
-                if (isset($_SESSION['ISAUTH'])) {
-                    $isAuth = $_SESSION['ISAUTH'];
-                    $profile_type = $_SESSION['profile_type'];
-                    if ($isAuth == 1 && $profile_type == 0) {
-                        (new SignUp())->UpdateUserSU($input, $user_id);
-                    } else {
-                        (new Error())->forbiddenPage();
-                    }
-                } else {
-                    (new SignIn())->signInPage();
+            break;
+
+
+
+            // MO GENERATOR 
+        case 'extMOgenerator':
+        case 'saveExtMO':
+        case 'intMOgenerator':
+        case 'saveIntMO':
+        case 'DOMgenerator':
+        case 'saveDOM':
+        case 'MOArchives':
+        case 'uploadForm':
+        case 'uploadMO':
+            if (isset($_SESSION['ISAUTH'])) {
+                switch ($action) {
+                    case 'extMOgenerator':
+                        (new MissionOrders())->extMOgenerateForm();
+                        break;
+
+                    case 'saveExtMO':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new MissionOrders())->saveExtMO($input);
+                        }
+                        break;
+
+                    case 'intMOgenerator':
+                        (new MissionOrders())->intMOgenerateForm();
+                        break;
+
+                    case 'saveIntMO':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                            (new MissionOrders())->saveIntOM($input);
+                        }
+                        break;
+
+                    case 'DOMgenerator':
+                        (new MissionOrders())->DOMgenerateForm();
+                        break;
+
+                    case 'saveDOM':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+                        }
+                        break;
+
+                    case 'MOArchives':
+                        (new MissionOrders())->MOArchives();
+                        break;
+
+                    case 'uploadForm':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $om_id = $_GET['om_id'];
+                            $type = $_GET['type'];
+                            (new MissionOrders())->uploadMOPage($om_id);
+                        }
+                        break;
+
+                    case 'uploadMO':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $om_id = $_GET['om_id'];
+                            $type = $_GET['type'];
+                            (new MissionOrders())->uploadMO($type, $om_id);
+                        }
+                        break;
                 }
             }
-        }
-        if (isset($_SESSION['ISAUTH'])) {
-            $isAuth = $_SESSION['ISAUTH'];
-            if (isset($_SESSION['PERSONAL_ID'])) {
-                $personal_id = $_SESSION['PERSONAL_ID'];
+            break;
+
+            // ACCESS CONTROLS
+        case 'userAddingForm':
+        case 'addUser':
+        case 'usersList':
+        case 'updateUserForm':
+        case 'updateUser':
+            if (isset($_SESSION['ISAUTH']) && $_SESSION['profile_type'] == 0) {
+                switch ($action) {
+                    case 'userAddingForm':
+                        (new SignUp())->userAddingForm();
+                        break;
+
+                    case 'addUser':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $input = $_POST;
+
+                            (new SignUp())->addUser($input);
+                        }
+                        break;
+
+                    case 'usersList':
+                        (new SignUp())->usersList();
+                        break;
+
+                    case 'updateUserForm':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $login_id = $_GET['login'];
+                            (new SignUp())->updateUserLoginForm($login_id);
+                        }
+                        break;
+
+                    case 'updateUser':
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $user_id = $_GET['login'];
+                            $input = $_POST;
+                            (new SignUp())->UpdateUserSU($input, $user_id);
+                        }
+                        break;
+                }
             }
-            if ($isAuth == 1) {
+            break;
+
+
+            if (isset($_SESSION['ISAUTH'])) {
+                if (isset($_SESSION['PERSONAL_ID'])) {
+                    $personal_id = $_SESSION['PERSONAL_ID'];
+                }
+
                 $dashboardRepository = new DashboardRepository();
                 $dashboardRepository->connection = new DatabaseConnection();
                 $receivedTodoNumber = $dashboardRepository->receivedTodoNumber($personal_id);
@@ -1041,60 +786,38 @@ try {
                  </script>';
                 }
             }
-        }
 
 
+            // ext FORM ROuter 
+        case 'extPage':
+            (new ExtForm())->loadExtPage();
+            break;
 
+        case 'extPassportadding':
+            (new ExtForm())->PassportAddingForm();
+            break;
 
-
-
-        // ext FORM ROuter 
-        if ($_GET['action'] === 'extPage') {
-            $found = 1;
-            (new extForm())->loadExtPage();
-        } elseif ($_GET['action'] === 'extPassportadding') {
-            $found = 1;
-            (new extForm())->PassportAddingForm();
-        } elseif ($_GET['action'] === 'ExtAddPassport') {
-            $found = 1;
+        case 'ExtAddPassport':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
-                (new extForm())->addPassport($input);
+                (new ExtForm())->addPassport($input);
             }
-        } elseif ($_GET['action'] === 'extVisaAdding') {
-            $found = 1;
-            (new extForm())->visaAddingForm();
-        } elseif ($_GET['action'] === 'ExtAddVisa') {
-            $found = 1;
+            break;
+
+        case 'extVisaAdding':
+            (new ExtForm())->visaAddingForm();
+            break;
+
+        case 'ExtAddVisa':
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $input = $_POST;
-                (new extForm())->addVisa($input);
+                (new ExtForm())->addVisa($input);
             }
-        }
+            break;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if ($found == 0) {
+        default:
             (new Error())->unfoundPage();
-        }
-    } else {
-        (new SignIn())->signInPage();
+            break;
     }
 } catch (Exception $e) {
     $errorMessage = $e->getMessage();

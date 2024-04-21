@@ -27,16 +27,14 @@ use Application\Lib\Database\DatabaseConnection;
             <div class="card shadow">
                 <div class="card-header accordion-header p-1" id="headingOne3">
                     <h5 class="mb-0 panel-title">
-                        <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseOne3" aria-controls="collapseOne3"><strong>
+                        <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#collapseOne3" aria-controls="collapseOne3"><strong>
                                 OWN TODO</strong>
                         </button>
                     </h5>
                 </div>
 
 
-                <div id="collapseOne3" class="row collapse" aria-labelledby="headingOne3"
-                    data-parent="#accordionExample3">
+                <div id="collapseOne3" class="row collapse" aria-labelledby="headingOne3" data-parent="#accordionExample3">
                     <?php
 
 
@@ -44,7 +42,7 @@ use Application\Lib\Database\DatabaseConnection;
                         $deadline = substr($todo->deadline, 0, 10);
                         $time_limit = substr($todo->deadline, 11, 16);
 
-                        ?>
+                    ?>
                         <div class="col-sm-4" style="margin-top: 10px;">
 
                             <div class="card shadow-sm">
@@ -61,8 +59,7 @@ use Application\Lib\Database\DatabaseConnection;
 
 
                                     <div style="display: flex; justify-content: right;">
-                                        <form action="index.php?action=todoDeletePopup2&todo_id=<?= $todo->todo_id ?>"
-                                            method="post">
+                                        <form action="index.php?action=todoDeletePopup2&todo_id=<?= $todo->todo_id ?>" method="post">
                                             <button type="submit" class="btn btn-danger icon-round shadow">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -85,8 +82,7 @@ use Application\Lib\Database\DatabaseConnection;
         <div class="card shadow">
             <div class="card-header accordion-header p-1" id="headingTwo3">
                 <h5 class="mb-0 panel-title">
-                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3"><strong>
+                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo3" aria-expanded="false" aria-controls="collapseTwo3"><strong>
                             GIVEN TODO</strong>
                     </button>
                 </h5>
@@ -98,7 +94,7 @@ use Application\Lib\Database\DatabaseConnection;
                     $deadline = substr($todo->deadline, 0, 10);
                     $time_limit = substr($todo->deadline, 11, 16);
                     $personal = $personalRepository->getProfilebyPersonalID($todo->recipient);
-                    ?>
+                ?>
                     <div class="col-sm-4" style="margin-top: 10px;">
                         <div class="card shadow-sm">
                             <div class="card-body">
@@ -128,8 +124,7 @@ use Application\Lib\Database\DatabaseConnection;
         <div class="card shadow">
             <div class="card-header accordion-header p-1" id="headingThree3">
                 <h5 class="mb-0 panel-title">
-                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse"
-                        data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3"><strong>
+                    <button class="btn btn-link accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#collapseThree3" aria-expanded="false" aria-controls="collapseThree3"><strong>
                             RECEIVED TODO</strong>
                     </button>
                 </h5>
@@ -137,13 +132,12 @@ use Application\Lib\Database\DatabaseConnection;
 
 
 
-            <div id="collapseThree3" class="row collapse" aria-labelledby="headingThree3"
-                data-parent="#accordionExample3">
+            <div id="collapseThree3" class="row collapse" aria-labelledby="headingThree3" data-parent="#accordionExample3">
                 <?php foreach ($receivedTodo as $todo) {
                     $deadline = substr($todo->deadline, 0, 10);
                     $time_limit = substr($todo->deadline, 11, 16);
                     $personal = $personalRepository->getProfilebyPersonalID($todo->personal_id);
-                    ?>
+                ?>
                     <div class="col-sm-4" style="margin-top: 10px;">
 
                         <div class="card shadow-sm">

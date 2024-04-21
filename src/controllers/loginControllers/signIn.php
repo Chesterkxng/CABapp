@@ -3,9 +3,9 @@
 namespace Application\Controllers\LoginControllers\SignIn;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/login.php');
-require_once('src/model/personal.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/login.php');
+require_once ('src/model/personal.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
@@ -15,11 +15,11 @@ class SignIn
 {
     public function signInPage()
     {
-        require('templates/login/signIn.php');
+        require ('templates/login/signIn.php');
     }
     public function connect(array $input) // modifier le html pour que les valeurs puisse etre recus 
     {
-        require('templates/login/signIn.php');
+        require ('templates/login/signIn.php');
         if ($input !== null) {
             $username = null;
             $password = null;

@@ -2,8 +2,8 @@
 namespace Application\Controllers\CalendarControllers\Calendar;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/event.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/event.php');
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Event\EventRepository;
 
@@ -15,7 +15,7 @@ class Calendar
         $eventRepository->connection = new DatabaseConnection();
         $personal_id = $_SESSION['PERSONAL_ID'];
         $events = $eventRepository->getEventsByPersonal($personal_id);
-        require('templates/calendar/calendar.php');
+        require ('templates/calendar/calendar.php');
     }
 
     public function sharedCalendar()
@@ -23,7 +23,7 @@ class Calendar
         $eventRepository = new EventRepository();
         $eventRepository->connection = new DatabaseConnection();
         $events = $eventRepository->getSharedEvents();
-        require('templates/calendar/sharedCalendar.php');
+        require ('templates/calendar/sharedCalendar.php');
     }
 
     public function eventsList()
@@ -33,7 +33,7 @@ class Calendar
         $personal_id = $_SESSION['PERSONAL_ID'];
         $events = $eventRepository->getEventsByPersonal($personal_id);
         $sharedEvents = $eventRepository->getSharedEvents();
-        require('templates/calendar/eventList.php');
+        require ('templates/calendar/eventList.php');
     }
 
     public function eventUpdateForm(int $event_id)
@@ -42,7 +42,7 @@ class Calendar
         $eventRepository->connection = new DatabaseConnection();
         //$personal_id = $_SESSION['PERSONAL_ID']; 
         $event = $eventRepository->getEvent($event_id);
-        require('templates/calendar/updateForm.php');
+        require ('templates/calendar/updateForm.php');
     }
 
     public function updateEvent(array $input, int $event_id)
@@ -51,7 +51,7 @@ class Calendar
         $eventRepository->connection = new DatabaseConnection();
         //$personal_id = $_SESSION['PERSONAL_ID']; 
         $event = $eventRepository->getEvent($event_id);
-        require('templates/calendar/updateForm.php');
+        require ('templates/calendar/updateForm.php');
         if ($input !== null) {
             $title = null;
             $starting_date = null;
@@ -94,7 +94,7 @@ class Calendar
         $personal_id = $_SESSION['PERSONAL_ID'];
         $events = $eventRepository->getEventsByPersonal($personal_id);
         $sharedEvents = $eventRepository->getSharedEvents();
-        require('templates/calendar/eventList.php');
+        require ('templates/calendar/eventList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
          </script>';
@@ -108,7 +108,7 @@ class Calendar
         $personal_id = $_SESSION['PERSONAL_ID'];
         $events = $eventRepository->getEventsByPersonal($personal_id);
         $sharedEvents = $eventRepository->getSharedEvents();
-        require('templates/calendar/eventList.php');
+        require ('templates/calendar/eventList.php');
         $bool = $eventRepository->deleteEvent($event_id);
         if ($bool == 1) {
             echo '<script type="text/javascript">

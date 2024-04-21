@@ -3,8 +3,6 @@
 <script type="text/javascript">
   function createSuccessAlert() {
     swal({
-      title: "Access control",
-      text: "User account created successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -20,7 +18,6 @@
 <script type="text/javascript">
   function usernameAlreadyExistAlert() {
     swal({
-      title: "Signup Message!",
       text: "Username  is already taken !",
       icon: "error",
     });
@@ -31,7 +28,6 @@
 <script type="text/javascript">
   function mismatchPasswordAlert() {
     swal({
-      title: "signup Message!",
       text: "Passwords didn't match",
       icon: "error",
     });
@@ -42,8 +38,6 @@
 <script type="text/javascript">
   function unknownErrorAlert() {
     swal({
-      title: "signup Message!",
-      text: "Unknown error",
       icon: "error",
     });
 
@@ -57,8 +51,6 @@
 <script type="text/javascript">
   function profileCompletionSuccessAlert() {
     swal({
-      title: "Profile Completion Message!",
-      text: "User profile completed successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -74,8 +66,6 @@
 <script type="text/javascript">
   function updateSuccessAlert() {
     swal({
-      title: "Profile  Message!",
-      text: "User profile updated successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -119,8 +109,6 @@
 <script type="text/javascript">
   function loginSuccesAlert() {
     swal({
-      title: "Login Message!",
-      text: "username and password match!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -162,8 +150,6 @@
 <script type="text/javascript">
   function resetSuccessAlert() {
     swal({
-      title: "Reset Message!",
-      text: "password have been reset successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -179,8 +165,6 @@
 <script type="text/javascript">
   function redirectProfileAlert() {
     swal({
-      title: "Login Message!",
-      text: "username and password match!",
       icon: "success",
     }).then(okay => {
       if (okay) {

@@ -1,7 +1,7 @@
 <?php
 namespace Application\Model\OM;
 
-require_once('src/lib/database.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 
 class OM
@@ -24,8 +24,15 @@ class OMRepository
     public DatabaseConnection $connection;
 
     public function addOM(
-        string $recipient, string $country, string $city, string $companions, string $object, string $means,
-        string $departure_date, string $return_date, string $type
+        string $recipient,
+        string $country,
+        string $city,
+        string $companions,
+        string $object,
+        string $means,
+        string $departure_date,
+        string $return_date,
+        string $type
     ): bool {
 
         $statement = $this->connection->getConnection()->prepare(

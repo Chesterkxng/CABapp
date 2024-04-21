@@ -1,8 +1,6 @@
 <script type="text/javascript">
   function addingIntSuccessAlert() {
     swal({
-      title: "Missions Orders Message!",
-      text: "Mission Order added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -18,8 +16,6 @@
 <script type="text/javascript">
   function addingExtSuccessAlert() {
     swal({
-      title: "Missions Orders Message!",
-      text: "Mission Order added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -35,8 +31,6 @@
 <script type="text/javascript">
   function addingDOMSuccessAlert() {
     swal({
-      title: "Missions Orders Message!",
-      text: "Mission Order added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -52,8 +46,6 @@
 <script type="text/javascript">
   function UploadingSuccessAlert() {
     swal({
-      title: "Missions Orders Message!",
-      text: "Mission Order uploaded successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -69,8 +61,6 @@
 <script type="text/javascript">
   function addingErrorAlert() {
     swal({
-      title: "Missions Orders Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 

@@ -14,12 +14,12 @@ use Application\Lib\Database\DatabaseConnection;
     <link rel="icon" href="templates\pagesComponents\navbar\assets\img\insigneAir.png" type="image/icon type">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <?php require('templates/pagesComponents/navbar/navbarHeader.php'); ?>
+    <?php require ('templates/pagesComponents/navbar/navbarHeader.php'); ?>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
-    <?php require('templates/pagesComponents/navbar/navbar.php'); ?>
+    <?php require ('templates/pagesComponents/navbar/navbar.php'); ?>
     <div class="col-sm-9 col-xs-12 content pt-3 pl-0">
         <h5 class="mb-3"><strong>DOCUMENTS</strong></h5>
         <div class="row mt-3">
@@ -55,7 +55,7 @@ use Application\Lib\Database\DatabaseConnection;
                                         <td>
                                             <?= htmlspecialchars($doc->details) ?>
                                         </td>
-                                         <td>
+                                        <td>
                                             <?= htmlspecialchars($doc->edition_date) ?>
                                         </td>
                                         <td><a href="#"
@@ -81,7 +81,7 @@ use Application\Lib\Database\DatabaseConnection;
         </div>
 
         <?php //require('templates/pagesComponents/popup/visa.php'); ?>
-        <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
+        <?php require ('templates/pagesComponents/navbar/navbarFooter.php'); ?>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#docs-table').DataTable();

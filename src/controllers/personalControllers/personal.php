@@ -2,9 +2,9 @@
 namespace Application\Controllers\PersonalControllers\Personal;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/personal.php');
-require_once('src/model/login.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/personal.php');
+require_once ('src/model/login.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Login\LoginRepository;
@@ -20,7 +20,7 @@ class Personal
         $loginRepository->connection = new DatabaseConnection();
         $personal = $personalRepository->getProfile($login_id);
         $user = $loginRepository->getUserLoginInfos($login_id);
-        require('templates/personal/updateForm.php');
+        require ('templates/personal/updateForm.php');
     }
     public function updateProfile(int $login_id, array $input)
     {
@@ -30,7 +30,7 @@ class Personal
         $loginRepository->connection = new DatabaseConnection();
         $personal = $personalRepository->getProfile($login_id);
         $user = $loginRepository->getUserLoginInfos($login_id);
-        require('templates/personal/updateForm.php');
+        require ('templates/personal/updateForm.php');
         if ($input !== null) {
             $grade = null;
             $surname = null;
@@ -69,7 +69,7 @@ class Personal
         $loginRepository->connection = new DatabaseConnection();
         $personal = $personalRepository->getProfile($login_id);
         $user = $loginRepository->getUserLoginInfos($login_id);
-        require('templates/personal/updateForm.php');
+        require ('templates/personal/updateForm.php');
         if ($input !== null) {
             $username = null;
             $security_question = null;
@@ -106,7 +106,7 @@ class Personal
         $loginRepository->connection = new DatabaseConnection();
         $personal = $personalRepository->getProfile($login_id);
         $user = $loginRepository->getUserLoginInfos($login_id);
-        require('templates/personal/updateForm.php');
+        require ('templates/personal/updateForm.php');
 
         $filename = $_FILES['pp']['name'];
         $location = 'templates/pagesComponents/navbar/assets/pp/' . $filename;
@@ -122,7 +122,7 @@ class Personal
                         updateProfileSuccessAlert()
                             </script>';
                 if ($personal->picture_name != 'welcome2.png') {
-                    unlink('templates/pagesComponents/navbar/assets/pp/' .$personal->picture_name);
+                    unlink('templates/pagesComponents/navbar/assets/pp/' . $personal->picture_name);
                 }
             }
 

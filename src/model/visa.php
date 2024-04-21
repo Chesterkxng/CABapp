@@ -2,7 +2,7 @@
 
 namespace Application\Model\Visa;
 
-require_once('src/lib/database.php');
+require_once ('src/lib/database.php');
 use Application\Lib\Database\DatabaseConnection;
 
 class Visa
@@ -41,8 +41,8 @@ class VisaRepository
             "SELECT * FROM `visa` 
             WHERE EXPIRATION_DATE >= ?"
         );
-        $date = date("Y-m-d"); 
-        $statement->execute([$date]); 
+        $date = date("Y-m-d");
+        $statement->execute([$date]);
         $visas = [];
         while ($row = $statement->fetch()) {
             $visa = new Visa();
@@ -62,8 +62,8 @@ class VisaRepository
             "SELECT * FROM `visa` 
             WHERE EXPIRATION_DATE < ?"
         );
-        $date = date("Y-m-d"); 
-        $statement->execute([$date]); 
+        $date = date("Y-m-d");
+        $statement->execute([$date]);
         $visas = [];
         while ($row = $statement->fetch()) {
             $visa = new Visa();

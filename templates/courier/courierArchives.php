@@ -31,11 +31,11 @@ use Application\Lib\Database\DatabaseConnection;
                             <thead>
                                 <tr>
                                     <th>N°</th>
-                                    <th>OBJECT</th>
+                                    <th>OBJET</th>
                                     <th>DETAILS</th>
-                                    <th>RECIPIENT </th>
-                                    <th>EDITION DATE</th>
-                                    <th>DOCUMENTS</th>
+                                    <th>DESTINATAIRES </th>
+                                    <th>DATE D'EDITION</th>
+                                    <th>FICHIERS</th>
 
                                 </tr>
                             </thead>
@@ -45,7 +45,7 @@ use Application\Lib\Database\DatabaseConnection;
 
                                 foreach ($couriers as $courier) {
 
-                                    ?>
+                                ?>
                                     <tr>
                                         <td>
                                             <?= htmlspecialchars($i) ?>
@@ -62,8 +62,7 @@ use Application\Lib\Database\DatabaseConnection;
                                         <td>
                                             <?= htmlspecialchars($courier->edition_date) ?>
                                         </td>
-                                        <td><a href="#"
-                                                onclick="window.open('<?= htmlspecialchars($courier->url) ?>', '_blank'); return false;">
+                                        <td><a href="#" onclick="window.open('<?= htmlspecialchars($courier->url) ?>', '_blank'); return false;">
                                                 <button class="btn btn-danger btn-sm btn-block">
                                                     VIEW FILE
                                                     <i class="fa fa-file-pdf"></i>
@@ -72,7 +71,7 @@ use Application\Lib\Database\DatabaseConnection;
                                         </td>
 
                                     </tr>
-                                    <?php
+                                <?php
                                     $i = $i + 1;
                                 }
                                 ?>
@@ -84,10 +83,11 @@ use Application\Lib\Database\DatabaseConnection;
             </div>
         </div>
 
-        <?php //require('templates/pagesComponents/popup/visa.php'); ?>
+        <?php //require('templates/pagesComponents/popup/visa.php'); 
+        ?>
         <?php require('templates/pagesComponents/navbar/navbarFooter.php'); ?>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('#couriers-table').DataTable();
             });
         </script>

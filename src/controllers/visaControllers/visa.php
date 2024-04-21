@@ -2,8 +2,8 @@
 namespace Application\Controllers\VisaControllers\Visa;
 
 session_start();
-require_once('src/lib/database.php');
-require_once('src/model/visa.php');
+require_once ('src/lib/database.php');
+require_once ('src/model/visa.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Visa\VisaRepository;
@@ -15,19 +15,19 @@ class Visa
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
         $AvailableVisas = $visaRepository->getAvailableVisas();
-        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
+        $ExpiredVisas = $visaRepository->getExpiredVisas();
 
-        require('templates/visa/visaList.php');
+        require ('templates/visa/visaList.php');
     }
 
     public function visaAddingForm()
     {
-        require('templates/visa/addingForm.php');
+        require ('templates/visa/addingForm.php');
     }
 
     public function addVisa(array $input)
     {
-        require('templates/visa/addingForm.php');
+        require ('templates/visa/addingForm.php');
         if ($input !== null) {
             $visanumber = null;
             $passnumber = null;
@@ -64,7 +64,7 @@ class Visa
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
         $visa = $visaRepository->getVisa($visa_id);
-        require('templates/visa/updateForm.php');
+        require ('templates/visa/updateForm.php');
     }
 
     public function updateVisa(array $input, int $visa_id)
@@ -72,7 +72,7 @@ class Visa
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
         $visa = $visaRepository->getVisa($visa_id);
-        require('templates/visa/updateForm.php');
+        require ('templates/visa/updateForm.php');
         if ($input !== null) {
             $visanumber = null;
             $passnumber = null;
@@ -108,8 +108,8 @@ class Visa
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
         $AvailableVisas = $visaRepository->getAvailableVisas();
-        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
-        require('templates/visa/visaList.php');
+        $ExpiredVisas = $visaRepository->getExpiredVisas();
+        require ('templates/visa/visaList.php');
         echo '<script type="text/javascript">
             deletingConfirmAlert()
          </script>';
@@ -120,8 +120,8 @@ class Visa
         $visaRepository = new VisaRepository();
         $visaRepository->connexion = new DatabaseConnection();
         $AvailableVisas = $visaRepository->getAvailableVisas();
-        $ExpiredVisas = $visaRepository->getExpiredVisas(); 
-        require('templates/visa/visaList.php');
+        $ExpiredVisas = $visaRepository->getExpiredVisas();
+        require ('templates/visa/visaList.php');
         $bool = $visaRepository->deleteVisa($visa_id);
         if ($bool == 1) {
             echo '<script type="text/javascript">

@@ -1,8 +1,6 @@
 <script type="text/javascript">
   function addingSuccessAlert() {
     swal({
-      title: "Archive Message!",
-      text: "document added successfully!",
       icon: "success",
     }).then(okay => {
       if (okay) {
@@ -21,8 +19,6 @@
 <script type="text/javascript">
   function addingErrorAlert() {
     swal({
-      title: "Archive Message!",
-      text: "Unknown error!",
       icon: "error",
     });
 

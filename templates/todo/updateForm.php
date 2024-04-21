@@ -28,8 +28,7 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="passnumber">TITLE</label>
                             <div class="col-sm-5">
-                                <input type="text" style="text-transform: uppercase;" class="form-control" id="title"
-                                    name="title" value="<?= $todo->title ?>" required />
+                                <input type="text" style="text-transform: uppercase;" class="form-control" id="title" name="title" value="<?= $todo->title ?>" required />
                             </div>
                         </div>
 
@@ -39,16 +38,14 @@
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="details">DETAILS</label>
                             <div class="col-sm-5">
-                                <textarea type="text" autocomplete="off" rows="4" class="form-control" id="details"
-                                    name="details" required><?= $todo->details ?></textarea>
+                                <textarea type="text" autocomplete="off" rows="4" class="form-control" id="details" name="details" required><?= $todo->details ?></textarea>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label class="control-label col-sm-3" for="surname">DEADLINE</label>
                             <div class="col-sm-5">
-                                <input type="datetime-local" autocomplete="off" class="form-control" id="deadline"
-                                    name="deadline" value="<?= $todo->deadline ?>" required />
+                                <input type="datetime-local" autocomplete="off" class="form-control" id="deadline" name="deadline" value="<?= $todo->deadline ?>" required />
                             </div>
                         </div>
 
