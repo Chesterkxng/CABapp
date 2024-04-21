@@ -146,7 +146,7 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                     <ul class="children" id="correspondences">
                                         <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> LETTRES</a></li>
                                         <li class="child"><a href="index.php?action=MSGArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> MESSAGES</a></li>
-                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NDS</a></li>
+                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NOTES DE SERVICE</a></li>
                                         <li class="child"><a href="index.php?action=BEArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> BORDERAUX</a></li>
                                     </ul>
                                 </li>
@@ -246,7 +246,7 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                     <ul class="children" id="correspondences">
                                         <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> LETTRES</a></li>
                                         <li class="child"><a href="index.php?action=MSGArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> MESSAGES</a></li>
-                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NDS</a></li>
+                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NOTES DE SERVICE</a></li>
                                         <li class="child"><a href="index.php?action=BEArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> BORDERAUX</a></li>
                                     </ul>
                                 </li>
@@ -311,7 +311,7 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                     <ul class="children" id="correspondences">
                                         <li class="child"><a href="index.php?action=couriersArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> LETTRES</a></li>
                                         <li class="child"><a href="index.php?action=MSGArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> MESSAGES</a></li>
-                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NDS</a></li>
+                                        <li class="child"><a href="index.php?action=NDSArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> NOTES DE SERVICE</a></li>
                                         <li class="child"><a href="index.php?action=BEArchives" class="ml-4"><i class="fa fa-angle-right mr-2"></i> BORDERAUX</a></li>
                                     </ul>
                                 </li>
