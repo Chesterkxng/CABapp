@@ -703,6 +703,7 @@ try {
                     case 'saveDOM':
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $input = $_POST;
+                            (new MissionOrders())->saveDOM($input);
                         }
                         break;
 
