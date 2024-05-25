@@ -28,11 +28,7 @@ class VisaRepository
         );
         $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 
     public function getAvailableVisas(): array
@@ -110,11 +106,7 @@ class VisaRepository
         );
         $statement->execute([$visaNumber, $passNumber, $deliveryDate, $expirationDate, $visa_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
 
     }
     public function deleteVisa(int $visa_id): bool
@@ -124,11 +116,7 @@ class VisaRepository
         );
         $statement->execute([$visa_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
 
     }
 

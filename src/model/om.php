@@ -42,11 +42,7 @@ class OMRepository
         $edition_date = date('Y-m-d');
         $statement->execute([$recipient, $country, $city, $companions, $object, $means, $departure_date, $return_date, $type, $edition_date]);
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
 
     }
 
@@ -190,11 +186,7 @@ class OMRepository
         );
         $statement->execute([$url, $om_id]);
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
 
     }
 

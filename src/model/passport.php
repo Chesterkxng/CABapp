@@ -36,11 +36,7 @@ class PassportRepository
         );
         $statement->execute([$passNumber, $grade, $surname, $firstname, $deliveryDate, $expirationDate]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 
     public function getAvailablePassports(): array
@@ -154,11 +150,7 @@ class PassportRepository
         );
         $statement->execute([$passNumber, $grade, $surname, $firstname, $deliveryDate, $expirationDate, $passport_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
 
     }
     public function deletePassport($passport_id)
@@ -168,11 +160,8 @@ class PassportRepository
         );
         $statement->execute([$passport_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
+       
 
     }
 

@@ -33,11 +33,7 @@ class BordereauRepository
         );
         $statement->execute([$reference, $recipient, $object, $edition_date, $url]);
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
     }
 
     public function getBordereau(): array
@@ -89,11 +85,7 @@ class BordereauRepository
         );
         $statement->execute([$reference, $recipient, $object, $edition_date, $bordereau_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 
     public function deleteBE(int $bordereau_id): bool
@@ -103,10 +95,6 @@ class BordereauRepository
         );
         $statement->execute([$bordereau_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 }

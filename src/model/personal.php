@@ -129,11 +129,7 @@ class PersonalRepository
         $statement->execute([$login_id, strtoupper($grade), strtoupper($first_name), strtoupper($surname), strtoupper($function)]);
 
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
     }
 
     public function isProfileFilled(int $login_id): bool
@@ -144,11 +140,7 @@ class PersonalRepository
         $statement->execute([$login_id]);
 
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -181,11 +173,7 @@ class PersonalRepository
         $statement->execute([strtoupper($grade), strtoupper($first_name), strtoupper($surname), strtoupper($function), $login_id]);
 
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
     }
 
 
@@ -199,11 +187,7 @@ class PersonalRepository
         $statement->execute([$nameofpp, $login_id]);
 
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
     }
     // END OF PROFILE SECTION
 

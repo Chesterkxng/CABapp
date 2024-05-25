@@ -86,11 +86,7 @@ class NDSRepository
         );
         $statement->execute([$reference, $recipient, $object, $edition_date, $nds_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 
     public function deleteNDS(int $nds_id): bool
@@ -100,11 +96,7 @@ class NDSRepository
         );
         $statement->execute([$nds_id]);
         $affectedline = $statement->rowCount();
-        if ($affectedline == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedline == 1;
     }
 
 }

@@ -111,11 +111,7 @@ class LoginRepository
         $statement->execute([$username]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
     }
 
     // recuperer le mot de passe en fonction de l'utilisateur 
@@ -144,11 +140,7 @@ class LoginRepository
         $affectedLines = $statement->execute([$username, $password, $security_question, $security_answer, $profil_type]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
 
     }
 
@@ -162,11 +154,7 @@ class LoginRepository
 
         $affectedLine = $statement->execute([$password, $username]);
 
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -181,11 +169,7 @@ class LoginRepository
 
         $affectedLine = $statement->execute([$username, $security_question, $security_answer, $login_id]);
 
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -203,11 +187,7 @@ class LoginRepository
 
         $affectedLine = $statement->execute([$username, $security_question, $security_answer, $profil_type, $login_id]);
 
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 

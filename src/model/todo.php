@@ -127,11 +127,7 @@ class TodoRepository
 
         $statement->execute([$personal_id, $title, $details, $deadline, $recipient]);
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -158,11 +154,7 @@ class TodoRepository
 
         $statement->execute([$title, $details, $deadline, $recipient, $personal_id, $todo_id]);
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
     public function deleteTodo(int $todo_id)
@@ -173,11 +165,7 @@ class TodoRepository
 
         $statement->execute([$todo_id]);
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -191,11 +179,7 @@ class TodoRepository
 
         $statement->execute([$todo_id]);
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 
@@ -209,11 +193,7 @@ class TodoRepository
 
         $statement->execute([$todo_id]);
         $affectedLine = $statement->rowCount();
-        if ($affectedLine == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLine == 1;
 
     }
 

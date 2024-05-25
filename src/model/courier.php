@@ -26,11 +26,7 @@ class CourierRepository
         );
         $statement->execute([$recipient, $object, $details, $edition_date, $url]);
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
 
     }
 

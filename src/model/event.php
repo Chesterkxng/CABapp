@@ -106,11 +106,7 @@ class EventRepository
         $statement->execute([$event_id]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
     }
 
 
@@ -123,11 +119,7 @@ class EventRepository
         $statement->execute([$title, $start, $end, $personal_id, $sharing_status]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
     }
 
 
@@ -144,11 +136,7 @@ class EventRepository
         $statement->execute([$title, $start, $end, $event_id]);
 
         $affectedLines = $statement->rowCount();
-        if ($affectedLines == 1) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return $affectedLines == 1;
     }
 
 }
