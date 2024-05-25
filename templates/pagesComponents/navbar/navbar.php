@@ -118,7 +118,7 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                     </a>
                                     <ul class="children" id="calender">
                                         <li class="child"><a href="index.php?action=eventsList" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> EVENTS LIST</a></li>
+                                                    class="fa fa-angle-right mr-2"></i> LISTE D'EVENEMENTS</a></li>
                                         <li class="child"><a href="index.php?action=calendar" class="ml-4"><i
                                                     class="fa fa-angle-right mr-2"></i> CALENDRIER PERSONEL</a></li>
                                         <li class="child"><a href="index.php?action=sharedCalendar" class="ml-4"><i
@@ -234,7 +234,7 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                     </a>
                                     <ul class="children" id="calender">
                                         <li class="child"><a href="index.php?action=eventsList" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> EVENTS LIST</a></li>
+                                                    class="fa fa-angle-right mr-2"></i> LISTE D'EVENEMENTS</a></li>
                                         <li class="child"><a href="index.php?action=calendar" class="ml-4"><i
                                                     class="fa fa-angle-right mr-2"></i> CALENDRIER PERSONEL</a></li>
                                         <li class="child"><a href="index.php?action=sharedCalendar" class="ml-4"><i
