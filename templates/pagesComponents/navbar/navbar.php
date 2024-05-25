@@ -181,31 +181,17 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                 </li>
 
                                 <li class="parent">
-                                    <a href="#" onclick="toggle_menu('archives'); return false" class=""><i
+                                    <a href="index.php?action=Archives" class=""><i
                                             class="fa fa-archive mr-3"> </i>
-                                        <span class="none">ARCHIVES<i
-                                                class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                        <span class="none">ARCHIVES</span>
                                     </a>
-                                    <ul class="children" id="archives">
-                                        <li class="child"><a href="index.php?action=archiveAddingForm" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> ADD DOCUMENT</a></li>
-                                        <li class="child"><a href="index.php?action=Archives" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
-                                    </ul>
                                 </li>
 
                                 <li class="parent">
-                                    <a href="#" onclick="toggle_menu('accessControls'); return false" class=""><i
+                                    <a href="index.php?action=usersList" class=""><i
                                             class="fa fa-key mr-3"> </i>
-                                        <span class="none">CONTROLE D'ACCES<i
-                                                class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                        <span class="none">CONTROLE D'ACCES</span>
                                     </a>
-                                    <ul class="children" id="accessControls">
-                                        <li class="child"><a href="index.php?action=userAddingForm" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> ADD NEW USER</a></li>
-                                        <li class="child"><a href="index.php?action=usersList" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> USERS LIST</a></li>
-                                    </ul>
                                 </li>
 
                             </ul>
@@ -311,17 +297,10 @@ if (isset($_SESSION['LOGIN_ID'])) {
                                 </li>
 
                                 <li class="parent">
-                                    <a href="#" onclick="toggle_menu('archives'); return false" class=""><i
+                                    <a href="index.php?action=Archives" class=""><i
                                             class="fa fa-archive mr-3"> </i>
-                                        <span class="none">ARCHIVES<i
-                                                class="fa fa-angle-down pull-right align-bottom"></i></span>
+                                        <span class="none">ARCHIVES</span>
                                     </a>
-                                    <ul class="children" id="archives">
-                                        <li class="child"><a href="index.php?action=archiveAddingForm" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> ADD DOCUMENT</a></li>
-                                        <li class="child"><a href="index.php?action=Archives" class="ml-4"><i
-                                                    class="fa fa-angle-right mr-2"></i> ARCHIVES</a></li>
-                                    </ul>
                                 </li>
 
                             </ul>

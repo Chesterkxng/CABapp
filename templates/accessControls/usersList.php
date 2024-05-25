@@ -9,7 +9,7 @@ use Application\Model\Passport\PassportRepository;
 <html lang="en">
 
 <head>
-    <title>CABapp</title>
+    <title>BEOapp</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="templates\pagesComponents\navbar\assets\img\insigneAir.png" type="image/icon type">
@@ -40,6 +40,19 @@ use Application\Model\Passport\PassportRepository;
                                 </tr>
                             </thead>
                             <tbody>
+                            <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <form style="display:inline;" action="index.php?action=userAddingForm" method="post">
+                                            <button class="btn btn-primary btn-block"><i class="fa fa-plus"></i></button>
+                                        </form>
+                                    </td>
+
+                                </tr>
                                 <?php
                                 $i = 1;
 
