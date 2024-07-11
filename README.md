@@ -1,8 +1,8 @@
 
-# BEOapp 
+# CABapp 
 
 # Description
-This project aims to facilitate the work of the instruction and training department of the Air Force General Staff by implementing the functionalities described in the features section.
+This project aims to facilitate the work of the office of Chief of Staff of Ivorian Air Force by implementing the functionalities described in the features section.
 
 
 
